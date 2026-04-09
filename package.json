@@ -6,10 +6,16 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
+    "@google-cloud/vision": "^5.3.5",
+    "@prisma/client": "^6.16.0",
+    "bcryptjs": "^3.0.3",
     "next": "16.2.3",
+    "next-auth": "^4.24.13",
+    "prisma": "^6.16.0",
     "react": "19.2.4",
     "react-dom": "19.2.4"
   },

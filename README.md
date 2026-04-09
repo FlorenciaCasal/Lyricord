@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Cancionero
 
-## Getting Started
+App web para guardar canciones con letra y acordes usando Next.js, TypeScript, Prisma, PostgreSQL y OCR con Google Cloud Vision.
 
-First, run the development server:
+## Variables de entorno
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Creá un archivo `.env` tomando como base `.env.example`.
+
+Ejemplo:
+
+```env
+DATABASE_URL="postgresql://usuario:password@ep-tu-db-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
+DIRECT_URL="postgresql://usuario:password@ep-tu-db.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
+GOOGLE_APPLICATION_CREDENTIALS="C:/secrets/google-vision-service-account.json"
+GOOGLE_APPLICATION_CREDENTIALS_JSON='{"type":"service_account","project_id":"tu-proyecto-gcp","private_key_id":"...","private_key":"-----BEGIN PRIVATE KEY-----\\n...\\n-----END PRIVATE KEY-----\\n","client_email":"tu-service-account@tu-proyecto-gcp.iam.gserviceaccount.com","client_id":"..."}'
+GOOGLE_CLOUD_PROJECT="tu-proyecto-gcp"
+NEXTAUTH_SECRET="cambia-esto-por-un-secret-largo-y-seguro"
+NEXTAUTH_URL="http://localhost:3000"
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Vercel
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+En Vercel cargá valores reales en `Project Settings > Environment Variables`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Variables mínimas:
+- `DATABASE_URL`
+- `DIRECT_URL`
+- `GOOGLE_CLOUD_PROJECT`
+- `GOOGLE_APPLICATION_CREDENTIALS_JSON`
+- `NEXTAUTH_SECRET`
+- `NEXTAUTH_URL`
 
-## Learn More
+Para producción en Vercel, usá `GOOGLE_APPLICATION_CREDENTIALS_JSON` con el JSON completo del service account.
+La variable `GOOGLE_APPLICATION_CREDENTIALS` con ruta local queda útil para desarrollo local.
 
-To learn more about Next.js, take a look at the following resources:
+## Desarrollo local
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm install
+npx prisma generate
+npx prisma migrate dev
+npm run dev
+```
