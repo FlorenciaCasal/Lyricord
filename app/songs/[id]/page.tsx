@@ -31,7 +31,7 @@ export default async function SongDetailPage({ params }: SongDetailPageProps) {
 
   return (
     <main className="mx-auto flex min-h-screen w-full max-w-5xl flex-col px-2 py-6 sm:px-6 sm:py-8">
-      <section className="rounded-[2rem] border border-slate-700 bg-slate-900 p-5 shadow-sm shadow-black/20 sm:p-8">
+      <section className="rounded-[2rem] border border-slate-700 bg-slate-900 py-5 px-2 shadow-sm shadow-black/20 sm:p-8">
         <div className="flex flex-col gap-5 border-b border-slate-700 pb-6">
           <Link
             href="/"
