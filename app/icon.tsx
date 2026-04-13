@@ -71,14 +71,14 @@ export default function Icon() {
           <div
             style={{
               display: "flex",
-              fontSize: 132,
+              fontSize: 118,
               fontWeight: 700,
               color: "#22c55e",
-              letterSpacing: "-0.06em",
+              letterSpacing: "-0.12em",
               transform: "translateY(-2px)",
             }}
           >
-            C
+            Ly
           </div>
         </div>
       </div>

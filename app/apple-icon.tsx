@@ -31,12 +31,12 @@ export default function AppleIcon() {
             alignItems: "center",
             justifyContent: "center",
             color: "#22c55e",
-            fontSize: 72,
+            fontSize: 62,
             fontWeight: 700,
-            letterSpacing: "-0.06em",
+            letterSpacing: "-0.12em",
           }}
         >
-          C
+          Ly
         </div>
       </div>
     ),

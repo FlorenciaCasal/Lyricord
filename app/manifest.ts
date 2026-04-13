@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     id: "/",
     name: "Lyricord",
     short_name: "Lyricord",
-    description: "Guardá letras y acordes con OCR e instalación tipo app.",
+    description: "Guarda letras y acordes con OCR e instalacion tipo app.",
     start_url: "/",
     scope: "/",
     display: "standalone",
@@ -16,17 +16,12 @@ export default function manifest(): MetadataRoute.Manifest {
     categories: ["music", "productivity", "utilities"],
     icons: [
       {
-        src: "/icon-192.png",
-        sizes: "192x192",
-        type: "image/png",
-      },
-      {
-        src: "/icon-512.png",
+        src: "/icon",
         sizes: "512x512",
         type: "image/png",
       },
       {
-        src: "/icon-512-maskable.png",
+        src: "/icon",
         sizes: "512x512",
         type: "image/png",
         purpose: "maskable",

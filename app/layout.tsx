@@ -13,9 +13,13 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Lyricord",
-  description: "Guardá letras y acordes con OCR.",
+  description: "Guarda letras y acordes con OCR.",
   manifest: "/manifest.webmanifest",
   applicationName: "Lyricord",
+  icons: {
+    icon: "/icon",
+    apple: "/apple-icon",
+  },
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
