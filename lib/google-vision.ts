@@ -139,10 +139,10 @@ function getSafeErrorDetail(error: unknown) {
 
 function getFriendlyErrorMessage(detail?: string) {
   if (!detail) {
-    return "Falló la lectura OCR con Google Cloud Vision.";
+    return "Fallo la lectura OCR con Google Cloud Vision.";
   }
 
-  return `Falló la lectura OCR con Google Cloud Vision. Detalle: ${detail}`;
+  return `Fallo la lectura OCR con Google Cloud Vision. Detalle: ${detail}`;
 }
 
 function getBoundingMetrics(boundingBox?: BoundingPoly | null) {
