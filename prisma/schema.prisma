@@ -23,6 +23,8 @@ model Song {
   title     String
   artist    String?
   key       String?
+  versionName    String?  @default("Principal")
+  versionGroupId String?
   content   String   @db.Text
   notes     String?  @db.Text
   createdAt DateTime @default(now())
@@ -31,4 +33,5 @@ model Song {
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId, updatedAt])
+  @@index([userId, versionGroupId])
 }

@@ -302,6 +302,10 @@ function looksLikeChordToken(token: string) {
     return false;
   }
 
+  if (splitMergedSimpleChords(normalized) !== normalized) {
+    return true;
+  }
+
   const latinRoot = "(?:A|B|C|D|E|F|G|DO|RE|MI|FA|SOL|LA|SI)";
   const accidental = "(?:#|B)?";
   const quality =
@@ -337,7 +341,36 @@ function detectLineType(words: PositionedWord[]) {
   return "lyrics" as const;
 }
 
-function buildLineText(words: PositionedWord[], charWidth: number) {
+function splitMergedSimpleChords(token: string) {
+  const match = token.match(/^([([{]?)([A-G](?:#|b)?[A-G](?:#|b)?[A-G]?(?:#|b)?)([)\]}.,;:]?)$/);
+
+  if (!match) {
+    return token;
+  }
+
+  const [, prefix, chordSequence, suffix] = match;
+  const roots = chordSequence.match(/[A-G](?:#|b)?/g) ?? [];
+
+  if (roots.length < 2 || roots.join("") !== chordSequence) {
+    return token;
+  }
+
+  return `${prefix}${roots.join(" ")}${suffix}`;
+}
+
+function normalizeWordForLineType(word: PositionedWord, lineType: ReconstructedLine["type"]) {
+  if (lineType !== "chords") {
+    return word.text;
+  }
+
+  return splitMergedSimpleChords(word.text);
+}
+
+function buildLineText(
+  words: PositionedWord[],
+  charWidth: number,
+  lineType: ReconstructedLine["type"],
+) {
   if (words.length === 0) {
     return "";
   }
@@ -346,6 +379,7 @@ function buildLineText(words: PositionedWord[], charWidth: number) {
   let renderedLine = "";
 
   for (const word of words) {
+    const wordText = normalizeWordForLineType(word, lineType);
     const gap = Math.max(0, word.left - cursor);
     const spaces =
       renderedLine.length === 0
@@ -356,9 +390,9 @@ function buildLineText(words: PositionedWord[], charWidth: number) {
       renderedLine += " ".repeat(spaces);
     }
 
-    renderedLine += word.text;
+    renderedLine += wordText;
 
-    const estimatedWordWidth = Math.max(word.width, word.text.length * charWidth);
+    const estimatedWordWidth = Math.max(word.width, wordText.length * charWidth);
     cursor = word.left + estimatedWordWidth;
   }
 
@@ -389,7 +423,11 @@ function reconstructStructuredText(
 
   for (let index = 0; index < lines.length; index += 1) {
     const currentLine = lines[index];
-    const renderedLine = buildLineText(currentLine.words, charWidth);
+    const renderedLine = buildLineText(
+      currentLine.words,
+      charWidth,
+      currentLine.type,
+    );
 
     if (renderedLine) {
       renderedLines.push(renderedLine);

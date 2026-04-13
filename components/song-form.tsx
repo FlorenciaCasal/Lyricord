@@ -3,10 +3,7 @@
 import Link from "next/link";
 import { useActionState, useId, useRef, useState, useTransition } from "react";
 import { extractSongTextAction } from "@/app/actions";
-import {
-  formatFileSize,
-  OCR_MAX_IMAGE_SIZE_BYTES,
-} from "@/lib/ocr-upload";
+import { formatFileSize, OCR_MAX_IMAGE_SIZE_BYTES } from "@/lib/ocr-upload";
 import { SubmitButton } from "@/components/submit-button";
 import type { SongFormState } from "@/lib/songs";
 
@@ -18,6 +15,7 @@ type SongFormValues = {
   title: string;
   artist: string;
   key: string;
+  versionName: string;
   content: string;
   notes: string;
 };
@@ -35,6 +33,7 @@ export function SongForm({
     title: "",
     artist: "",
     key: "",
+    versionName: "",
     content: "",
     notes: "",
   },
@@ -120,6 +119,17 @@ export function SongForm({
           />
         </label>
 
+        <label className="space-y-2">
+          <span className="text-sm font-semibold text-slate-200">Versión</span>
+          <input
+            type="text"
+            name="versionName"
+            defaultValue={initialValues.versionName}
+            className="min-h-12 w-full rounded-2xl border border-slate-700 bg-slate-950 px-4 text-base text-white outline-none transition placeholder:text-slate-400 focus:border-green-500 focus:bg-slate-950"
+            placeholder="Ej. Principal, acústica, tono bajo"
+          />
+        </label>
+
         <label className="space-y-2 sm:col-span-2">
           <span className="text-sm font-semibold text-slate-200">Notas</span>
           <textarea
@@ -137,26 +147,15 @@ export function SongForm({
           </span>
 
           <div className="rounded-[1.5rem] border border-dashed border-slate-700 bg-slate-950/70 p-4">
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <div className="space-y-1">
-                <p className="text-sm font-semibold text-white">
-                  Importar desde imagen con OCR
-                </p>
-                <p className="text-sm text-slate-300">
-                  Subí una imagen JPG o PNG de hasta{" "}
-                  {formatFileSize(OCR_MAX_IMAGE_SIZE_BYTES)}. El texto detectado
-                  se agregará al contenido actual sin reemplazarlo.
-                </p>
-              </div>
-
-              <button
-                type="button"
-                onClick={handleOcrImport}
-                disabled={isOcrPending}
-                className="inline-flex min-h-11 items-center justify-center rounded-full bg-green-500 px-4 text-sm font-semibold text-black transition hover:bg-green-400 disabled:cursor-not-allowed disabled:bg-green-700 disabled:text-slate-200"
-              >
-                {isOcrPending ? "Procesando OCR..." : "Extraer texto"}
-              </button>
+            <div className="space-y-1">
+              <p className="text-sm font-semibold text-white">
+                Importar desde imagen con OCR
+              </p>
+              <p className="text-sm text-slate-300">
+                Subí una imagen JPG o PNG de hasta{" "}
+                {formatFileSize(OCR_MAX_IMAGE_SIZE_BYTES)}. El texto detectado
+                se agregará al contenido actual sin reemplazarlo.
+              </p>
             </div>
 
             <div className="mt-4 space-y-2">
@@ -197,6 +196,15 @@ export function SongForm({
                 </p>
               </div>
             </div>
+
+            <button
+              type="button"
+              onClick={handleOcrImport}
+              disabled={isOcrPending || !selectedFileName}
+              className="mt-4 inline-flex min-h-11 w-full items-center justify-center rounded-full bg-green-500 px-4 text-sm font-semibold text-black transition hover:bg-green-400 disabled:cursor-not-allowed disabled:bg-green-700 disabled:text-slate-200 sm:w-auto"
+            >
+              {isOcrPending ? "Procesando OCR..." : "Extraer texto"}
+            </button>
 
             {ocrError ? (
               <p className="mt-3 rounded-2xl border border-red-500/40 bg-red-950/40 px-4 py-3 text-sm text-red-300">

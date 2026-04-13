@@ -34,9 +34,7 @@ export default async function EditSongPage({ params }: EditSongPageProps) {
           <p className="text-sm font-medium uppercase tracking-[0.24em] text-slate-400">
             Edición
           </p>
-          <h1 className="font-heading text-4xl text-white">
-            Editar canción
-          </h1>
+          <h1 className="font-heading text-4xl text-white">Editar canción</h1>
           <p className="text-base text-slate-300">
             Actualizá el título, el tono o el contenido completo cuando haga
             falta.
@@ -50,6 +48,7 @@ export default async function EditSongPage({ params }: EditSongPageProps) {
             title: song.title,
             artist: song.artist ?? "",
             key: song.key ?? "",
+            versionName: song.versionName ?? "",
             content: song.content,
             notes: song.notes ?? "",
           }}

@@ -23,14 +23,13 @@ export default async function Home({ searchParams }: HomePageProps) {
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div className="space-y-2">
               <p className="text-sm font-medium uppercase tracking-[0.24em] text-slate-400">
-                Cancionero
+                Lyricord
               </p>
               <h1 className="text-4xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">
-                Tus canciones, letras y acordes en un solo lugar
+                Letras y acordes, listos para tocar
               </h1>
               <p className="max-w-2xl text-base text-slate-300">
-                Buscá por título o artista, abrí una ficha y editá el contenido
-                cuando lo necesites.
+                Buscá, editá o importá canciones desde una imagen.
               </p>
             </div>
 
@@ -42,19 +41,32 @@ export default async function Home({ searchParams }: HomePageProps) {
             </Link>
           </div>
 
-          <form className="flex flex-col gap-3 sm:flex-row" action="/">
+          <form action="/" className="relative">
             <input
               type="search"
               name="q"
               defaultValue={q}
               placeholder="Buscar por título o artista"
-              className="min-h-12 flex-1 rounded-2xl border border-slate-700 bg-slate-950 px-4 text-base text-white outline-none transition placeholder:text-slate-400 focus:border-green-500 focus:bg-slate-950"
+              className="min-h-12 w-full rounded-2xl border border-slate-700 bg-slate-950 py-3 pl-2 sm:pl-4 pr-10 sm:pr-12 text-sm sm:text-base text-white outline-none transition placeholder:text-slate-400 focus:border-green-500 focus:bg-slate-950"
             />
             <button
               type="submit"
-              className="min-h-12 rounded-2xl border border-slate-700 px-4 text-sm font-semibold text-white transition hover:border-green-400 hover:text-green-400"
+              aria-label="Buscar"
+              className="absolute right-2 top-1/2 inline-flex size-8 -translate-y-1/2 items-center justify-center rounded-full text-slate-300 transition hover:bg-slate-800 hover:text-green-400"
             >
-              Buscar
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+                className="size-5"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="m21 21-4.34-4.34" />
+                <circle cx="11" cy="11" r="8" />
+              </svg>
             </button>
           </form>
         </div>

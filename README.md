@@ -1,4 +1,4 @@
-# Cancionero
+# Lyricord
 
 App web para guardar canciones con letra y acordes usando Next.js, TypeScript, Prisma, PostgreSQL y OCR con Google Cloud Vision.
 

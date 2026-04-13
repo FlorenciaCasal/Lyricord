@@ -10,6 +10,7 @@ import { getAuthSession } from "@/lib/auth";
 import { validateOcrImageFile } from "@/lib/ocr-upload";
 import {
   createSong,
+  createSongVersion,
   deleteSong,
   getSongById,
   type SongFormState,
@@ -93,6 +94,25 @@ export async function extractSongTextAction(
   }
 
   return extractTextFromImage(image);
+}
+
+export async function createSongVersionAction(formData: FormData) {
+  const userId = await requireUserId();
+  const id = String(formData.get("id") ?? "");
+
+  if (!id) {
+    return;
+  }
+
+  const version = await createSongVersion(id, userId);
+
+  if (!version) {
+    return;
+  }
+
+  revalidatePath("/");
+  revalidatePath(`/songs/${id}`);
+  redirect(`/songs/${version.id}/edit`);
 }
 
 export async function deleteSongAction(formData: FormData) {

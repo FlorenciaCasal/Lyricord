@@ -7,6 +7,16 @@ export type SongListItem = Prisma.SongGetPayload<{
     title: true;
     artist: true;
     key: true;
+    versionName: true;
+    updatedAt: true;
+  };
+}>;
+
+export type SongVersionItem = Prisma.SongGetPayload<{
+  select: {
+    id: true;
+    title: true;
+    versionName: true;
     updatedAt: true;
   };
 }>;
@@ -23,6 +33,7 @@ type SongInput = {
   title: string;
   artist: string | null;
   key: string | null;
+  versionName: string | null;
   content: string;
   notes: string | null;
 };
@@ -50,6 +61,7 @@ function parseSongInput(formData: FormData) {
     title,
     artist: normalizeOptionalField(formData.get("artist")),
     key: normalizeOptionalField(formData.get("key")),
+    versionName: normalizeOptionalField(formData.get("versionName")),
     content,
     notes: normalizeOptionalField(formData.get("notes")),
   };
@@ -93,6 +105,7 @@ export async function searchSongs(userId: string, query?: string) {
       title: true,
       artist: true,
       key: true,
+      versionName: true,
       updatedAt: true,
     },
   });
@@ -103,6 +116,30 @@ export async function getSongById(id: string, userId: string) {
     where: {
       id,
       userId,
+    },
+  });
+}
+
+export async function getSongVersions(songId: string, userId: string) {
+  const song = await getSongById(songId, userId);
+
+  if (!song) {
+    return [];
+  }
+
+  const versionGroupId = song.versionGroupId ?? song.id;
+
+  return prisma.song.findMany({
+    where: {
+      userId,
+      OR: [{ id: versionGroupId }, { versionGroupId }],
+    },
+    orderBy: [{ createdAt: "asc" }, { updatedAt: "desc" }],
+    select: {
+      id: true,
+      title: true,
+      versionName: true,
+      updatedAt: true,
     },
   });
 }
@@ -137,6 +174,29 @@ export async function createSong(userId: string, formData: FormData) {
       },
     };
   }
+}
+
+export async function createSongVersion(songId: string, userId: string) {
+  const song = await getSongById(songId, userId);
+
+  if (!song) {
+    return null;
+  }
+
+  const versionGroupId = song.versionGroupId ?? song.id;
+
+  return prisma.song.create({
+    data: {
+      title: song.title,
+      artist: song.artist,
+      key: song.key,
+      versionName: "Nueva versión",
+      versionGroupId,
+      content: song.content,
+      notes: song.notes,
+      userId,
+    },
+  });
 }
 
 export async function updateSong(

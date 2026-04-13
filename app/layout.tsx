@@ -12,14 +12,14 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Cancionero",
-  description: "MVP para guardar canciones con letra y acordes",
+  title: "Lyricord",
+  description: "Guardá letras y acordes con OCR.",
   manifest: "/manifest.webmanifest",
-  applicationName: "Cancionero",
+  applicationName: "Lyricord",
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
-    title: "Cancionero",
+    title: "Lyricord",
   },
   formatDetection: {
     telephone: false,
@@ -45,7 +45,7 @@ export default async function RootLayout({
           <header className="border-b border-slate-800 bg-slate-950/90">
             <div className="mx-auto flex w-full max-w-5xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
               <div className="min-w-0">
-                <p className="text-sm font-semibold text-white">Cancionero</p>
+                <p className="text-sm font-semibold text-white">Lyricord</p>
                 <p className="truncate text-sm text-slate-400">
                   {session.user.email}
                 </p>

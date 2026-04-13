@@ -75,15 +75,12 @@ export function AuthForm({ mode }: AuthFormProps) {
         </h1>
         <p className="text-base text-slate-300">
           {isRegister
-            ? "Registrate para guardar tus canciones y acceder a tu propio cancionero."
-            : "Entrá a tu cancionero para ver y editar tus canciones."}
+            ? "Registrate para guardar y editar tus canciones."
+            : "Entrá para ver y editar tus canciones."}
         </p>
       </div>
 
-      <form
-        action={handleSubmit}
-        className="mt-6 space-y-4"
-      >
+      <form action={handleSubmit} className="mt-6 space-y-4">
         <label className="space-y-2">
           <span className="text-sm font-semibold text-slate-200">Email</span>
           <input

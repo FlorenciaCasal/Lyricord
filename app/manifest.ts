@@ -3,9 +3,9 @@ import type { MetadataRoute } from "next";
 export default function manifest(): MetadataRoute.Manifest {
   return {
     id: "/",
-    name: "Cancionero",
-    short_name: "Cancionero",
-    description: "Guardá canciones, letras y acordes con OCR e instalación tipo app.",
+    name: "Lyricord",
+    short_name: "Lyricord",
+    description: "Guardá letras y acordes con OCR e instalación tipo app.",
     start_url: "/",
     scope: "/",
     display: "standalone",
