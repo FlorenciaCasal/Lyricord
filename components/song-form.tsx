@@ -165,8 +165,8 @@ export function SongForm({
               </p>
               <p className="text-sm text-slate-300">
                 Subí una imagen JPG o PNG de hasta{" "}
-                {formatFileSize(OCR_MAX_IMAGE_SIZE_BYTES)}. El texto detectado
-                se agregará al contenido actual sin reemplazarlo.
+                {formatFileSize(OCR_MAX_IMAGE_SIZE_BYTES)} y tocá Extraer
+                texto. Se agregará al contenido actual sin reemplazarlo.
               </p>
             </div>
 

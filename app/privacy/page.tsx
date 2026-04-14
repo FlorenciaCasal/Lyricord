@@ -22,8 +22,8 @@ export default function PrivacyPage() {
           </p>
           <p>
             Cuando usas OCR, la imagen seleccionada se envía a un proveedor
-            externo de procesamiento de imagenes para extraer texto. No subas
-            imagenes con informacion sensible o contenido que no estes
+            externo de procesamiento de imágenes para extraer texto. No subas
+            imágenes con informacion sensible o contenido que no estes
             autorizado a procesar.
           </p>
           <p>
@@ -33,10 +33,10 @@ export default function PrivacyPage() {
           </p>
           <p>
             Podemos conservar logs técnicos minimos para seguridad, diagnóstico
-            y prevencion de abuso. Evitamos registrar secretos o credenciales.
+            y prevención de abuso. Evitamos registrar secretos o credenciales.
           </p>
           <p>
-            Para pedir baja, corrección o eliminacion de datos, escribinos al
+            Para pedir baja, corrección o eliminación de datos, escribinos al
             email de contacto publicado en la app o en el dominio del servicio.
           </p>
         </div>
