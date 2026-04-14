@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { BackButton } from "@/components/back-button";
 
 export default function PrivacyPage() {
   return (
@@ -40,12 +40,12 @@ export default function PrivacyPage() {
             email de contacto publicado en la app o en el dominio del servicio.
           </p>
         </div>
-        <Link
-          href="/register"
+        <BackButton
+          fallbackHref="/register"
           className="mt-8 inline-flex min-h-11 items-center justify-center rounded-full bg-green-500 px-5 text-sm font-semibold text-black transition hover:bg-green-400"
         >
           Volver
-        </Link>
+        </BackButton>
       </section>
     </main>
   );

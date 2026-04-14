@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useActionState, useId, useRef, useState, useTransition } from "react";
 import { extractSongTextAction } from "@/app/actions";
 import { formatFileSize, OCR_MAX_IMAGE_SIZE_BYTES } from "@/lib/ocr-upload";
@@ -38,6 +38,7 @@ export function SongForm({
     notes: "",
   },
 }: SongFormProps) {
+  const router = useRouter();
   const [state, formAction] = useActionState(action, initialState);
   const [content, setContent] = useState(initialValues.content);
   const [ocrMessage, setOcrMessage] = useState<string | null>(null);
@@ -78,6 +79,15 @@ export function SongForm({
           : "Texto importado correctamente en el contenido.",
       );
     });
+  }
+
+  function handleCancel() {
+    if (window.history.length > 1) {
+      router.back();
+      return;
+    }
+
+    router.push("/");
   }
 
   return (
@@ -252,12 +262,13 @@ export function SongForm({
 
       <div className="flex min-w-0 flex-col gap-3 sm:flex-row">
         <SubmitButton label={submitLabel} />
-        <Link
-          href="/"
+        <button
+          type="button"
+          onClick={handleCancel}
           className="inline-flex min-h-12 items-center justify-center rounded-full border border-slate-700 px-5 text-sm font-semibold text-white transition hover:border-green-400 hover:text-green-400"
         >
           Cancelar
-        </Link>
+        </button>
       </div>
     </form>
   );

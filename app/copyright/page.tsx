@@ -1,13 +1,8 @@
-// import Link from "next/link";
-"use client";
-
-import { useRouter } from "next/navigation";
+import { BackButton } from "@/components/back-button";
 
 const contactEmail = "contacto@tudominio.com.ar";
 
 export default function CopyrightPage() {
-  const router = useRouter();
-
   return (
     <main className="mx-auto flex min-h-screen w-full max-w-3xl flex-col px-4 py-10 sm:px-6">
       <section className="rounded-[2rem] border border-slate-700 bg-slate-900 p-6 shadow-sm shadow-black/20 sm:p-8">
@@ -45,19 +40,12 @@ export default function CopyrightPage() {
             reclamo razonable o detectamos uso indebido.
           </p>
         </div>
-        {/* <Link
-          href="/"
+        <BackButton
+          fallbackHref="/register"
           className="mt-8 inline-flex min-h-11 items-center justify-center rounded-full bg-green-500 px-5 text-sm font-semibold text-black transition hover:bg-green-400"
         >
           Volver
-        </Link> */}
-        <button
-          type="button"
-          onClick={() => router.back()}
-          className="mt-8 inline-flex min-h-11 items-center justify-center rounded-full bg-green-500 px-5 text-sm font-semibold text-black transition hover:bg-green-400"
-        >
-          Volver
-        </button>
+        </BackButton>
       </section>
     </main>
   );
