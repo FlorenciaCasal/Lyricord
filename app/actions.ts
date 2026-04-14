@@ -9,6 +9,11 @@ import {
 import { getAuthSession } from "@/lib/auth";
 import { validateOcrImageFile } from "@/lib/ocr-upload";
 import {
+  getOcrUsageStatus,
+  OCR_DAILY_LIMIT,
+  recordOcrUsage,
+} from "@/lib/usage";
+import {
   createSong,
   createSongVersion,
   deleteSong,
@@ -73,7 +78,7 @@ export async function updateSongAction(
 export async function extractSongTextAction(
   formData: FormData,
 ): Promise<OcrExtractionResult> {
-  await requireUserId();
+  const userId = await requireUserId();
 
   const image = formData.get("sourceImage");
 
@@ -93,6 +98,17 @@ export async function extractSongTextAction(
     };
   }
 
+  const usageStatus = await getOcrUsageStatus(userId);
+
+  if (!usageStatus.allowed) {
+    return {
+      success: false,
+      error: `Alcanzaste el limite diario de ${OCR_DAILY_LIMIT} usos de OCR para esta beta. Podes pegar el texto manualmente y volver a intentar manana.`,
+    };
+  }
+
+  await recordOcrUsage(userId);
+
   return extractTextFromImage(image);
 }
 
@@ -104,15 +120,20 @@ export async function createSongVersionAction(formData: FormData) {
     return;
   }
 
-  const version = await createSongVersion(id, userId);
+  const result = await createSongVersion(id, userId);
 
-  if (!version) {
+  if (!result.success) {
+    if (result.reason === "limit-reached") {
+      revalidatePath(`/songs/${id}`);
+      redirect(`/songs/${id}?versionError=limit-reached`);
+    }
+
     return;
   }
 
   revalidatePath("/");
   revalidatePath(`/songs/${id}`);
-  redirect(`/songs/${version.id}/edit`);
+  redirect(`/songs/${result.version.id}/edit`);
 }
 
 export async function deleteSongAction(formData: FormData) {

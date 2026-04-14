@@ -24,10 +24,32 @@ export type SongVersionItem = Prisma.SongGetPayload<{
 export type SongFormState = {
   errors: {
     title?: string;
+    artist?: string;
+    key?: string;
+    versionName?: string;
     content?: string;
+    notes?: string;
     form?: string;
   };
 };
+
+export type CreateSongVersionResult =
+  | {
+      success: true;
+      version: Prisma.SongGetPayload<object>;
+    }
+  | {
+      success: false;
+      reason: "not-found" | "limit-reached";
+    };
+
+const MAX_SONGS_PER_USER = 200;
+const MAX_TITLE_LENGTH = 120;
+const MAX_ARTIST_LENGTH = 120;
+const MAX_KEY_LENGTH = 40;
+const MAX_VERSION_NAME_LENGTH = 80;
+const MAX_CONTENT_LENGTH = 100_000;
+const MAX_NOTES_LENGTH = 10_000;
 
 type SongInput = {
   title: string;
@@ -46,30 +68,66 @@ function normalizeOptionalField(value: FormDataEntryValue | null) {
 function parseSongInput(formData: FormData) {
   const title = String(formData.get("title") ?? "").trim();
   const content = String(formData.get("content") ?? "").trim();
+  const artist = normalizeOptionalField(formData.get("artist"));
+  const key = normalizeOptionalField(formData.get("key"));
+  const versionName = normalizeOptionalField(formData.get("versionName"));
+  const notes = normalizeOptionalField(formData.get("notes"));
 
   const errors: SongFormState["errors"] = {};
 
   if (!title) {
     errors.title = "El título es obligatorio.";
+  } else if (title.length > MAX_TITLE_LENGTH) {
+    errors.title = `El titulo no puede superar ${MAX_TITLE_LENGTH} caracteres.`;
   }
 
   if (!content) {
     errors.content = "El contenido es obligatorio.";
+  } else if (content.length > MAX_CONTENT_LENGTH) {
+    errors.content = `El contenido no puede superar ${MAX_CONTENT_LENGTH.toLocaleString(
+      "es-AR",
+    )} caracteres.`;
+  }
+
+  if (artist && artist.length > MAX_ARTIST_LENGTH) {
+    errors.artist = `El artista no puede superar ${MAX_ARTIST_LENGTH} caracteres.`;
+  }
+
+  if (key && key.length > MAX_KEY_LENGTH) {
+    errors.key = `El tono no puede superar ${MAX_KEY_LENGTH} caracteres.`;
+  }
+
+  if (versionName && versionName.length > MAX_VERSION_NAME_LENGTH) {
+    errors.versionName = `La version no puede superar ${MAX_VERSION_NAME_LENGTH} caracteres.`;
+  }
+
+  if (notes && notes.length > MAX_NOTES_LENGTH) {
+    errors.notes = `Las notas no pueden superar ${MAX_NOTES_LENGTH.toLocaleString(
+      "es-AR",
+    )} caracteres.`;
   }
 
   const input: SongInput = {
     title,
-    artist: normalizeOptionalField(formData.get("artist")),
-    key: normalizeOptionalField(formData.get("key")),
-    versionName: normalizeOptionalField(formData.get("versionName")),
+    artist,
+    key,
+    versionName,
     content,
-    notes: normalizeOptionalField(formData.get("notes")),
+    notes,
   };
 
   return {
     input,
     errors,
   };
+}
+
+async function hasReachedSongLimit(userId: string) {
+  const songCount = await prisma.song.count({
+    where: { userId },
+  });
+
+  return songCount >= MAX_SONGS_PER_USER;
 }
 
 export async function searchSongs(userId: string, query?: string) {
@@ -155,6 +213,15 @@ export async function createSong(userId: string, formData: FormData) {
   }
 
   try {
+    if (await hasReachedSongLimit(userId)) {
+      return {
+        success: false as const,
+        errors: {
+          form: `Alcanzaste el limite inicial de ${MAX_SONGS_PER_USER} canciones para esta beta.`,
+        },
+      };
+    }
+
     const song = await prisma.song.create({
       data: {
         ...input,
@@ -176,16 +243,29 @@ export async function createSong(userId: string, formData: FormData) {
   }
 }
 
-export async function createSongVersion(songId: string, userId: string) {
+export async function createSongVersion(
+  songId: string,
+  userId: string,
+): Promise<CreateSongVersionResult> {
   const song = await getSongById(songId, userId);
 
   if (!song) {
-    return null;
+    return {
+      success: false,
+      reason: "not-found",
+    };
   }
 
   const versionGroupId = song.versionGroupId ?? song.id;
 
-  return prisma.song.create({
+  if (await hasReachedSongLimit(userId)) {
+    return {
+      success: false,
+      reason: "limit-reached",
+    };
+  }
+
+  const version = await prisma.song.create({
     data: {
       title: song.title,
       artist: song.artist,
@@ -197,6 +277,11 @@ export async function createSongVersion(songId: string, userId: string) {
       userId,
     },
   });
+
+  return {
+    success: true,
+    version,
+  };
 }
 
 export async function updateSong(

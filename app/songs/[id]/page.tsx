@@ -10,12 +10,19 @@ type SongDetailPageProps = {
   params: Promise<{
     id: string;
   }>;
+  searchParams: Promise<{
+    versionError?: string;
+  }>;
 };
 
-export default async function SongDetailPage({ params }: SongDetailPageProps) {
+export default async function SongDetailPage({
+  params,
+  searchParams,
+}: SongDetailPageProps) {
   const session = await getAuthSession();
   const userId = session?.user?.id;
   const { id } = await params;
+  const { versionError } = await searchParams;
 
   if (!userId) {
     notFound();
@@ -28,6 +35,7 @@ export default async function SongDetailPage({ params }: SongDetailPageProps) {
   }
 
   const versions = await getSongVersions(song.id, userId);
+  const versionLimitReached = versionError === "limit-reached";
 
   return (
     <main className="mx-auto flex min-h-screen w-full max-w-5xl flex-col px-2 py-6 sm:px-6 sm:py-8">
@@ -109,6 +117,14 @@ export default async function SongDetailPage({ params }: SongDetailPageProps) {
                   );
                 })}
               </div>
+            ) : null}
+
+            {versionLimitReached ? (
+              <p className="mt-4 rounded-2xl border border-amber-500/40 bg-amber-950/30 px-4 py-3 text-sm leading-6 text-amber-200">
+                Alcanzaste el limite inicial de 200 canciones y versiones para
+                esta beta. Para crear otra version, elimina alguna cancion o
+                version que ya no necesites.
+              </p>
             ) : null}
           </section>
 

@@ -20,6 +20,7 @@ export function AuthForm({ mode }: AuthFormProps) {
     const email = String(formData.get("email") ?? "").trim().toLowerCase();
     const password = String(formData.get("password") ?? "");
     const confirmPassword = String(formData.get("confirmPassword") ?? "");
+    const acceptTerms = formData.get("acceptTerms") === "on";
 
     setError(null);
     setPending(true);
@@ -35,6 +36,7 @@ export function AuthForm({ mode }: AuthFormProps) {
             email,
             password,
             confirmPassword,
+            acceptTerms,
           }),
         });
 
@@ -108,19 +110,47 @@ export function AuthForm({ mode }: AuthFormProps) {
         </label>
 
         {isRegister ? (
-          <label className="space-y-2">
-            <span className="text-sm font-semibold text-slate-200">
-              Repetir contraseña
-            </span>
-            <input
-              type="password"
-              name="confirmPassword"
-              autoComplete="new-password"
-              className="min-h-12 w-full rounded-2xl border border-slate-700 bg-slate-950 px-4 text-base text-white outline-none transition placeholder:text-slate-400 focus:border-green-500 focus:bg-slate-950"
-              placeholder="********"
-              required
-            />
-          </label>
+          <>
+            <label className="space-y-2">
+              <span className="text-sm font-semibold text-slate-200">
+                Repetir contraseña
+              </span>
+              <input
+                type="password"
+                name="confirmPassword"
+                autoComplete="new-password"
+                className="min-h-12 w-full rounded-2xl border border-slate-700 bg-slate-950 px-4 text-base text-white outline-none transition placeholder:text-slate-400 focus:border-green-500 focus:bg-slate-950"
+                placeholder="********"
+                required
+              />
+            </label>
+
+            <label className="flex gap-3 rounded-2xl border border-slate-800 bg-slate-950 px-4 py-3 text-sm leading-6 text-slate-300">
+              <input
+                type="checkbox"
+                name="acceptTerms"
+                className="mt-1 size-4 shrink-0 accent-green-500"
+                required
+              />
+              <span>
+                Acepto los{" "}
+                <Link
+                  href="/terms"
+                  className="font-semibold text-green-400 hover:text-green-300"
+                >
+                  terminos de uso
+                </Link>
+                , la{" "}
+                <Link
+                  href="/privacy"
+                  className="font-semibold text-green-400 hover:text-green-300"
+                >
+                  politica de privacidad
+                </Link>{" "}
+                y entiendo que soy responsable por el contenido que cargo.
+              </span>
+            </label>
+          </>
         ) : null}
 
         {error ? (
@@ -150,6 +180,14 @@ export function AuthForm({ mode }: AuthFormProps) {
         >
           {isRegister ? "Iniciar sesión" : "Crear cuenta"}
         </Link>
+      </p>
+
+      <p className="mt-4 text-xs leading-5 text-slate-500">
+        Uso responsable: Lyricord no provee letras oficiales. Ver{" "}
+        <Link href="/copyright" className="text-slate-300 hover:text-green-400">
+          copyright y denuncias
+        </Link>
+        .
       </p>
     </section>
   );

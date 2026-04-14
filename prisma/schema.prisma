@@ -16,6 +16,7 @@ model User {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
   songs        Song[]
+  usageEvents  UsageEvent[]
 }
 
 model Song {
@@ -34,4 +35,23 @@ model Song {
 
   @@index([userId, updatedAt])
   @@index([userId, versionGroupId])
+}
+
+model UsageEvent {
+  id        String   @id @default(cuid())
+  userId    String
+  type      String
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, type, createdAt])
+}
+
+model RateLimitEvent {
+  id        String   @id @default(cuid())
+  type      String
+  key       String
+  createdAt DateTime @default(now())
+
+  @@index([type, key, createdAt])
 }

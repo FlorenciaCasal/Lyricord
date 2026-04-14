@@ -106,6 +106,9 @@ export function SongForm({
             className="min-h-12 w-full max-w-full rounded-2xl border border-slate-700 bg-slate-950 px-4 text-base text-white outline-none transition placeholder:text-slate-400 focus:border-green-500 focus:bg-slate-950"
             placeholder="Opcional"
           />
+          {state.errors?.artist ? (
+            <p className="text-sm text-red-400">{state.errors.artist}</p>
+          ) : null}
         </label>
 
         <label className="min-w-0 space-y-2">
@@ -117,6 +120,9 @@ export function SongForm({
             className="min-h-12 w-full max-w-full rounded-2xl border border-slate-700 bg-slate-950 px-4 text-base text-white outline-none transition placeholder:text-slate-400 focus:border-green-500 focus:bg-slate-950"
             placeholder="Ej. Sol mayor"
           />
+          {state.errors?.key ? (
+            <p className="text-sm text-red-400">{state.errors.key}</p>
+          ) : null}
         </label>
 
         <label className="min-w-0 space-y-2">
@@ -128,6 +134,9 @@ export function SongForm({
             className="min-h-12 w-full max-w-full rounded-2xl border border-slate-700 bg-slate-950 px-4 text-base text-white outline-none transition placeholder:text-slate-400 focus:border-green-500 focus:bg-slate-950"
             placeholder="Ej. Principal, acústica, tono bajo"
           />
+          {state.errors?.versionName ? (
+            <p className="text-sm text-red-400">{state.errors.versionName}</p>
+          ) : null}
         </label>
 
         <label className="min-w-0 space-y-2 sm:col-span-2">
@@ -139,6 +148,9 @@ export function SongForm({
             className="w-full max-w-full rounded-[1.5rem] border border-slate-700 bg-slate-950 px-4 py-3 text-base text-white outline-none transition placeholder:text-slate-400 focus:border-green-500 focus:bg-slate-950"
             placeholder="Comentarios adicionales, estructura o referencias"
           />
+          {state.errors?.notes ? (
+            <p className="text-sm text-red-400">{state.errors.notes}</p>
+          ) : null}
         </label>
 
         <div className="min-w-0 space-y-2 sm:col-span-2">
