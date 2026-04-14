@@ -30,9 +30,9 @@ export default function CopyrightPage() {
             para que podamos revisar el reclamo.
           </p>
           <p>
-            Inclui, cuando sea posible, la obra afectada, una descripcion del
-            contenido presuntamente infractor, informacion suficiente para
-            ubicarlo, tus datos de contacto y una declaracion de buena fe sobre
+            Inclui, cuando sea posible, la obra afectada, una descripción del
+            contenido presuntamente infractor, información suficiente para
+            ubicarlo, tus datos de contacto y una declaración de buena fe sobre
             el reclamo.
           </p>
           <p>

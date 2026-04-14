@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     id: "/",
     name: "Lyricord",
     short_name: "Lyricord",
-    description: "Guarda letras y acordes con OCR e instalacion tipo app.",
+    description: "Guarda letras y acordes con OCR e instalación tipo app.",
     start_url: "/",
     scope: "/",
     display: "standalone",

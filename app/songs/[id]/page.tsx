@@ -122,8 +122,8 @@ export default async function SongDetailPage({
             {versionLimitReached ? (
               <p className="mt-4 rounded-2xl border border-amber-500/40 bg-amber-950/30 px-4 py-3 text-sm leading-6 text-amber-200">
                 Alcanzaste el limite inicial de 200 canciones y versiones para
-                esta beta. Para crear otra version, elimina alguna cancion o
-                version que ya no necesites.
+                esta beta. Para crear otra versión, elimina alguna canción o
+                versión que ya no necesites.
               </p>
             ) : null}
           </section>

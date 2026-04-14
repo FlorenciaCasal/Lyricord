@@ -23,7 +23,7 @@ export default function PrivacyPage() {
           <p>
             Cuando usas OCR, la imagen seleccionada se envía a un proveedor
             externo de procesamiento de imágenes para extraer texto. No subas
-            imágenes con informacion sensible o contenido que no estes
+            imágenes con información sensible o contenido que no estes
             autorizado a procesar.
           </p>
           <p>
@@ -32,7 +32,7 @@ export default function PrivacyPage() {
             para operar Lyricord.
           </p>
           <p>
-            Podemos conservar logs técnicos minimos para seguridad, diagnóstico
+            Podemos conservar logs técnicos mínimos para seguridad, diagnóstico
             y prevención de abuso. Evitamos registrar secretos o credenciales.
           </p>
           <p>
