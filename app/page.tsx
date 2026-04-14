@@ -21,11 +21,15 @@ export default async function Home({ searchParams }: HomePageProps) {
     <main className="mx-auto flex min-h-screen w-full max-w-5xl flex-col px-4 py-6 sm:px-6 sm:py-8">
       <section className="rounded-[2rem] border border-slate-700 bg-slate-900 p-5 shadow-sm shadow-black/20 sm:p-8">
         <div className="flex flex-col gap-5">
+          <div className="flex items-start justify-between gap-3">
+            <p className="text-sm font-medium uppercase tracking-[0.24em] text-slate-400">
+              Lyricord
+            </p>
+            <InstallAppButton />
+          </div>
+
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div className="space-y-2">
-              <p className="text-sm font-medium uppercase tracking-[0.24em] text-slate-400">
-                Lyricord
-              </p>
               <h1 className="text-4xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">
                 Letras y acordes, listos para tocar
               </h1>
@@ -41,7 +45,6 @@ export default async function Home({ searchParams }: HomePageProps) {
               >
                 Nueva canción
               </Link>
-              <InstallAppButton />
             </div>
           </div>
 
