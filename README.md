@@ -6,17 +6,19 @@ App web para guardar canciones con letra y acordes usando Next.js, TypeScript, P
 
 Creá un archivo `.env` tomando como base `.env.example`.
 
-Ejemplo:
+Ejemplo con valores ficticios:
 
 ```env
-DATABASE_URL="postgresql://usuario:password@ep-tu-db-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
-DIRECT_URL="postgresql://usuario:password@ep-tu-db.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
-GOOGLE_APPLICATION_CREDENTIALS="C:/secrets/google-vision-service-account.json"
-GOOGLE_APPLICATION_CREDENTIALS_JSON='{"type":"service_account","project_id":"tu-proyecto-gcp","private_key_id":"...","private_key":"-----BEGIN PRIVATE KEY-----\\n...\\n-----END PRIVATE KEY-----\\n","client_email":"tu-service-account@tu-proyecto-gcp.iam.gserviceaccount.com","client_id":"..."}'
-GOOGLE_CLOUD_PROJECT="tu-proyecto-gcp"
-NEXTAUTH_SECRET="cambia-esto-por-un-secret-largo-y-seguro"
+DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DATABASE?sslmode=require"
+DIRECT_URL="postgresql://USER:PASSWORD@HOST:PORT/DATABASE?sslmode=require"
+GOOGLE_APPLICATION_CREDENTIALS="C:/ruta/local/google-vision-service-account.json"
+GOOGLE_APPLICATION_CREDENTIALS_JSON='{"type":"service_account","project_id":"PROJECT_ID","private_key_id":"PRIVATE_KEY_ID","private_key":"PRIVATE_KEY","client_email":"SERVICE_ACCOUNT_EMAIL","client_id":"CLIENT_ID"}'
+GOOGLE_CLOUD_PROJECT="PROJECT_ID"
+NEXTAUTH_SECRET="GENERATE_A_LONG_RANDOM_SECRET"
 NEXTAUTH_URL="http://localhost:3000"
 ```
+
+No subas valores reales al README ni al repo. Guardalos solo en `.env` local o en las variables de entorno del proveedor de deploy.
 
 ## Vercel
 
