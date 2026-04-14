@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getAuthSession } from "@/lib/auth";
 import { EmptyState } from "@/components/empty-state";
+import { InstallAppButton } from "@/components/install-app-button";
 import { SongList } from "@/components/song-list";
 import { searchSongs } from "@/lib/songs";
 
@@ -33,12 +34,15 @@ export default async function Home({ searchParams }: HomePageProps) {
               </p>
             </div>
 
-            <Link
-              href="/songs/new"
-              className="inline-flex items-center justify-center rounded-full bg-green-500 px-5 py-3 text-sm font-semibold text-black transition hover:bg-green-400"
-            >
-              Nueva canción
-            </Link>
+            <div className="flex flex-col gap-3 sm:items-end">
+              <Link
+                href="/songs/new"
+                className="inline-flex items-center justify-center rounded-full bg-green-500 px-5 py-3 text-sm font-semibold text-black transition hover:bg-green-400"
+              >
+                Nueva canción
+              </Link>
+              <InstallAppButton />
+            </div>
           </div>
 
           <form action="/" className="relative">
@@ -47,7 +51,7 @@ export default async function Home({ searchParams }: HomePageProps) {
               name="q"
               defaultValue={q}
               placeholder="Buscar por título o artista"
-              className="min-h-12 w-full rounded-2xl border border-slate-700 bg-slate-950 py-3 pl-2 sm:pl-4 pr-10 sm:pr-12 text-sm sm:text-base text-white outline-none transition placeholder:text-slate-400 focus:border-green-500 focus:bg-slate-950"
+              className="min-h-12 w-full rounded-2xl border border-slate-700 bg-slate-950 py-3 pl-2 pr-10 text-sm text-white outline-none transition placeholder:text-slate-400 focus:border-green-500 focus:bg-slate-950 sm:pl-4 sm:pr-12 sm:text-base"
             />
             <button
               type="submit"

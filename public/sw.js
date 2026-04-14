@@ -1,5 +1,5 @@
-const CACHE_NAME = "cancionero-static-v1";
-const STATIC_ASSETS = ["/manifest.webmanifest", "/icon-192.png", "/icon-512.png", "/icon-512-maskable.png", "/apple-icon"];
+const CACHE_NAME = "lyricord-static-v2";
+const STATIC_ASSETS = ["/manifest.webmanifest", "/icon", "/apple-icon"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
@@ -32,9 +32,7 @@ self.addEventListener("fetch", (event) => {
   const isStaticAsset =
     url.pathname.startsWith("/_next/static/") ||
     url.pathname === "/manifest.webmanifest" ||
-    url.pathname === "/icon-192.png" ||
-    url.pathname === "/icon-512.png" ||
-    url.pathname === "/icon-512-maskable.png" ||
+    url.pathname === "/icon" ||
     url.pathname === "/apple-icon";
 
   if (!isStaticAsset) {
