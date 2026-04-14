@@ -138,14 +138,14 @@ export function AuthForm({ mode }: AuthFormProps) {
                   href="/terms"
                   className="font-semibold text-green-400 hover:text-green-300"
                 >
-                  terminos de uso
+                  términos de uso
                 </Link>
                 , la{" "}
                 <Link
                   href="/privacy"
                   className="font-semibold text-green-400 hover:text-green-300"
                 >
-                  politica de privacidad
+                  política de privacidad
                 </Link>{" "}
                 y entiendo que soy responsable por el contenido que cargo.
               </span>

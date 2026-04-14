@@ -8,12 +8,12 @@ export default function PrivacyPage() {
           Lyricord
         </p>
         <h1 className="mt-3 text-4xl font-semibold text-white">
-          Politica de privacidad
+          Política de privacidad
         </h1>
         <div className="mt-6 space-y-5 text-sm leading-7 text-slate-300">
           <p>
             Para crear y usar una cuenta guardamos tu email, un hash de tu
-            contrasena, tus canciones, notas, versiones y datos tecnicos
+            contraseña, tus canciones, notas, versiones y datos técnicos
             necesarios para operar el servicio.
           </p>
           <p>
@@ -21,22 +21,22 @@ export default function PrivacyPage() {
             acciones solicitadas por vos, prevenir abuso y mantener la app.
           </p>
           <p>
-            Cuando usas OCR, la imagen seleccionada se envia a un proveedor
+            Cuando usas OCR, la imagen seleccionada se envía a un proveedor
             externo de procesamiento de imagenes para extraer texto. No subas
             imagenes con informacion sensible o contenido que no estes
             autorizado a procesar.
           </p>
           <p>
             No vendemos tus datos personales. Podemos usar proveedores de
-            infraestructura, base de datos, autenticacion, hosting, logs y OCR
+            infraestructura, base de datos, autenticación, hosting, logs y OCR
             para operar Lyricord.
           </p>
           <p>
-            Podemos conservar logs tecnicos minimos para seguridad, diagnostico
+            Podemos conservar logs técnicos minimos para seguridad, diagnóstico
             y prevencion de abuso. Evitamos registrar secretos o credenciales.
           </p>
           <p>
-            Para pedir baja, correccion o eliminacion de datos, escribinos al
+            Para pedir baja, corrección o eliminacion de datos, escribinos al
             email de contacto publicado en la app o en el dominio del servicio.
           </p>
         </div>

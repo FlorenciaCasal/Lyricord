@@ -8,7 +8,7 @@ export default function TermsPage() {
           Lyricord
         </p>
         <h1 className="mt-3 text-4xl font-semibold text-white">
-          Terminos de uso
+          Términos de uso
         </h1>
         <div className="mt-6 space-y-5 text-sm leading-7 text-slate-300">
           <p>
@@ -33,8 +33,8 @@ export default function TermsPage() {
           </p>
           <p>
             Podemos remover contenido, limitar funciones o suspender cuentas si
-            detectamos abuso, reclamos razonables, riesgos tecnicos o uso
-            contrario a estos terminos.
+            detectamos abuso, reclamos razonables, riesgos técnicos o uso
+            contrario a estos términos.
           </p>
           <p>
             Como beta publica, Lyricord puede cambiar, tener interrupciones o

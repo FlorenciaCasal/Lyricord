@@ -83,7 +83,7 @@ export async function POST(request: Request) {
 
     if (!acceptTerms) {
       return NextResponse.json(
-        { error: "Tenes que aceptar los terminos para crear una cuenta." },
+        { error: "Tenes que aceptar los términos para crear una cuenta." },
         { status: 400 },
       );
     }
@@ -94,7 +94,7 @@ export async function POST(request: Request) {
     ) {
       return NextResponse.json(
         {
-          error: `La contrasena debe tener entre ${MIN_PASSWORD_LENGTH} y ${MAX_PASSWORD_LENGTH} caracteres.`,
+          error: `La contraseña debe tener entre ${MIN_PASSWORD_LENGTH} y ${MAX_PASSWORD_LENGTH} caracteres.`,
         },
         { status: 400 },
       );
@@ -102,7 +102,7 @@ export async function POST(request: Request) {
 
     if (password !== confirmPassword) {
       return NextResponse.json(
-        { error: "Las contrasenas no coinciden." },
+        { error: "Las contraseñas no coinciden." },
         { status: 400 },
       );
     }
