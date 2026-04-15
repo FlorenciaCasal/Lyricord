@@ -70,6 +70,19 @@ type ServiceAccountCredentials = {
   project_id?: string;
 };
 
+function normalizeCredentialsJson(rawCredentials: string) {
+  const trimmedCredentials = rawCredentials.trim();
+
+  if (
+    (trimmedCredentials.startsWith("'") && trimmedCredentials.endsWith("'")) ||
+    (trimmedCredentials.startsWith('"') && trimmedCredentials.endsWith('"'))
+  ) {
+    return trimmedCredentials.slice(1, -1);
+  }
+
+  return trimmedCredentials;
+}
+
 function getGoogleVisionCredentials() {
   const rawCredentials =
     process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON ??
@@ -82,7 +95,7 @@ function getGoogleVisionCredentials() {
 
   try {
     const parsedCredentials = JSON.parse(
-      rawCredentials,
+      normalizeCredentialsJson(rawCredentials),
     ) as ServiceAccountCredentials;
 
     if (!parsedCredentials.client_email || !parsedCredentials.private_key) {
@@ -477,16 +490,15 @@ export async function extractTextFromImage(
   image: File,
 ): Promise<OcrExtractionResult> {
   const hasCredentialsPath = Boolean(process.env.GOOGLE_APPLICATION_CREDENTIALS);
-  const hasCredentialsJson = Boolean(
-    process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON ??
-      process.env.GOOGLE_CREDENTIALS_JSON,
-  );
+  const credentials = getGoogleVisionCredentials();
+  const hasCredentialsJson = Boolean(credentials);
+  const projectId = credentials?.project_id ?? process.env.GOOGLE_CLOUD_PROJECT;
 
   const missingEnvVars = [
     !hasCredentialsPath && !hasCredentialsJson
       ? "GOOGLE_APPLICATION_CREDENTIALS o GOOGLE_APPLICATION_CREDENTIALS_JSON"
       : null,
-    !process.env.GOOGLE_CLOUD_PROJECT ? "GOOGLE_CLOUD_PROJECT" : null,
+    !projectId ? "GOOGLE_CLOUD_PROJECT o project_id en GOOGLE_APPLICATION_CREDENTIALS_JSON" : null,
   ].filter(Boolean);
 
   if (missingEnvVars.length > 0) {

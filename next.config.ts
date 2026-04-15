@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  serverExternalPackages: ["@prisma/client", "prisma"],
+  serverExternalPackages: ["@google-cloud/vision", "@prisma/client", "prisma"],
 };
 
 export default nextConfig;
