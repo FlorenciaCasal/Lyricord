@@ -12,10 +12,36 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://lyricord.com.ar"),
   title: "Lyricord",
   description: "Guarda letras y acordes con OCR.",
   manifest: "/manifest.webmanifest",
   applicationName: "Lyricord",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Lyricord",
+    description: "Guarda letras y acordes con OCR.",
+    url: "/",
+    siteName: "Lyricord",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Lyricord",
+      },
+    ],
+    locale: "es_AR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Lyricord",
+    description: "Guarda letras y acordes con OCR.",
+    images: ["/opengraph-image"],
+  },
   icons: {
     icon: "/icon",
     apple: "/apple-icon",
