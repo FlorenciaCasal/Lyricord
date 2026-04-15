@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     siteName: "Lyricord",
     images: [
       {
-        url: "/opengraph-image",
+        url: "/og-image.png?v=2",
         width: 1200,
         height: 630,
         alt: "Lyricord",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Lyricord",
     description: "Guarda letras y acordes con OCR.",
-    images: ["/opengraph-image"],
+    images: ["/og-image.png?v=2"],
   },
   icons: {
     icon: "/icon",
