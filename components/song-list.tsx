@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { DeleteSongButton } from "@/components/delete-song-button";
 import { formatSongDate, type SongListItem } from "@/lib/songs";
 
 type SongListProps = {
@@ -54,7 +55,7 @@ export function SongList({ songs }: SongListProps) {
                   <span>Actualizada: {formatSongDate(song.updatedAt)}</span>
                 </div>
 
-                <div className="mt-4 flex gap-3">
+                <div className="mt-4 flex flex-wrap gap-3">
                   <Link
                     href={`/songs/${song.id}`}
                     className="inline-flex min-h-11 flex-1 items-center justify-center rounded-full border border-slate-700 px-4 text-sm font-semibold text-white transition hover:border-green-400 hover:text-green-400 sm:flex-none"
@@ -67,6 +68,11 @@ export function SongList({ songs }: SongListProps) {
                   >
                     Editar
                   </Link>
+                  <DeleteSongButton
+                    id={song.id}
+                    title={song.title}
+                    className="flex-1 sm:flex-none"
+                  />
                 </div>
               </div>
             </details>

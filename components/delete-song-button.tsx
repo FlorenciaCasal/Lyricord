@@ -5,13 +5,18 @@ import { deleteSongAction } from "@/app/actions";
 type DeleteSongButtonProps = {
   id: string;
   title: string;
+  className?: string;
 };
 
-export function DeleteSongButton({ id, title }: DeleteSongButtonProps) {
+export function DeleteSongButton({
+  id,
+  title,
+  className = "w-full sm:w-24",
+}: DeleteSongButtonProps) {
   return (
     <form
       action={deleteSongAction}
-      className="w-full sm:w-24"
+      className={className}
       onSubmit={(event) => {
         const confirmed = window.confirm(
           `¿Querés eliminar "${title}"? Esta acción no se puede deshacer.`,

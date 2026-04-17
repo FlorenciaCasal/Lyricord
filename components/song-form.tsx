@@ -245,7 +245,9 @@ export function SongForm({
             value={content}
             onChange={(event) => setContent(event.target.value)}
             rows={18}
-            className="w-full max-w-full rounded-[1.75rem] border border-slate-700 bg-slate-950 px-3 py-2.5 font-mono text-[12px] leading-[1.45] text-white outline-none transition placeholder:text-slate-400 focus:border-green-500 focus:bg-slate-950 sm:px-4 sm:py-3 sm:text-base sm:leading-7"
+            wrap="off"
+            spellCheck={false}
+            className="w-full max-w-full overflow-x-auto rounded-[1.75rem] border border-slate-700 bg-slate-950 px-3 py-2.5 font-mono text-[12px] leading-[1.45] text-white outline-none transition placeholder:text-slate-400 focus:border-green-500 focus:bg-slate-950 sm:px-4 sm:py-3 sm:text-base sm:leading-7"
             placeholder="Pegá acá la letra completa con acordes"
           />
           {state.errors?.content ? (

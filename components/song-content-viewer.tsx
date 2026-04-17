@@ -57,7 +57,7 @@ export function SongContentViewer({ content }: SongContentViewerProps) {
       </div>
 
       <div className="-mx-2 overflow-x-auto rounded-3xl border border-slate-800 bg-slate-950 px-2 py-3 text-[12px] text-slate-100 sm:mx-0 sm:p-6 sm:text-[0.95rem]">
-        <pre className="font-mono whitespace-pre leading-[1.45] sm:leading-relaxed">
+        <pre className="min-w-max whitespace-pre font-mono leading-[1.45] sm:leading-relaxed">
           {transposedContent}
         </pre>
       </div>

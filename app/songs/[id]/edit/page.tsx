@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { getAuthSession } from "@/lib/auth";
 import { updateSongAction } from "@/app/actions";
+import { DeleteSongButton } from "@/components/delete-song-button";
 import { SongForm } from "@/components/song-form";
 import { getSongById } from "@/lib/songs";
 
@@ -30,15 +31,18 @@ export default async function EditSongPage({ params }: EditSongPageProps) {
   return (
     <main className="mx-auto flex min-h-screen w-full max-w-4xl flex-col px-4 py-6 sm:px-6 sm:py-8">
       <section className="rounded-[2rem] border border-slate-700 bg-slate-900 py-5 px-2 shadow-sm shadow-black/20 sm:py-8 sm:px-8">
-        <div className="mb-6 space-y-2">
-          <p className="text-sm font-medium uppercase tracking-[0.24em] text-slate-400">
-            Edición
-          </p>
-          <h1 className="font-heading text-4xl text-white">Editar canción</h1>
-          <p className="text-base text-slate-300">
-            Actualizá el título, el tono o el contenido completo cuando haga
-            falta.
-          </p>
+        <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+          <div className="space-y-2">
+            <p className="text-sm font-medium uppercase tracking-[0.24em] text-slate-400">
+              Edición
+            </p>
+            <h1 className="font-heading text-4xl text-white">Editar canción</h1>
+            <p className="text-base text-slate-300">
+              Actualizá el título, el tono o el contenido completo cuando haga
+              falta.
+            </p>
+          </div>
+          <DeleteSongButton id={song.id} title={song.title} />
         </div>
 
         <SongForm
