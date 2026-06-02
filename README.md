@@ -16,6 +16,9 @@ GOOGLE_APPLICATION_CREDENTIALS_JSON='{"type":"service_account","project_id":"PRO
 GOOGLE_CLOUD_PROJECT="PROJECT_ID"
 NEXTAUTH_SECRET="GENERATE_A_LONG_RANDOM_SECRET"
 NEXTAUTH_URL="http://localhost:3000"
+RESEND_API_KEY="re_xxxxxxxxxxxxxxxxxxxxxxxxx"
+PASSWORD_RESET_FROM="Lyricord <no-reply@example.com>"
+PASSWORD_RESET_REPLY_TO="contacto.lyricord@gmail.com"
 ```
 
 No subas valores reales al README ni al repo. Guardalos solo en `.env` local o en las variables de entorno del proveedor de deploy.
@@ -31,6 +34,11 @@ Variables mínimas:
 - `GOOGLE_APPLICATION_CREDENTIALS_JSON`
 - `NEXTAUTH_SECRET`
 - `NEXTAUTH_URL`
+- `RESEND_API_KEY`
+- `PASSWORD_RESET_FROM`
+
+Para recuperación de contraseña, configurá un dominio o remitente verificado en Resend y usalo en `PASSWORD_RESET_FROM`.
+`PASSWORD_RESET_REPLY_TO` es opcional.
 
 Para producción en Vercel, usá `GOOGLE_APPLICATION_CREDENTIALS_JSON` con el JSON completo del service account.
 La variable `GOOGLE_APPLICATION_CREDENTIALS` con ruta local queda útil para desarrollo local.
