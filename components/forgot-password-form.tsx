@@ -38,7 +38,7 @@ export function ForgotPasswordForm() {
 
       setMessage(
         payload.message ??
-          "Si existe una cuenta con ese email, te enviamos instrucciones.",
+          "Si existe una cuenta con ese email, te enviamos instrucciones para restablecer tu contraseña. Revisá también tu carpeta de spam o correo no deseado.",
       );
     } catch {
       setError("Ocurrió un error. Intentá de nuevo.");

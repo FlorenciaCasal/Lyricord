@@ -3,6 +3,9 @@
 import Link from "next/link";
 import { useState } from "react";
 
+const MIN_PASSWORD_LENGTH = 8;
+const MAX_PASSWORD_LENGTH = 128;
+
 type ResetPasswordFormProps = {
   token?: string;
 };
@@ -23,6 +26,22 @@ export function ResetPasswordForm({ token }: ResetPasswordFormProps) {
 
     setError(null);
     setMessage(null);
+
+    if (
+      password.length < MIN_PASSWORD_LENGTH ||
+      password.length > MAX_PASSWORD_LENGTH
+    ) {
+      setError(
+        `La contraseña debe tener entre ${MIN_PASSWORD_LENGTH} y ${MAX_PASSWORD_LENGTH} caracteres.`,
+      );
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setError("Las contraseñas no coinciden.");
+      return;
+    }
+
     setPending(true);
 
     try {
@@ -86,6 +105,8 @@ export function ResetPasswordForm({ token }: ResetPasswordFormProps) {
               type="password"
               name="password"
               autoComplete="new-password"
+              minLength={MIN_PASSWORD_LENGTH}
+              maxLength={MAX_PASSWORD_LENGTH}
               className="min-h-12 w-full rounded-2xl border border-slate-700 bg-slate-950 px-4 text-base text-white outline-none transition placeholder:text-slate-400 focus:border-green-500 focus:bg-slate-950"
               placeholder="********"
               required
@@ -100,6 +121,8 @@ export function ResetPasswordForm({ token }: ResetPasswordFormProps) {
               type="password"
               name="confirmPassword"
               autoComplete="new-password"
+              minLength={MIN_PASSWORD_LENGTH}
+              maxLength={MAX_PASSWORD_LENGTH}
               className="min-h-12 w-full rounded-2xl border border-slate-700 bg-slate-950 px-4 text-base text-white outline-none transition placeholder:text-slate-400 focus:border-green-500 focus:bg-slate-950"
               placeholder="********"
               required
