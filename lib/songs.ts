@@ -60,18 +60,28 @@ type SongInput = {
   notes: string | null;
 };
 
-function normalizeOptionalField(value: FormDataEntryValue | null) {
-  const parsed = String(value ?? "").trim();
+export type SongInputPayload = {
+  title?: unknown;
+  artist?: unknown;
+  key?: unknown;
+  versionName?: unknown;
+  content?: unknown;
+  notes?: unknown;
+};
+
+function normalizeOptionalPayloadField(value: unknown) {
+  const parsed = typeof value === "string" ? value.trim() : "";
   return parsed.length > 0 ? parsed : null;
 }
 
-function parseSongInput(formData: FormData) {
-  const title = String(formData.get("title") ?? "").trim();
-  const content = String(formData.get("content") ?? "").trim();
-  const artist = normalizeOptionalField(formData.get("artist"));
-  const key = normalizeOptionalField(formData.get("key"));
-  const versionName = normalizeOptionalField(formData.get("versionName"));
-  const notes = normalizeOptionalField(formData.get("notes"));
+function parseSongInputPayload(payload: SongInputPayload, options?: { preserveContent?: boolean }) {
+  const rawContent = typeof payload.content === "string" ? payload.content : "";
+  const title = typeof payload.title === "string" ? payload.title.trim() : "";
+  const content = options?.preserveContent ? rawContent : rawContent.trim();
+  const artist = normalizeOptionalPayloadField(payload.artist);
+  const key = normalizeOptionalPayloadField(payload.key);
+  const versionName = normalizeOptionalPayloadField(payload.versionName);
+  const notes = normalizeOptionalPayloadField(payload.notes);
 
   const errors: SongFormState["errors"] = {};
 
@@ -81,7 +91,7 @@ function parseSongInput(formData: FormData) {
     errors.title = `El titulo no puede superar ${MAX_TITLE_LENGTH} caracteres.`;
   }
 
-  if (!content) {
+  if (!content.trim()) {
     errors.content = "El contenido es obligatorio.";
   } else if (content.length > MAX_CONTENT_LENGTH) {
     errors.content = `El contenido no puede superar ${MAX_CONTENT_LENGTH.toLocaleString(
@@ -120,6 +130,17 @@ function parseSongInput(formData: FormData) {
     input,
     errors,
   };
+}
+
+function parseSongInput(formData: FormData) {
+  return parseSongInputPayload({
+    title: formData.get("title"),
+    artist: formData.get("artist"),
+    key: formData.get("key"),
+    versionName: formData.get("versionName"),
+    content: formData.get("content"),
+    notes: formData.get("notes"),
+  });
 }
 
 async function hasReachedSongLimit(userId: string) {
@@ -243,6 +264,47 @@ export async function createSong(userId: string, formData: FormData) {
   }
 }
 
+export async function createSongFromPayload(userId: string, payload: SongInputPayload) {
+  const { input, errors } = parseSongInputPayload(payload, { preserveContent: true });
+
+  if (Object.keys(errors).length > 0) {
+    return {
+      success: false as const,
+      errors,
+    };
+  }
+
+  try {
+    if (await hasReachedSongLimit(userId)) {
+      return {
+        success: false as const,
+        errors: {
+          form: `Alcanzaste el limite inicial de ${MAX_SONGS_PER_USER} canciones para esta beta.`,
+        },
+      };
+    }
+
+    const song = await prisma.song.create({
+      data: {
+        ...input,
+        userId,
+      },
+    });
+
+    return {
+      success: true as const,
+      song,
+    };
+  } catch {
+    return {
+      success: false as const,
+      errors: {
+        form: "No pudimos guardar la cancion. Intenta de nuevo.",
+      },
+    };
+  }
+}
+
 export async function createSongVersion(
   songId: string,
   userId: string,
@@ -329,6 +391,56 @@ export async function updateSong(
       success: false as const,
       errors: {
         form: "No pudimos actualizar la canción. Intentá de nuevo.",
+      },
+    };
+  }
+}
+
+export async function updateSongFromPayload(
+  id: string,
+  userId: string,
+  payload: SongInputPayload,
+) {
+  const { input, errors } = parseSongInputPayload(payload, { preserveContent: true });
+
+  if (Object.keys(errors).length > 0) {
+    return {
+      success: false as const,
+      errors,
+    };
+  }
+
+  try {
+    const existingSong = await prisma.song.findFirst({
+      where: {
+        id,
+        userId,
+      },
+    });
+
+    if (!existingSong) {
+      return {
+        success: false as const,
+        errors: {
+          form: "La cancion que intentas editar no existe.",
+        },
+      };
+    }
+
+    const song = await prisma.song.update({
+      where: { id },
+      data: input,
+    });
+
+    return {
+      success: true as const,
+      song,
+    };
+  } catch {
+    return {
+      success: false as const,
+      errors: {
+        form: "No pudimos actualizar la cancion. Intenta de nuevo.",
       },
     };
   }
