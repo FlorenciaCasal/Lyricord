@@ -3,7 +3,11 @@
 import { useRouter } from "next/navigation";
 import { useActionState, useId, useRef, useState, useTransition } from "react";
 import { extractSongTextAction } from "@/app/actions";
-import { formatFileSize, OCR_MAX_IMAGE_SIZE_BYTES } from "@/lib/ocr-upload";
+import {
+  formatFileSize,
+  validateOcrImageFile,
+  OCR_MAX_IMAGE_SIZE_BYTES,
+} from "@/lib/ocr-upload";
 import { SubmitButton } from "@/components/submit-button";
 import type { SongFormState } from "@/lib/songs";
 
@@ -55,6 +59,20 @@ export function SongForm({
 
     setOcrMessage(null);
     setOcrError(null);
+
+    const selectedImage = formRef.current.elements.namedItem("sourceImage");
+    const selectedFile =
+      selectedImage instanceof HTMLInputElement
+        ? selectedImage.files?.[0] ?? null
+        : null;
+    const validationError = selectedFile
+      ? validateOcrImageFile(selectedFile)
+      : "Elegí una imagen JPG o PNG para extraer el texto.";
+
+    if (validationError) {
+      setOcrError(validationError);
+      return;
+    }
 
     const hadExistingContent = content.trim().length > 0;
     const ocrFormData = new FormData(formRef.current);
@@ -194,7 +212,7 @@ export function SongForm({
                 onChange={(event) => {
                   const file = event.target.files?.[0] ?? null;
                   setSelectedFileName(file ? file.name : null);
-                  setOcrError(null);
+                  setOcrError(file ? validateOcrImageFile(file) : null);
                   setOcrMessage(null);
                 }}
               />

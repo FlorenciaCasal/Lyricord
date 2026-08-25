@@ -16,8 +16,8 @@ export default function ErrorPage({
           Algo no salio bien
         </h1>
         <p className="mt-3 text-base leading-7 text-slate-300">
-          Proba de nuevo. Si el problema sigue, volve al inicio o escribinos
-          para revisarlo.
+          Proba de nuevo. Si el problema sigue, volve al inicio e intentalo
+          nuevamente.
         </p>
         <button
           type="button"

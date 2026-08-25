@@ -6,6 +6,8 @@ export const OCR_ALLOWED_IMAGE_TYPES = [
 
 export const OCR_MAX_IMAGE_SIZE_BYTES = 5 * 1024 * 1024;
 
+const OCR_ALLOWED_IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png"] as const;
+
 export function formatFileSize(sizeInBytes: number) {
   const sizeInMb = sizeInBytes / (1024 * 1024);
   return `${sizeInMb.toFixed(0)} MB`;
@@ -16,8 +18,17 @@ export function validateOcrImageFile(file: File) {
     return "Elegí una imagen JPG o PNG para extraer el texto.";
   }
 
-  if (!OCR_ALLOWED_IMAGE_TYPES.includes(file.type as (typeof OCR_ALLOWED_IMAGE_TYPES)[number])) {
-    return "La imagen debe ser JPG o PNG.";
+  const normalizedType = file.type.toLowerCase();
+  const normalizedName = file.name.toLowerCase();
+  const hasAllowedType = OCR_ALLOWED_IMAGE_TYPES.includes(
+    normalizedType as (typeof OCR_ALLOWED_IMAGE_TYPES)[number],
+  );
+  const hasAllowedExtension = OCR_ALLOWED_IMAGE_EXTENSIONS.some((extension) =>
+    normalizedName.endsWith(extension),
+  );
+
+  if ((normalizedType && !hasAllowedType) || (!normalizedType && !hasAllowedExtension)) {
+    return "La imagen debe ser JPG o PNG. Si tu iPhone la guarda como HEIC/HEIF, exportala o convertila a JPG antes de usar OCR.";
   }
 
   if (file.size > OCR_MAX_IMAGE_SIZE_BYTES) {
