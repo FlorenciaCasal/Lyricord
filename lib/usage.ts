@@ -1,6 +1,5 @@
 import { prisma } from "@/lib/prisma";
-
-export const OCR_DAILY_LIMIT = 10;
+import { getOcrDailyLimitForUser, isWithinLimit } from "@/lib/premium/entitlements";
 
 const USAGE_TYPE_OCR = "ocr";
 
@@ -11,6 +10,7 @@ function getStartOfTodayUtc() {
 }
 
 export async function getOcrUsageStatus(userId: string) {
+  const dailyLimit = await getOcrDailyLimitForUser(userId);
   const usedToday = await prisma.usageEvent.count({
     where: {
       userId,
@@ -23,8 +23,9 @@ export async function getOcrUsageStatus(userId: string) {
 
   return {
     usedToday,
-    remainingToday: Math.max(0, OCR_DAILY_LIMIT - usedToday),
-    allowed: usedToday < OCR_DAILY_LIMIT,
+    dailyLimit,
+    remainingToday: dailyLimit === null ? null : Math.max(0, dailyLimit - usedToday),
+    allowed: isWithinLimit(usedToday, dailyLimit),
   };
 }
 

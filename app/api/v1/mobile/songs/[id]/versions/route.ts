@@ -42,10 +42,16 @@ export async function POST(
   if (!id) return mobileApiError(400, "INVALID_REQUEST", "ID de cancion invalido.");
 
   try {
-    const result = await createMobileSongVersion(userId, id);
+    const payload = request.headers.get("content-type")?.includes("application/json")
+      ? await request.json().catch(() => ({}))
+      : {};
+    const result = await createMobileSongVersion(userId, id, payload);
     if (!result.success) {
       if (result.reason === "limit-reached") {
         return mobileApiError(422, "VALIDATION_ERROR", "Alcanzaste el limite de canciones para esta beta.");
+      }
+      if (result.reason === "validation-error") {
+        return mobileApiError(422, "VALIDATION_ERROR", "Revisa los datos de la version.");
       }
       return mobileApiError(404, "NOT_FOUND", "Cancion no encontrada.");
     }

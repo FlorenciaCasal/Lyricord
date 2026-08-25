@@ -11,6 +11,7 @@ import {
   updateSongFromPayload,
   type SongInputPayload,
 } from "@/lib/songs";
+import type { SongVersionPayload } from "@/lib/song-version-utils";
 
 export { buildOwnedSongWhere, isValidSongId };
 
@@ -109,8 +110,8 @@ export async function listMobileSongVersions(userId: string, songId: string) {
   return versions.map(toMobileSongVersionDto);
 }
 
-export async function createMobileSongVersion(userId: string, songId: string) {
-  const result = await createSongVersion(songId, userId);
+export async function createMobileSongVersion(userId: string, songId: string, payload: SongVersionPayload = {}) {
+  const result = await createSongVersion(songId, userId, payload);
   if (!result.success) return result;
   return {
     success: true as const,

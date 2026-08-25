@@ -2,7 +2,7 @@ import { extractTextFromImage } from "@/lib/google-vision";
 import { mobileApiError } from "@/lib/mobile-api/errors";
 import { getMobileUserId } from "@/lib/mobile-api/request-auth";
 import { validateOcrImageFile } from "@/lib/ocr-upload";
-import { getOcrUsageStatus, OCR_DAILY_LIMIT, recordOcrUsage } from "@/lib/usage";
+import { getOcrUsageStatus, recordOcrUsage } from "@/lib/usage";
 
 export const runtime = "nodejs";
 
@@ -28,7 +28,7 @@ export async function POST(request: Request) {
       return mobileApiError(
         429,
         "RATE_LIMITED",
-        `Alcanzaste el limite diario de ${OCR_DAILY_LIMIT} usos de OCR para esta beta.`,
+        `Alcanzaste el limite diario de ${usageStatus.dailyLimit ?? "OCR"} usos de OCR para esta beta.`,
       );
     }
 
@@ -41,7 +41,7 @@ export async function POST(request: Request) {
     return Response.json({
       text: result.text,
       usage: {
-        remainingToday: Math.max(0, usageStatus.remainingToday - 1),
+        remainingToday: usageStatus.remainingToday === null ? null : Math.max(0, usageStatus.remainingToday - 1),
       },
     });
   } catch (error) {

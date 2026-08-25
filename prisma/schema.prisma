@@ -19,6 +19,7 @@ model User {
   usageEvents  UsageEvent[]
   passwordResetTokens PasswordResetToken[]
   mobileSessions MobileSession[]
+  revenueCatEntitlements RevenueCatEntitlement[]
 }
 
 model MobileSession {
@@ -83,4 +84,27 @@ model RateLimitEvent {
   createdAt DateTime @default(now())
 
   @@index([type, key, createdAt])
+}
+
+model RevenueCatEntitlement {
+  id                    String    @id @default(cuid())
+  userId                String
+  appUserId             String
+  entitlementId         String
+  productId             String?
+  status                String
+  expiresAt             DateTime?
+  environment           String?
+  originalTransactionId String?
+  lastEventId           String?
+  lastEventType         String?
+  lastEventAt           DateTime?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, entitlementId])
+  @@index([appUserId])
+  @@index([originalTransactionId])
+  @@index([status, expiresAt])
 }

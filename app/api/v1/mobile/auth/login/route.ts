@@ -1,5 +1,6 @@
 import { authenticateMobileCredentials, createMobileSession } from "@/lib/mobile-api/auth";
 import { mobileApiError } from "@/lib/mobile-api/errors";
+import { getPremiumStatusForUser } from "@/lib/premium/entitlements";
 import { checkRateLimit } from "@/lib/rate-limit";
 
 const LOGIN_LIMIT = 10;
@@ -38,8 +39,11 @@ export async function POST(request: Request) {
       return mobileApiError(401, "INVALID_CREDENTIALS", "Email o contraseña incorrectos.");
     }
 
-    const tokens = await createMobileSession(user.id);
-    return Response.json({ user, ...tokens });
+    const [tokens, premium] = await Promise.all([
+      createMobileSession(user.id),
+      getPremiumStatusForUser(user.id),
+    ]);
+    return Response.json({ user, premium, ...tokens });
   } catch (error) {
     console.error("Mobile login API: error inesperado.", { error });
     return mobileApiError(500, "INTERNAL_ERROR", "No pudimos iniciar sesión.");

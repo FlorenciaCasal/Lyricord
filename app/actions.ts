@@ -10,7 +10,6 @@ import { getAuthSession } from "@/lib/auth";
 import { validateOcrImageFile } from "@/lib/ocr-upload";
 import {
   getOcrUsageStatus,
-  OCR_DAILY_LIMIT,
   recordOcrUsage,
 } from "@/lib/usage";
 import {
@@ -103,7 +102,7 @@ export async function extractSongTextAction(
   if (!usageStatus.allowed) {
     return {
       success: false,
-      error: `Alcanzaste el limite diario de ${OCR_DAILY_LIMIT} usos de OCR para esta beta. Podes pegar el texto manualmente y volver a intentar manana.`,
+      error: `Alcanzaste el limite diario de ${usageStatus.dailyLimit ?? "OCR"} usos de OCR para esta beta. Podes pegar el texto manualmente y volver a intentar manana.`,
     };
   }
 
