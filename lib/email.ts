@@ -11,7 +11,7 @@ type ResendEmailResponse = {
 
 function getPasswordResetEmailText(resetUrl: string) {
   return [
-    "Recibimos un pedido para restablecer la contraseña de tu cuenta de Lyricord.",
+    "Recibimos un pedido para restablecer la contraseña de tu cuenta de Musum.",
     "",
     "Para elegir una nueva contraseña, abrí este link:",
     resetUrl,
@@ -22,7 +22,7 @@ function getPasswordResetEmailText(resetUrl: string) {
 
 function getPasswordResetEmailHtml(resetUrl: string) {
   return `
-    <p>Recibimos un pedido para restablecer la contraseña de tu cuenta de Lyricord.</p>
+    <p>Recibimos un pedido para restablecer la contraseña de tu cuenta de Musum.</p>
     <p>
       <a href="${resetUrl}">Elegir una nueva contraseña</a>
     </p>
@@ -57,7 +57,7 @@ export async function sendPasswordResetEmail({
         from,
         to,
         ...(replyTo ? { reply_to: replyTo } : {}),
-        subject: "Restablecé tu contraseña de Lyricord",
+        subject: "Restablecé tu contraseña de Musum",
         text: getPasswordResetEmailText(resetUrl),
         html: getPasswordResetEmailHtml(resetUrl),
       }),

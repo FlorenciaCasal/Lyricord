@@ -5,7 +5,7 @@ export default function PrivacyPage() {
     <main className="mx-auto flex min-h-screen w-full max-w-3xl flex-col px-4 py-10 sm:px-6">
       <section className="rounded-[2rem] border border-slate-700 bg-slate-900 p-6 shadow-sm shadow-black/20 sm:p-8">
         <p className="text-sm font-medium uppercase tracking-[0.24em] text-slate-400">
-          Lyricord
+          Musum
         </p>
         <h1 className="mt-3 text-4xl font-semibold text-white">
           Política de privacidad
@@ -29,7 +29,7 @@ export default function PrivacyPage() {
           <p>
             No vendemos tus datos personales. Podemos usar proveedores de
             infraestructura, base de datos, autenticación, hosting, logs y OCR
-            para operar Lyricord.
+            para operar Musum.
           </p>
           <p>
             Podemos conservar logs técnicos mínimos para seguridad, diagnóstico

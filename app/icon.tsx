@@ -78,7 +78,7 @@ export default function Icon() {
               transform: "translateY(-2px)",
             }}
           >
-            Ly
+            M
           </div>
         </div>
       </div>

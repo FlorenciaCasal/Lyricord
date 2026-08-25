@@ -194,7 +194,7 @@ export function AuthForm({ mode }: AuthFormProps) {
       </p>
 
       <p className="mt-4 text-xs leading-5 text-slate-500">
-        Uso responsable: Lyricord no provee letras oficiales. Ver{" "}
+        Uso responsable: Musum no provee letras oficiales. Ver{" "}
         <Link href="/copyright" className="text-slate-300 hover:text-green-400">
           copyright y denuncias
         </Link>

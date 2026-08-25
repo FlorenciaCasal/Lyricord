@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { DeleteSongButton } from "@/components/delete-song-button";
-import { formatSongDate, type SongListItem } from "@/lib/songs";
+import { type SongListItem } from "@/lib/songs";
 
 type SongListProps = {
   songs: SongListItem[];
@@ -52,7 +52,6 @@ export function SongList({ songs }: SongListProps) {
                     <span>Versión: {song.versionName}</span>
                   ) : null}
                   {song.key ? <span>Tono: {song.key}</span> : null}
-                  <span>Actualizada: {formatSongDate(song.updatedAt)}</span>
                 </div>
 
                 <div className="mt-4 flex flex-wrap gap-3">

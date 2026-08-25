@@ -23,7 +23,7 @@ export default async function Home({ searchParams }: HomePageProps) {
         <div className="flex flex-col gap-5">
           <div className="flex items-start justify-between gap-3">
             <p className="text-sm font-medium uppercase tracking-[0.24em] text-slate-400">
-              Lyricord
+              Musum
             </p>
             <InstallAppButton />
           </div>

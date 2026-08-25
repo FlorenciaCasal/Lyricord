@@ -79,7 +79,7 @@ export function ResetPasswordForm({ token }: ResetPasswordFormProps) {
           Nueva contraseña
         </h1>
         <p className="text-base text-slate-300">
-          Elegí una contraseña nueva para volver a entrar a Lyricord.
+          Elegí una contraseña nueva para volver a entrar a Musum.
         </p>
       </div>
 

@@ -4,7 +4,7 @@ import { createSongVersionAction } from "@/app/actions";
 import { getAuthSession } from "@/lib/auth";
 import { DeleteSongButton } from "@/components/delete-song-button";
 import { SongContentViewer } from "@/components/song-content-viewer";
-import { formatSongDate, getSongById, getSongVersions } from "@/lib/songs";
+import { getSongById, getSongVersions } from "@/lib/songs";
 
 type SongDetailPageProps = {
   params: Promise<{
@@ -59,7 +59,6 @@ export default async function SongDetailPage({
                 {song.versionName ? (
                   <span>Versión: {song.versionName}</span>
                 ) : null}
-                <span>Actualizada: {formatSongDate(song.updatedAt)}</span>
               </div>
             </div>
 

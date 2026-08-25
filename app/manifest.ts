@@ -3,8 +3,8 @@ import type { MetadataRoute } from "next";
 export default function manifest(): MetadataRoute.Manifest {
   return {
     id: "/",
-    name: "Lyricord",
-    short_name: "Lyricord",
+    name: "Musum",
+    short_name: "Musum",
     description: "Guarda letras y acordes con OCR e instalación tipo app.",
     start_url: "/",
     scope: "/",
