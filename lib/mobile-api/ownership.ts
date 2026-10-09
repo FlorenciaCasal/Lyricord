@@ -1,5 +1,5 @@
 export function buildOwnedSongWhere(userId: string, id: string) {
-  return { id, userId };
+  return { id, userId, deletedAt: null };
 }
 
 export function isValidSongId(id: string) {

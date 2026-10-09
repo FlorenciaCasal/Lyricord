@@ -150,7 +150,7 @@ async function hasReachedSongLimit(userId: string) {
   if (maxSongs === null) return false;
 
   const songCount = await prisma.song.count({
-    where: { userId },
+    where: { userId, deletedAt: null },
   });
 
   return songCount >= maxSongs;
@@ -168,6 +168,7 @@ export async function searchSongs(userId: string, query?: string) {
   return prisma.song.findMany({
     where: {
       userId,
+      deletedAt: null,
       ...(normalizedQuery
         ? {
             OR: [
@@ -206,6 +207,7 @@ export async function getSongById(id: string, userId: string) {
     where: {
       id,
       userId,
+      deletedAt: null,
     },
   });
 }
@@ -222,6 +224,7 @@ export async function getSongVersions(songId: string, userId: string) {
   return prisma.song.findMany({
     where: {
       userId,
+      deletedAt: null,
       OR: [{ id: versionGroupId }, { versionGroupId }],
     },
     orderBy: [{ createdAt: "asc" }, { updatedAt: "desc" }],
@@ -334,6 +337,7 @@ export async function createSongVersion(
   const existingVersionCount = await prisma.song.count({
     where: {
       userId,
+      deletedAt: null,
       OR: [{ id: versionGroupId }, { versionGroupId }],
     },
   });
@@ -400,6 +404,7 @@ export async function updateSong(
       where: {
         id,
         userId,
+        deletedAt: null,
       },
     });
 
@@ -450,6 +455,7 @@ export async function updateSongFromPayload(
       where: {
         id,
         userId,
+        deletedAt: null,
       },
     });
 
@@ -483,10 +489,14 @@ export async function updateSongFromPayload(
 
 export async function deleteSong(id: string, userId: string) {
   try {
-    const deleted = await prisma.song.deleteMany({
+    const deleted = await prisma.song.updateMany({
       where: {
         id,
         userId,
+        deletedAt: null,
+      },
+      data: {
+        deletedAt: new Date(),
       },
     });
 
