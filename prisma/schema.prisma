@@ -58,6 +58,7 @@ model Song {
   versionName    String?  @default("Principal")
   versionGroupId String?
   content   String   @db.Text
+  chordProContent String? @db.Text
   notes     String?  @db.Text
   deletedAt DateTime?
   createdAt DateTime @default(now())
