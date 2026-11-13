@@ -36,6 +36,7 @@ export type MobileSongSyncPushResult = {
   id: string | null;
   status: MobileSongSyncStatus;
   song?: MobileSongSyncDto;
+  songs?: MobileSongSyncDto[];
   error?: {
     code: "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "INTERNAL_ERROR";
     message: string;
@@ -62,13 +63,26 @@ type SongSyncDelegate = {
   findMany(args: Record<string, unknown>): Promise<SongSyncRecord[]>;
   findFirst(args: Record<string, unknown>): Promise<SongSyncRecord | null>;
   create(args: Record<string, unknown>): Promise<SongSyncRecord>;
-  update(args: Record<string, unknown>): Promise<SongSyncRecord>;
+  updateManyAndReturn(args: Record<string, unknown>): Promise<SongSyncRecord[]>;
 };
 
 type SongSyncDependencies = {
   song: SongSyncDelegate;
   now: () => Date;
+  transaction: <T>(task: (song: SongSyncDelegate) => Promise<T>) => Promise<T>;
 };
+
+type ParsedGroupDeletion =
+  | {
+      ok: true;
+      value: {
+        principalId: string;
+        principalClientId: string;
+        deletedAt: string;
+        members: Array<{ id: string; clientId: string; baseUpdatedAt: string }>;
+      };
+    }
+  | { ok: false; principalId: string | null; principalClientId: string | null; message: string };
 
 type ParsedSyncChange =
   | {
@@ -101,10 +115,17 @@ type PullCursor = {
 };
 
 async function getDependencies(dependencies?: Partial<SongSyncDependencies>): Promise<SongSyncDependencies> {
-  const song = dependencies?.song ?? ((await import("@/lib/prisma")).prisma.song as unknown as SongSyncDelegate);
+  const prisma = dependencies?.song ? null : (await import("@/lib/prisma")).prisma;
+  const song = dependencies?.song ?? (prisma!.song as unknown as SongSyncDelegate);
   return {
     song,
     now: dependencies?.now ?? (() => new Date()),
+    transaction: dependencies?.transaction ?? (prisma
+      ? ((task) => prisma.$transaction(
+          (client) => task(client.song as unknown as SongSyncDelegate),
+          { isolationLevel: "Serializable" },
+        ))
+      : ((task) => task(song))),
   };
 }
 
@@ -230,7 +251,54 @@ function parseSyncChange(input: unknown): ParsedSyncChange {
   };
 }
 
-function isSameSongContent(song: SongSyncRecord, change: ParsedSyncChange & { ok: true }) {
+function parseGroupDeletion(input: unknown): ParsedGroupDeletion {
+  if (!input || typeof input !== "object" || Array.isArray(input)) {
+    return { ok: false, principalId: null, principalClientId: null, message: "Eliminacion grupal invalida." };
+  }
+  const record = input as Record<string, unknown>;
+  const principalId = normalizeOptionalText(record.principalId);
+  const principalClientId = normalizeOptionalText(record.principalClientId);
+  const deletedAt = parseIsoDate(record.deletedAt);
+  if (!principalId || !isSafeExternalId(principalId)) {
+    return { ok: false, principalId, principalClientId, message: "ID principal invalido." };
+  }
+  if (!principalClientId || !isSafeExternalId(principalClientId)) {
+    return { ok: false, principalId, principalClientId, message: "ID local principal invalido." };
+  }
+  if (!deletedAt) {
+    return { ok: false, principalId, principalClientId, message: "deletedAt invalido." };
+  }
+  if (!Array.isArray(record.members) || record.members.length === 0 || record.members.length > MAX_SYNC_BATCH_SIZE) {
+    return { ok: false, principalId, principalClientId, message: "El grupo necesita una lista valida de miembros." };
+  }
+
+  const members: Array<{ id: string; clientId: string; baseUpdatedAt: string }> = [];
+  const ids = new Set<string>();
+  for (const rawMember of record.members) {
+    if (!rawMember || typeof rawMember !== "object" || Array.isArray(rawMember)) {
+      return { ok: false, principalId, principalClientId, message: "Miembro de grupo invalido." };
+    }
+    const member = rawMember as Record<string, unknown>;
+    const id = normalizeOptionalText(member.id);
+    const clientId = normalizeOptionalText(member.clientId);
+    const baseUpdatedAt = parseIsoDate(member.baseUpdatedAt);
+    if (!id || !isSafeExternalId(id) || !clientId || !isSafeExternalId(clientId) || !baseUpdatedAt || ids.has(id)) {
+      return { ok: false, principalId, principalClientId, message: "Miembro de grupo invalido o duplicado." };
+    }
+    ids.add(id);
+    members.push({ id, clientId, baseUpdatedAt });
+  }
+  if (!ids.has(principalId)) {
+    return { ok: false, principalId, principalClientId, message: "La cancion principal debe integrar el grupo." };
+  }
+  return { ok: true, value: { principalId, principalClientId, deletedAt, members } };
+}
+
+function isSameSongState(
+  song: SongSyncRecord,
+  change: ParsedSyncChange & { ok: true },
+  versionGroupId: string | null,
+) {
   const value = change.value;
   return (
     song.deletedAt === null &&
@@ -239,8 +307,31 @@ function isSameSongContent(song: SongSyncRecord, change: ParsedSyncChange & { ok
     song.key === value.key &&
     song.versionName === value.versionName &&
     song.content === value.content &&
-    song.notes === value.notes
+    song.notes === value.notes &&
+    song.versionGroupId === versionGroupId
   );
+}
+
+function isUniqueConstraintError(error: unknown) {
+  return !!error && typeof error === "object" && "code" in error && error.code === "P2002";
+}
+
+async function findOwnedSongById(userId: string, id: string, dependencies: SongSyncDependencies) {
+  return dependencies.song.findFirst({ where: { id, userId } });
+}
+
+function conflictResult(
+  change: ParsedSyncChange & { ok: true },
+  song: SongSyncRecord,
+  message: string,
+): MobileSongSyncPushResult {
+  return {
+    clientId: change.value.clientId,
+    id: song.id,
+    status: "conflict",
+    song: toMobileSongSyncDto(song),
+    error: { code: "CONFLICT", message },
+  };
 }
 
 function resultError(
@@ -302,6 +393,136 @@ async function resolveVersionGroupId(
   return null;
 }
 
+class GroupDeleteWriteConflict extends Error {
+  constructor() {
+    super("GROUP_DELETE_WRITE_CONFLICT");
+    this.name = "GroupDeleteWriteConflict";
+  }
+}
+
+function isTransactionWriteConflict(error: unknown) {
+  return error instanceof GroupDeleteWriteConflict ||
+    (!!error && typeof error === "object" && "code" in error && error.code === "P2034");
+}
+
+async function readOwnedGroup(userId: string, principalId: string, song: SongSyncDelegate) {
+  return song.findMany({
+    where: {
+      userId,
+      OR: [{ id: principalId }, { versionGroupId: principalId }],
+    },
+  });
+}
+
+function groupDeleteResult(
+  parsed: ParsedGroupDeletion & { ok: true },
+  status: "deleted" | "unchanged" | "conflict" | "error",
+  songs: SongSyncRecord[],
+  message?: string,
+): MobileSongSyncPushResult {
+  return {
+    clientId: parsed.value.principalClientId,
+    id: parsed.value.principalId,
+    status,
+    songs: songs.map(toMobileSongSyncDto),
+    ...(message
+      ? { error: { code: status === "conflict" ? "CONFLICT" as const : "INTERNAL_ERROR" as const, message } }
+      : {}),
+  };
+}
+
+function validateGroupDeletionState(
+  parsed: ParsedGroupDeletion & { ok: true },
+  rows: SongSyncRecord[],
+) {
+  const { principalId, principalClientId, members } = parsed.value;
+  const principal = rows.find((song) => song.id === principalId);
+  if (!principal || (principal.versionGroupId !== null && principal.versionGroupId !== principal.id)) {
+    return "No encontramos la cancion principal de este grupo.";
+  }
+  if (principal.clientId && principal.clientId !== principalClientId) {
+    return "La cancion principal no coincide con este dispositivo.";
+  }
+
+  const memberById = new Map(members.map((member) => [member.id, member]));
+  const rowById = new Map(rows.map((song) => [song.id, song]));
+  if (members.some((member) => {
+    const song = rowById.get(member.id);
+    return !song || (song.clientId !== null && song.clientId !== member.clientId);
+  })) {
+    return "El grupo remoto no coincide con los miembros enviados.";
+  }
+  if (rows.some((song) => song.deletedAt === null && !memberById.has(song.id))) {
+    return "El grupo tiene versiones activas que no fueron incluidas.";
+  }
+  if (rows.some((song) => song.id !== principalId && song.versionGroupId !== principalId)) {
+    return "El grupo contiene una relacion de versiones invalida.";
+  }
+  return null;
+}
+
+async function applyGroupDeletion(
+  userId: string,
+  rawChange: unknown,
+  dependencies: SongSyncDependencies,
+): Promise<MobileSongSyncPushResult> {
+  const parsed = parseGroupDeletion(rawChange);
+  if (!parsed.ok) {
+    return {
+      clientId: parsed.principalClientId,
+      id: parsed.principalId,
+      status: "error",
+      error: { code: "VALIDATION_ERROR", message: parsed.message },
+    };
+  }
+
+  const execute = async (song: SongSyncDelegate) => {
+    const rows = await readOwnedGroup(userId, parsed.value.principalId, song);
+    const validationError = validateGroupDeletionState(parsed, rows);
+    if (validationError) return groupDeleteResult(parsed, "conflict", rows, validationError);
+
+    const memberById = new Map(parsed.value.members.map((member) => [member.id, member]));
+    const active = rows.filter((row) => row.deletedAt === null);
+    const revisionChanged = active.some((row) => {
+      const member = memberById.get(row.id);
+      return !member || toIsoDate(row.updatedAt) !== member.baseUpdatedAt;
+    });
+    if (revisionChanged) {
+      return groupDeleteResult(parsed, "conflict", rows, "El grupo cambio en otro dispositivo.");
+    }
+    if (active.length === 0) return groupDeleteResult(parsed, "unchanged", rows);
+
+    const updated = await song.updateManyAndReturn({
+      where: {
+        userId,
+        deletedAt: null,
+        OR: active.map((row) => ({ id: row.id, updatedAt: new Date(memberById.get(row.id)!.baseUpdatedAt) })),
+      },
+      data: { deletedAt: new Date(parsed.value.deletedAt) },
+    });
+    if (updated.length !== active.length) throw new GroupDeleteWriteConflict();
+
+    const updatedById = new Map(updated.map((row) => [row.id, row]));
+    return groupDeleteResult(
+      parsed,
+      "deleted",
+      rows.map((row) => updatedById.get(row.id) ?? row),
+    );
+  };
+
+  try {
+    return await dependencies.transaction(execute);
+  } catch (error) {
+    if (!isTransactionWriteConflict(error)) throw error;
+    const latest = await readOwnedGroup(userId, parsed.value.principalId, dependencies.song);
+    const validationError = validateGroupDeletionState(parsed, latest);
+    if (!validationError && latest.length > 0 && latest.every((row) => row.deletedAt !== null)) {
+      return groupDeleteResult(parsed, "unchanged", latest);
+    }
+    return groupDeleteResult(parsed, "conflict", latest, "El grupo cambio mientras se eliminaba.");
+  }
+}
+
 async function applySyncChange(
   userId: string,
   rawChange: unknown,
@@ -327,29 +548,38 @@ async function applySyncChange(
       };
     }
 
-    if (change.baseUpdatedAt && toIsoDate(existing.updatedAt) !== change.baseUpdatedAt) {
-      return {
-        clientId: change.clientId,
+    const expectedUpdatedAt = change.baseUpdatedAt ?? toIsoDate(existing.updatedAt);
+    const deleted = await dependencies.song.updateManyAndReturn({
+      where: {
         id: existing.id,
-        status: "conflict",
-        song: toMobileSongSyncDto(existing),
-        error: {
-          code: "CONFLICT",
-          message: "La cancion cambio en otro dispositivo antes de borrarse.",
-        },
-      };
-    }
-
-    const deleted = await dependencies.song.update({
-      where: { id: existing.id },
+        userId,
+        updatedAt: new Date(expectedUpdatedAt ?? ""),
+        deletedAt: null,
+      },
       data: { deletedAt: new Date(change.deletedAt) },
     });
 
+    if (deleted.length === 0) {
+      const latest = await findOwnedSongById(userId, existing.id, dependencies);
+      if (!latest) return resultError(change, "NOT_FOUND", "La cancion remota no existe para esta cuenta.");
+      if (latest.deletedAt) {
+        return {
+          clientId: latest.clientId,
+          id: latest.id,
+          status: "unchanged",
+          song: toMobileSongSyncDto(latest),
+        };
+      }
+      return conflictResult(parsed, latest, "La cancion cambio en otro dispositivo antes de borrarse.");
+    }
+
+    const applied = deleted[0];
+
     return {
-      clientId: deleted.clientId,
-      id: deleted.id,
+      clientId: applied.clientId,
+      id: applied.id,
       status: "deleted",
-      song: toMobileSongSyncDto(deleted),
+      song: toMobileSongSyncDto(applied),
     };
   }
 
@@ -367,8 +597,14 @@ async function applySyncChange(
       };
     }
 
+    const versionGroupId = await resolveVersionGroupId(userId, parsed, dependencies);
+    if (versionGroupId === undefined) {
+      return resultError(change, "VALIDATION_ERROR", "No encontramos la cancion principal de esa version.");
+    }
+    const nextVersionGroupId = versionGroupId === null ? existing.versionGroupId : versionGroupId;
+
     if (!change.baseUpdatedAt) {
-      if (isSameSongContent(existing, parsed)) {
+      if (isSameSongState(existing, parsed, nextVersionGroupId)) {
         return {
           clientId: existing.clientId,
           id: existing.id,
@@ -389,27 +625,13 @@ async function applySyncChange(
       };
     }
 
-    if (toIsoDate(existing.updatedAt) !== change.baseUpdatedAt) {
-      return {
-        clientId: existing.clientId,
+    const updated = await dependencies.song.updateManyAndReturn({
+      where: {
         id: existing.id,
-        status: "conflict",
-        song: toMobileSongSyncDto(existing),
-        error: {
-          code: "CONFLICT",
-          message: "La cancion cambio en otro dispositivo.",
-        },
-      };
-    }
-
-    const versionGroupId = await resolveVersionGroupId(userId, parsed, dependencies);
-    if (versionGroupId === undefined) {
-      return resultError(change, "VALIDATION_ERROR", "No encontramos la cancion principal de esa version.");
-    }
-    const nextVersionGroupId = versionGroupId === null ? existing.versionGroupId : versionGroupId;
-
-    const updated = await dependencies.song.update({
-      where: { id: existing.id },
+        userId,
+        updatedAt: new Date(change.baseUpdatedAt),
+        deletedAt: null,
+      },
       data: {
         clientId: existing.clientId ?? change.clientId,
         title: change.title,
@@ -423,11 +645,27 @@ async function applySyncChange(
       },
     });
 
+    if (updated.length === 0) {
+      const latest = await findOwnedSongById(userId, existing.id, dependencies);
+      if (!latest) return resultError(change, "NOT_FOUND", "La cancion remota no existe para esta cuenta.");
+      if (isSameSongState(latest, parsed, nextVersionGroupId)) {
+        return {
+          clientId: latest.clientId,
+          id: latest.id,
+          status: "unchanged",
+          song: toMobileSongSyncDto(latest),
+        };
+      }
+      return conflictResult(parsed, latest, "La cancion cambio en otro dispositivo.");
+    }
+
+    const applied = updated[0];
+
     return {
-      clientId: updated.clientId,
-      id: updated.id,
+      clientId: applied.clientId,
+      id: applied.id,
       status: "updated",
-      song: toMobileSongSyncDto(updated),
+      song: toMobileSongSyncDto(applied),
     };
   }
 
@@ -440,19 +678,35 @@ async function applySyncChange(
     return resultError(change, "VALIDATION_ERROR", "No encontramos la cancion principal de esa version.");
   }
 
-  const created = await dependencies.song.create({
-    data: {
-      clientId: change.clientId,
-      title: change.title,
-      artist: change.artist,
-      key: change.key,
-      versionName: change.versionName,
-      versionGroupId,
-      content: change.content,
-      notes: change.notes,
-      userId,
-    },
-  });
+  let created: SongSyncRecord;
+  try {
+    created = await dependencies.song.create({
+      data: {
+        clientId: change.clientId,
+        title: change.title,
+        artist: change.artist,
+        key: change.key,
+        versionName: change.versionName,
+        versionGroupId,
+        content: change.content,
+        notes: change.notes,
+        userId,
+      },
+    });
+  } catch (error) {
+    if (!change.clientId || !isUniqueConstraintError(error)) throw error;
+    const concurrent = await dependencies.song.findFirst({ where: { userId, clientId: change.clientId } });
+    if (!concurrent) throw error;
+    if (isSameSongState(concurrent, parsed, versionGroupId)) {
+      return {
+        clientId: concurrent.clientId,
+        id: concurrent.id,
+        status: "unchanged",
+        song: toMobileSongSyncDto(concurrent),
+      };
+    }
+    return conflictResult(parsed, concurrent, "Otra solicitud creo una cancion diferente con el mismo identificador.");
+  }
 
   return {
     clientId: created.clientId,
@@ -557,7 +811,12 @@ export async function pushMobileSongSyncChanges(
   const results: MobileSongSyncPushResult[] = [];
   for (const change of changes) {
     try {
-      results.push(await applySyncChange(userId, change, deps));
+      const operation = change && typeof change === "object" && !Array.isArray(change)
+        ? (change as Record<string, unknown>).operation
+        : null;
+      results.push(operation === "deleteGroup"
+        ? await applyGroupDeletion(userId, change, deps)
+        : await applySyncChange(userId, change, deps));
     } catch (error) {
       console.error("Mobile song sync: error aplicando cambio.", { error });
       const parsed = parseSyncChange(change);
