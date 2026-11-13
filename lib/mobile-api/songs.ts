@@ -66,7 +66,7 @@ export function toMobileSongVersionDto(song: MobileSongVersionRecord) {
 
 export async function listMobileSongs(userId: string) {
   const songs = await prisma.song.findMany({
-    where: { userId },
+    where: { userId, deletedAt: null },
     orderBy: { updatedAt: "desc" },
     select: MOBILE_SONG_LIST_SELECT,
   });

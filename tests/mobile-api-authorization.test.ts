@@ -5,7 +5,7 @@ import { buildOwnedSongWhere, isValidSongId } from "../lib/mobile-api/ownership.
 type FakeSong = { id: string; userId: string; title: string };
 
 function fakeFindFirst(songs: FakeSong[], where: ReturnType<typeof buildOwnedSongWhere>) {
-  return songs.find((song) => song.id === where.id && song.userId === where.userId) ?? null;
+  return songs.find((song) => song.id === where.id && song.userId === where.userId && where.deletedAt === null) ?? null;
 }
 
 test("un usuario no puede leer una canción perteneciente a otro usuario", () => {
@@ -54,6 +54,7 @@ test("el filtro de detalle incluye simultáneamente id y userId", () => {
   assert.deepEqual(buildOwnedSongWhere("user-1", "song_12345678"), {
     id: "song_12345678",
     userId: "user-1",
+    deletedAt: null,
   });
 });
 
