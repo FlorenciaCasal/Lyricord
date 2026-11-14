@@ -19,9 +19,10 @@ import {
   isValidRevenueCatWebhookSignature,
 } from "../lib/premium/revenuecat-webhook-auth.ts";
 
-test("usuario free conserva limites actuales", () => {
-  assert.equal(FREE_LIMITS.maxSongs, 20);
+test("usuario free recibe los limites definitivos y conserva el campo OCR legacy", () => {
+  assert.equal(FREE_LIMITS.maxSongs, 10);
   assert.equal(FREE_LIMITS.ocrDailyLimit, 5);
+  assert.equal(FREE_LIMITS.ocrTotalLimit, 5);
   assert.deepEqual(buildPremiumStatus("free"), {
     plan: "free",
     entitlements: { premium: false },
@@ -43,12 +44,12 @@ test("planes desconocidos vuelven a free", () => {
 });
 
 test("limites de canciones y OCR aceptan null como sin limite practico", () => {
-  assert.equal(isWithinLimit(19, FREE_LIMITS.maxSongs), true);
-  assert.equal(isWithinLimit(20, FREE_LIMITS.maxSongs), false);
-  assert.equal(isWithinLimit(4, FREE_LIMITS.ocrDailyLimit), true);
-  assert.equal(isWithinLimit(5, FREE_LIMITS.ocrDailyLimit), false);
+  assert.equal(isWithinLimit(9, FREE_LIMITS.maxSongs), true);
+  assert.equal(isWithinLimit(10, FREE_LIMITS.maxSongs), false);
+  assert.equal(isWithinLimit(4, FREE_LIMITS.ocrTotalLimit), true);
+  assert.equal(isWithinLimit(5, FREE_LIMITS.ocrTotalLimit), false);
   assert.equal(isWithinLimit(50_000, PREMIUM_LIMITS.maxSongs), true);
-  assert.equal(isWithinLimit(50_000, PREMIUM_LIMITS.ocrDailyLimit), true);
+  assert.equal(isWithinLimit(50_000, PREMIUM_LIMITS.ocrTotalLimit), true);
 });
 
 test("RevenueCat appUserID usa el id estable del usuario de Musum", () => {
@@ -120,8 +121,9 @@ test("contrato de status premium expone plan, entitlements y limites", () => {
 
   assert.equal(status.plan, "free");
   assert.equal(status.entitlements.premium, false);
-  assert.equal(status.limits.maxSongs, 20);
+  assert.equal(status.limits.maxSongs, 10);
   assert.equal(status.limits.ocrDailyLimit, 5);
+  assert.equal(status.limits.ocrTotalLimit, 5);
 });
 
 test("webhook RevenueCat rechaza authorization ausente o invalida", () => {

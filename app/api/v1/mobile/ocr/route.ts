@@ -2,7 +2,7 @@ import { extractTextFromImage } from "@/lib/google-vision";
 import { mobileApiError } from "@/lib/mobile-api/errors";
 import { getMobileUserId } from "@/lib/mobile-api/request-auth";
 import { validateOcrImageFile } from "@/lib/ocr-upload";
-import { getOcrUsageStatus, recordOcrUsage } from "@/lib/usage";
+import { reserveOcrUsage } from "@/lib/usage";
 
 export const runtime = "nodejs";
 
@@ -23,16 +23,15 @@ export async function POST(request: Request) {
       return mobileApiError(400, "INVALID_REQUEST", validationError);
     }
 
-    const usageStatus = await getOcrUsageStatus(userId);
-    if (!usageStatus.allowed) {
+    const usage = await reserveOcrUsage(userId, request.headers.get("x-musum-operation-id"));
+    if (!usage.allowed) {
       return mobileApiError(
         429,
-        "RATE_LIMITED",
-        `Alcanzaste el limite diario de ${usageStatus.dailyLimit ?? "OCR"} usos de OCR para esta beta.`,
+        "LIMIT_REACHED",
+        `Ya usaste las ${usage.totalLimit} extracciones gratuitas de tu cuenta. Premium incluye extracciones ilimitadas.`,
       );
     }
 
-    await recordOcrUsage(userId);
     const result = await extractTextFromImage(image);
     if (!result.success) {
       return mobileApiError(422, "VALIDATION_ERROR", result.error);
@@ -41,7 +40,8 @@ export async function POST(request: Request) {
     return Response.json({
       text: result.text,
       usage: {
-        remainingToday: usageStatus.remainingToday === null ? null : Math.max(0, usageStatus.remainingToday - 1),
+        remainingTotal: usage.remainingTotal,
+        remainingToday: usage.remainingTotal,
       },
     });
   } catch (error) {

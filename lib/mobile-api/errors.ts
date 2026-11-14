@@ -7,6 +7,7 @@ export type MobileApiErrorCode =
   | "UNAUTHORIZED"
   | "NOT_FOUND"
   | "CONFLICT"
+  | "LIMIT_REACHED"
   | "RATE_LIMITED"
   | "INTERNAL_ERROR";
 

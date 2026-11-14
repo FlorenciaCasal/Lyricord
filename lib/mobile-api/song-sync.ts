@@ -38,7 +38,7 @@ export type MobileSongSyncPushResult = {
   song?: MobileSongSyncDto;
   songs?: MobileSongSyncDto[];
   error?: {
-    code: "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "INTERNAL_ERROR";
+    code: "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "LIMIT_REACHED" | "INTERNAL_ERROR";
     message: string;
   };
 };
@@ -70,6 +70,14 @@ type SongSyncDependencies = {
   song: SongSyncDelegate;
   now: () => Date;
   transaction: <T>(task: (song: SongSyncDelegate) => Promise<T>) => Promise<T>;
+  createWithLimit: (
+    userId: string,
+    data: Record<string, unknown>,
+    clientId: string | null,
+  ) => Promise<
+    | { status: "created" | "existing"; song: SongSyncRecord }
+    | { status: "limit-reached"; limit: number }
+  >;
 };
 
 type ParsedGroupDeletion =
@@ -126,6 +134,22 @@ async function getDependencies(dependencies?: Partial<SongSyncDependencies>): Pr
           { isolationLevel: "Serializable" },
         ))
       : ((task) => task(song))),
+    createWithLimit: dependencies?.createWithLimit ?? (prisma
+      ? (async (userId, data, clientId) => {
+          const { createSongWithinLimit } = await import("@/lib/premium/song-quota");
+          return createSongWithinLimit({
+            userId,
+            data: data as never,
+            clientId,
+          }) as Promise<
+            | { status: "created" | "existing"; song: SongSyncRecord }
+            | { status: "limit-reached"; limit: number }
+          >;
+        })
+      : (async (userId, data) => ({
+          status: "created" as const,
+          song: await song.create({ data: { ...data, userId } }),
+        }))),
   };
 }
 
@@ -680,19 +704,35 @@ async function applySyncChange(
 
   let created: SongSyncRecord;
   try {
-    created = await dependencies.song.create({
-      data: {
-        clientId: change.clientId,
-        title: change.title,
-        artist: change.artist,
-        key: change.key,
-        versionName: change.versionName,
-        versionGroupId,
-        content: change.content,
-        notes: change.notes,
-        userId,
-      },
-    });
+    const creation = await dependencies.createWithLimit(userId, {
+      clientId: change.clientId,
+      title: change.title,
+      artist: change.artist,
+      key: change.key,
+      versionName: change.versionName,
+      versionGroupId,
+      content: change.content,
+      notes: change.notes,
+    }, change.clientId);
+    if (creation.status === "limit-reached") {
+      return resultError(
+        change,
+        "LIMIT_REACHED",
+        `Tu plan Free permite hasta ${creation.limit} canciones y versiones. Este registro sigue guardado en tu dispositivo.`,
+      );
+    }
+    if (creation.status === "existing") {
+      if (isSameSongState(creation.song, parsed, versionGroupId)) {
+        return {
+          clientId: creation.song.clientId,
+          id: creation.song.id,
+          status: "unchanged",
+          song: toMobileSongSyncDto(creation.song),
+        };
+      }
+      return conflictResult(parsed, creation.song, "Otra solicitud creó una canción diferente con el mismo identificador.");
+    }
+    created = creation.song;
   } catch (error) {
     if (!change.clientId || !isUniqueConstraintError(error)) throw error;
     const concurrent = await dependencies.song.findFirst({ where: { userId, clientId: change.clientId } });

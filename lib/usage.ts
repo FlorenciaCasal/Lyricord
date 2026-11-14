@@ -1,39 +1,60 @@
+import { randomUUID } from "node:crypto";
+import type { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
-import { getOcrDailyLimitForUser, isWithinLimit } from "@/lib/premium/entitlements";
+import { getOcrTotalLimitForUser } from "@/lib/premium/entitlements";
+import { reserveOcrQuota } from "@/lib/premium/ocr-quota";
+import { lockAccountQuota } from "@/lib/premium/quota-lock";
 
-const USAGE_TYPE_OCR = "ocr";
+export const OCR_FREE_USAGE_PREFIX = "ocr_free_total_v1:";
 
-function getStartOfTodayUtc() {
-  const startOfDay = new Date();
-  startOfDay.setUTCHours(0, 0, 0, 0);
-  return startOfDay;
+function normalizeOperationId(operationId: string | null | undefined) {
+  const normalized = operationId?.trim();
+  return normalized && /^[a-z0-9_.:-]{1,120}$/i.test(normalized) ? normalized : randomUUID();
+}
+
+async function countFreeOcrUsage(transaction: Prisma.TransactionClient, userId: string) {
+  return transaction.usageEvent.count({
+    where: { userId, type: { startsWith: OCR_FREE_USAGE_PREFIX } },
+  });
 }
 
 export async function getOcrUsageStatus(userId: string) {
-  const dailyLimit = await getOcrDailyLimitForUser(userId);
-  const usedToday = await prisma.usageEvent.count({
-    where: {
-      userId,
-      type: USAGE_TYPE_OCR,
-      createdAt: {
-        gte: getStartOfTodayUtc(),
-      },
-    },
-  });
+  const totalLimit = await getOcrTotalLimitForUser(userId);
+  if (totalLimit === null) {
+    return { usedTotal: 0, totalLimit: null, remainingTotal: null, allowed: true };
+  }
 
+  const usedTotal = await prisma.usageEvent.count({
+    where: { userId, type: { startsWith: OCR_FREE_USAGE_PREFIX } },
+  });
   return {
-    usedToday,
-    dailyLimit,
-    remainingToday: dailyLimit === null ? null : Math.max(0, dailyLimit - usedToday),
-    allowed: isWithinLimit(usedToday, dailyLimit),
+    usedTotal,
+    totalLimit,
+    remainingTotal: Math.max(0, totalLimit - usedTotal),
+    allowed: usedTotal < totalLimit,
   };
 }
 
-export async function recordOcrUsage(userId: string) {
-  await prisma.usageEvent.create({
-    data: {
-      userId,
-      type: USAGE_TYPE_OCR,
-    },
+export async function reserveOcrUsage(userId: string, operationId?: string | null) {
+  const totalLimit = await getOcrTotalLimitForUser(userId);
+  const usageType = `${OCR_FREE_USAGE_PREFIX}${normalizeOperationId(operationId)}`;
+  return reserveOcrQuota({
+    totalLimit,
+    operationKey: usageType,
+    transaction: (task) => prisma.$transaction(async (transaction) => {
+      await lockAccountQuota(transaction, "ocr", userId);
+      return task({
+        async hasOperation(operationKey) {
+          return Boolean(await transaction.usageEvent.findFirst({
+            where: { userId, type: operationKey },
+            select: { id: true },
+          }));
+        },
+        countUsage: () => countFreeOcrUsage(transaction, userId),
+        async recordOperation(operationKey) {
+          await transaction.usageEvent.create({ data: { userId, type: operationKey } });
+        },
+      });
+    }),
   });
 }

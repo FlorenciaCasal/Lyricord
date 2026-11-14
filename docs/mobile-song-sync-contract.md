@@ -109,4 +109,5 @@ Response:
 ```
 
 Per-item errors are recoverable. The request can return HTTP 200 with individual `error` results.
+`LIMIT_REACHED` is permanent until the account frees capacity or becomes Premium. Clients must keep the rejected record locally and must not interpret it as a deletion.
 Global malformed requests return `400`.

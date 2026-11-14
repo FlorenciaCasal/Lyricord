@@ -48,7 +48,7 @@ export async function POST(
     const result = await createMobileSongVersion(userId, id, payload);
     if (!result.success) {
       if (result.reason === "limit-reached") {
-        return mobileApiError(422, "VALIDATION_ERROR", "Alcanzaste el limite de canciones para esta beta.");
+        return mobileApiError(422, "LIMIT_REACHED", "Tu plan Free permite hasta 10 canciones y versiones.");
       }
       if (result.reason === "validation-error") {
         return mobileApiError(422, "VALIDATION_ERROR", "Revisa los datos de la version.");

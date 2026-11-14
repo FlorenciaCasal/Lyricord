@@ -120,9 +120,9 @@ export default async function SongDetailPage({
 
             {versionLimitReached ? (
               <p className="mt-4 rounded-2xl border border-amber-500/40 bg-amber-950/30 px-4 py-3 text-sm leading-6 text-amber-200">
-                Alcanzaste el limite inicial de 200 canciones y versiones para
-                esta beta. Para crear otra versión, elimina alguna canción o
-                versión que ya no necesites.
+                Tu plan Free permite hasta 10 canciones y versiones. Podés
+                editar las que ya tenés, eliminar alguna que no necesites o
+                pasar a Premium para crear otra versión.
               </p>
             ) : null}
           </section>

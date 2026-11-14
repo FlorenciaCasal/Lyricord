@@ -205,6 +205,51 @@ test("mobile sync crea canciones idempotentes por userId y clientId, incluso con
   assert.equal(first.results[0].song?.content, "");
 });
 
+test("mobile sync aplica el limite atomico sin bloquear reintentos idempotentes", async () => {
+  const existing = Array.from({ length: 9 }, (_, index) => makeSong({
+    id: `remote_existing_${index}`,
+    userId: "user_1",
+    clientId: `local_existing_${index}`,
+    title: `Existente ${index}`,
+  }));
+  const fake = createFakeSongDelegate(existing);
+  const dependencies = {
+    song: fake.delegate,
+    createWithLimit(userId: string, data: Record<string, unknown>, clientId: string | null) {
+      return fake.transaction(async (song) => {
+        const duplicate = clientId ? await song.findFirst({ where: { userId, clientId } }) : null;
+        if (duplicate) return { status: "existing" as const, song: duplicate };
+        const active = Array.from(fake.songs.values()).filter((item) => item.userId === userId && !item.deletedAt).length;
+        if (active >= 10) return { status: "limit-reached" as const, limit: 10 };
+        return {
+          status: "created" as const,
+          song: await song.create({ data: { ...data, userId } as never }),
+        };
+      });
+    },
+  };
+  const firstChange = { ...emptySongChange, clientId: "local_first" };
+  const secondChange = { ...emptySongChange, clientId: "local_second", title: "Otra" };
+
+  const [first, second] = await Promise.all([
+    pushMobileSongSyncChanges("user_1", { changes: [firstChange] }, dependencies),
+    pushMobileSongSyncChanges("user_1", { changes: [secondChange] }, dependencies),
+  ]);
+  assertSuccess(first);
+  assertSuccess(second);
+  const statuses = [first.results[0].status, second.results[0].status].sort();
+  assert.deepEqual(statuses, ["created", "error"]);
+  const rejected = first.results[0].status === "error" ? first.results[0] : second.results[0];
+  assert.equal(rejected.error?.code, "LIMIT_REACHED");
+  assert.equal(fake.songs.size, 10);
+
+  const createdChange = first.results[0].status === "created" ? firstChange : secondChange;
+  const retry = await pushMobileSongSyncChanges("user_1", { changes: [createdChange] }, dependencies);
+  assertSuccess(retry);
+  assert.equal(retry.results[0].status, "unchanged");
+  assert.equal(fake.songs.size, 10);
+});
+
 test("mobile sync no duplica clientId entre reintentos pero aisla cuentas distintas", async () => {
   const fake = createFakeSongDelegate();
 

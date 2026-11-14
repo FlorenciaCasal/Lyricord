@@ -7,7 +7,7 @@ export type { MusumPlan, PremiumEntitlements, PremiumLimits, PremiumStatus } fro
 export { FREE_LIMITS, getRevenueCatAppUserId, isWithinLimit, PREMIUM_LIMITS } from "@/lib/premium/rules";
 
 export async function getPremiumStatusForUser(userId: string): Promise<PremiumStatus> {
-  const [user, premiumEntitlement] = await Promise.all([
+  const [user, premiumEntitlement, activeSongs] = await Promise.all([
     prisma.user.findUnique({
       where: { id: userId },
       select: { plan: true },
@@ -21,10 +21,11 @@ export async function getPremiumStatusForUser(userId: string): Promise<PremiumSt
       },
       select: { id: true },
     }),
+    prisma.song.count({ where: { userId, deletedAt: null } }),
   ]);
 
-  if (premiumEntitlement) return buildPremiumStatus("premium");
-  return buildPremiumStatus(user?.plan);
+  const status = premiumEntitlement ? buildPremiumStatus("premium") : buildPremiumStatus(user?.plan);
+  return { ...status, usage: { activeSongs } };
 }
 
 export async function findUserByRevenueCatAppUserId(appUserId: string) {
@@ -90,4 +91,8 @@ export async function getSongLimitForUser(userId: string) {
 
 export async function getOcrDailyLimitForUser(userId: string) {
   return (await getPremiumStatusForUser(userId)).limits.ocrDailyLimit;
+}
+
+export async function getOcrTotalLimitForUser(userId: string) {
+  return (await getPremiumStatusForUser(userId)).limits.ocrTotalLimit;
 }

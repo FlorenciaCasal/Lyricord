@@ -1,0 +1,4354 @@
+{
+  "version": 1,
+  "recordingFile": "tests/fixtures/real-evidence/lyricord-evidence-cae-el-sol-2026-08-17T15-53-34-267Z.json",
+  "referenceVideo": "tests/fixtures/real-evidence/cae-el-sol-reference-2026-08-17T15-53-34.mp4",
+  "sync": {
+    "evidenceDurationSec": 246.694,
+    "videoDurationSec": 258.92,
+    "note": "Video duration read from MP4 mvhd. No ffprobe/audio transcription available; evidence timestamps are primary. Video has ~12.2s extra."
+  },
+  "manualDiagnosticGroundTruth": [
+    {
+      "time": "03:27.1",
+      "timeMs": 207100,
+      "timelineIndex": 57,
+      "chord": "B",
+      "kind": "score"
+    },
+    {
+      "time": "03:36.2",
+      "timeMs": 216200,
+      "timelineIndex": null,
+      "chord": "E",
+      "kind": "extra-not-in-score",
+      "note": "E extra informado por el usuario; no inventar timelineIndex"
+    },
+    {
+      "time": "03:39.0",
+      "timeMs": 219000,
+      "timelineIndex": 60,
+      "chord": "B",
+      "kind": "score-probable"
+    },
+    {
+      "time": "03:41.7",
+      "timeMs": 221700,
+      "timelineIndex": 61,
+      "chord": "C#m",
+      "kind": "score-probable"
+    },
+    {
+      "time": "03:44.3",
+      "timeMs": 224300,
+      "timelineIndex": 62,
+      "chord": "A",
+      "kind": "score-probable"
+    },
+    {
+      "time": "03:47.3",
+      "timeMs": 227300,
+      "timelineIndex": 63,
+      "chord": "E",
+      "kind": "score-probable"
+    }
+  ],
+  "engineSummary": {
+    "ChordPositionFollower": {
+      "frames": 1329,
+      "durationSec": 246.7,
+      "committedVisited": 59,
+      "displayedVisited": 66,
+      "finalCommit": 76,
+      "finalDisplay": 76,
+      "maxCommitJump": 16,
+      "commitJumpsOver1": 4,
+      "timeUncertainSec": 20.2,
+      "visualMaxJump": 2
+    },
+    "OnlineChordAligner": {
+      "frames": 1329,
+      "durationSec": 246.7,
+      "committedVisited": 1,
+      "displayedVisited": 8,
+      "finalCommit": 0,
+      "finalDisplay": 14,
+      "maxCommitJump": 0,
+      "commitJumpsOver1": 0,
+      "timeUncertainSec": 239.5,
+      "visualMaxJump": 2
+    }
+  },
+  "problemTrace": {
+    "ChordPositionFollower": [
+      {
+        "time": "00:206.560",
+        "sec": 206.56,
+        "groundTruth": null,
+        "candidate": "A",
+        "top3": [
+          {
+            "chord": "A",
+            "score": 0.141,
+            "confidence": 0.787
+          },
+          {
+            "chord": "E",
+            "score": 0.038,
+            "confidence": 0.213
+          },
+          {
+            "chord": "C#m",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 56,
+        "committedTimelineIndex": 56,
+        "displayedTimelineIndex": 56,
+        "mode": "locked",
+        "trackingRegime": null,
+        "confidence": 1,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:206.744",
+        "sec": 206.744,
+        "groundTruth": null,
+        "candidate": "unknown",
+        "top3": [
+          {
+            "chord": "A",
+            "score": 0.099,
+            "confidence": 0.426
+          },
+          {
+            "chord": "E",
+            "score": 0.075,
+            "confidence": 0.322
+          },
+          {
+            "chord": "C#m",
+            "score": 0.058,
+            "confidence": 0.252
+          }
+        ],
+        "estimatedTimelineIndex": 56,
+        "committedTimelineIndex": 56,
+        "displayedTimelineIndex": 56,
+        "mode": "locked",
+        "trackingRegime": null,
+        "confidence": 1,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:207.112",
+        "sec": 207.112,
+        "groundTruth": {
+          "timelineIndex": 57,
+          "chord": "B",
+          "kind": "score"
+        },
+        "candidate": "B",
+        "top3": [
+          {
+            "chord": "B",
+            "score": 0.226,
+            "confidence": 0.596
+          },
+          {
+            "chord": "E",
+            "score": 0.153,
+            "confidence": 0.404
+          },
+          {
+            "chord": "C#m",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 56,
+        "committedTimelineIndex": 56,
+        "displayedTimelineIndex": 56,
+        "mode": "locked",
+        "trackingRegime": null,
+        "confidence": 1,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:207.871",
+        "sec": 207.871,
+        "groundTruth": {
+          "timelineIndex": 57,
+          "chord": "B",
+          "kind": "score"
+        },
+        "candidate": "B",
+        "top3": [
+          {
+            "chord": "B",
+            "score": 0.241,
+            "confidence": 0.662
+          },
+          {
+            "chord": "E",
+            "score": 0.123,
+            "confidence": 0.338
+          },
+          {
+            "chord": "C#m",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 57,
+        "committedTimelineIndex": 57,
+        "displayedTimelineIndex": 57,
+        "mode": "locked",
+        "trackingRegime": null,
+        "confidence": 1,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:208.975",
+        "sec": 208.975,
+        "groundTruth": null,
+        "candidate": "E",
+        "top3": [
+          {
+            "chord": "E",
+            "score": 0.13,
+            "confidence": 0.568
+          },
+          {
+            "chord": "B",
+            "score": 0.085,
+            "confidence": 0.374
+          },
+          {
+            "chord": "A",
+            "score": 0.013,
+            "confidence": 0.058
+          }
+        ],
+        "estimatedTimelineIndex": 57,
+        "committedTimelineIndex": 57,
+        "displayedTimelineIndex": 57,
+        "mode": "locked",
+        "trackingRegime": null,
+        "confidence": 1,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:209.159",
+        "sec": 209.159,
+        "groundTruth": null,
+        "candidate": "B",
+        "top3": [
+          {
+            "chord": "B",
+            "score": 0.206,
+            "confidence": 0.67
+          },
+          {
+            "chord": "E",
+            "score": 0.101,
+            "confidence": 0.33
+          },
+          {
+            "chord": "C#m",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 57,
+        "committedTimelineIndex": 57,
+        "displayedTimelineIndex": 57,
+        "mode": "locked",
+        "trackingRegime": null,
+        "confidence": 1,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:209.343",
+        "sec": 209.343,
+        "groundTruth": null,
+        "candidate": "unknown",
+        "top3": [
+          {
+            "chord": "E",
+            "score": 0.087,
+            "confidence": 0.485
+          },
+          {
+            "chord": "C#m",
+            "score": 0.066,
+            "confidence": 0.37
+          },
+          {
+            "chord": "A",
+            "score": 0.026,
+            "confidence": 0.145
+          }
+        ],
+        "estimatedTimelineIndex": 57,
+        "committedTimelineIndex": 57,
+        "displayedTimelineIndex": 57,
+        "mode": "locked",
+        "trackingRegime": null,
+        "confidence": 1,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:209.527",
+        "sec": 209.527,
+        "groundTruth": null,
+        "candidate": "A",
+        "top3": [
+          {
+            "chord": "A",
+            "score": 0.108,
+            "confidence": 0.921
+          },
+          {
+            "chord": "E",
+            "score": 0.006,
+            "confidence": 0.055
+          },
+          {
+            "chord": "C#m",
+            "score": 0.003,
+            "confidence": 0.023
+          }
+        ],
+        "estimatedTimelineIndex": 57,
+        "committedTimelineIndex": 57,
+        "displayedTimelineIndex": 57,
+        "mode": "locked",
+        "trackingRegime": null,
+        "confidence": 1,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:209.918",
+        "sec": 209.918,
+        "groundTruth": null,
+        "candidate": "A",
+        "top3": [
+          {
+            "chord": "A",
+            "score": 0.106,
+            "confidence": 0.548
+          },
+          {
+            "chord": "C#m",
+            "score": 0.045,
+            "confidence": 0.234
+          },
+          {
+            "chord": "E",
+            "score": 0.042,
+            "confidence": 0.218
+          }
+        ],
+        "estimatedTimelineIndex": 59,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "locked",
+        "trackingRegime": null,
+        "confidence": 1,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:210.102",
+        "sec": 210.102,
+        "groundTruth": null,
+        "candidate": "unknown",
+        "top3": [
+          {
+            "chord": "C#m",
+            "score": 0.127,
+            "confidence": 0.524
+          },
+          {
+            "chord": "E",
+            "score": 0.115,
+            "confidence": 0.476
+          },
+          {
+            "chord": "A",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 59,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "locked",
+        "trackingRegime": null,
+        "confidence": 1,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:210.288",
+        "sec": 210.288,
+        "groundTruth": null,
+        "candidate": "C#m",
+        "top3": [
+          {
+            "chord": "C#m",
+            "score": 0.152,
+            "confidence": 0.557
+          },
+          {
+            "chord": "E",
+            "score": 0.11,
+            "confidence": 0.403
+          },
+          {
+            "chord": "A",
+            "score": 0.011,
+            "confidence": 0.04
+          }
+        ],
+        "estimatedTimelineIndex": 59,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "locked",
+        "trackingRegime": null,
+        "confidence": 1,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:210.470",
+        "sec": 210.47,
+        "groundTruth": null,
+        "candidate": "unknown",
+        "top3": [
+          {
+            "chord": "C#m",
+            "score": 0.26,
+            "confidence": 0.523
+          },
+          {
+            "chord": "E",
+            "score": 0.237,
+            "confidence": 0.477
+          },
+          {
+            "chord": "A",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 59,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "locked",
+        "trackingRegime": null,
+        "confidence": 1,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:210.654",
+        "sec": 210.654,
+        "groundTruth": null,
+        "candidate": "C#m",
+        "top3": [
+          {
+            "chord": "C#m",
+            "score": 0.281,
+            "confidence": 0.532
+          },
+          {
+            "chord": "E",
+            "score": 0.248,
+            "confidence": 0.468
+          },
+          {
+            "chord": "A",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 59,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "locked",
+        "trackingRegime": null,
+        "confidence": 1,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:211.022",
+        "sec": 211.022,
+        "groundTruth": null,
+        "candidate": "unknown",
+        "top3": [
+          {
+            "chord": "C#m",
+            "score": 0.158,
+            "confidence": 0.521
+          },
+          {
+            "chord": "E",
+            "score": 0.145,
+            "confidence": 0.479
+          },
+          {
+            "chord": "A",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 59,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "locked",
+        "trackingRegime": null,
+        "confidence": 1,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:211.574",
+        "sec": 211.574,
+        "groundTruth": null,
+        "candidate": "C#m",
+        "top3": [
+          {
+            "chord": "C#m",
+            "score": 0.137,
+            "confidence": 0.598
+          },
+          {
+            "chord": "A",
+            "score": 0.062,
+            "confidence": 0.269
+          },
+          {
+            "chord": "E",
+            "score": 0.03,
+            "confidence": 0.133
+          }
+        ],
+        "estimatedTimelineIndex": 59,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "locked",
+        "trackingRegime": null,
+        "confidence": 1,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:212.126",
+        "sec": 212.126,
+        "groundTruth": null,
+        "candidate": "A",
+        "top3": [
+          {
+            "chord": "A",
+            "score": 0.111,
+            "confidence": 0.559
+          },
+          {
+            "chord": "E",
+            "score": 0.044,
+            "confidence": 0.223
+          },
+          {
+            "chord": "C#m",
+            "score": 0.043,
+            "confidence": 0.218
+          }
+        ],
+        "estimatedTimelineIndex": 59,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "locked",
+        "trackingRegime": null,
+        "confidence": 1,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:214.357",
+        "sec": 214.357,
+        "groundTruth": null,
+        "candidate": "unknown",
+        "top3": [
+          {
+            "chord": "A",
+            "score": 0.098,
+            "confidence": 0.401
+          },
+          {
+            "chord": "E",
+            "score": 0.076,
+            "confidence": 0.312
+          },
+          {
+            "chord": "C#m",
+            "score": 0.07,
+            "confidence": 0.287
+          }
+        ],
+        "estimatedTimelineIndex": 59,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "locked",
+        "trackingRegime": null,
+        "confidence": 1,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:214.541",
+        "sec": 214.541,
+        "groundTruth": null,
+        "candidate": "A",
+        "top3": [
+          {
+            "chord": "A",
+            "score": 0.184,
+            "confidence": 0.583
+          },
+          {
+            "chord": "C#m",
+            "score": 0.071,
+            "confidence": 0.225
+          },
+          {
+            "chord": "E",
+            "score": 0.061,
+            "confidence": 0.191
+          }
+        ],
+        "estimatedTimelineIndex": 59,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "locked",
+        "trackingRegime": null,
+        "confidence": 1,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:214.748",
+        "sec": 214.748,
+        "groundTruth": null,
+        "candidate": "unknown",
+        "top3": [
+          {
+            "chord": "E",
+            "score": 0.097,
+            "confidence": 0.356
+          },
+          {
+            "chord": "C#m",
+            "score": 0.092,
+            "confidence": 0.34
+          },
+          {
+            "chord": "A",
+            "score": 0.082,
+            "confidence": 0.304
+          }
+        ],
+        "estimatedTimelineIndex": 59,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "locked",
+        "trackingRegime": null,
+        "confidence": 1,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:214.932",
+        "sec": 214.932,
+        "groundTruth": null,
+        "candidate": "A",
+        "top3": [
+          {
+            "chord": "A",
+            "score": 0.123,
+            "confidence": 0.742
+          },
+          {
+            "chord": "E",
+            "score": 0.024,
+            "confidence": 0.145
+          },
+          {
+            "chord": "C#m",
+            "score": 0.019,
+            "confidence": 0.113
+          }
+        ],
+        "estimatedTimelineIndex": 59,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "locked",
+        "trackingRegime": null,
+        "confidence": 1,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:215.300",
+        "sec": 215.3,
+        "groundTruth": null,
+        "candidate": "B",
+        "top3": [
+          {
+            "chord": "B",
+            "score": 0.242,
+            "confidence": 0.622
+          },
+          {
+            "chord": "E",
+            "score": 0.147,
+            "confidence": 0.378
+          },
+          {
+            "chord": "C#m",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 59,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "locked",
+        "trackingRegime": null,
+        "confidence": 1,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:216.036",
+        "sec": 216.036,
+        "groundTruth": null,
+        "candidate": "unknown",
+        "top3": [
+          {
+            "chord": "A",
+            "score": 0.082,
+            "confidence": 0.427
+          },
+          {
+            "chord": "E",
+            "score": 0.059,
+            "confidence": 0.308
+          },
+          {
+            "chord": "C#m",
+            "score": 0.051,
+            "confidence": 0.265
+          }
+        ],
+        "estimatedTimelineIndex": 59,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "locked",
+        "trackingRegime": null,
+        "confidence": 1,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:216.404",
+        "sec": 216.404,
+        "groundTruth": {
+          "timelineIndex": null,
+          "chord": "E",
+          "kind": "extra-not-in-score",
+          "note": "E extra informado por usuario"
+        },
+        "candidate": "E",
+        "top3": [
+          {
+            "chord": "E",
+            "score": 0.19,
+            "confidence": 0.605
+          },
+          {
+            "chord": "C#m",
+            "score": 0.096,
+            "confidence": 0.304
+          },
+          {
+            "chord": "B",
+            "score": 0.029,
+            "confidence": 0.091
+          }
+        ],
+        "estimatedTimelineIndex": 59,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "locked",
+        "trackingRegime": null,
+        "confidence": 1,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:217.531",
+        "sec": 217.531,
+        "groundTruth": {
+          "timelineIndex": null,
+          "chord": "E",
+          "kind": "extra-not-in-score",
+          "note": "E extra informado por usuario"
+        },
+        "candidate": "E",
+        "top3": [
+          {
+            "chord": "E",
+            "score": 0.23,
+            "confidence": 0.582
+          },
+          {
+            "chord": "C#m",
+            "score": 0.083,
+            "confidence": 0.211
+          },
+          {
+            "chord": "B",
+            "score": 0.081,
+            "confidence": 0.206
+          }
+        ],
+        "estimatedTimelineIndex": 63,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "uncertain",
+        "trackingRegime": null,
+        "confidence": 0.12,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:218.819",
+        "sec": 218.819,
+        "groundTruth": null,
+        "candidate": "unknown",
+        "top3": [
+          {
+            "chord": "A",
+            "score": 0.095,
+            "confidence": 0.452
+          },
+          {
+            "chord": "E",
+            "score": 0.061,
+            "confidence": 0.287
+          },
+          {
+            "chord": "C#m",
+            "score": 0.055,
+            "confidence": 0.261
+          }
+        ],
+        "estimatedTimelineIndex": 63,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "uncertain",
+        "trackingRegime": null,
+        "confidence": 0.12,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:219.186",
+        "sec": 219.186,
+        "groundTruth": {
+          "timelineIndex": 60,
+          "chord": "B",
+          "kind": "score-probable"
+        },
+        "candidate": "B",
+        "top3": [
+          {
+            "chord": "B",
+            "score": 0.212,
+            "confidence": 0.752
+          },
+          {
+            "chord": "E",
+            "score": 0.07,
+            "confidence": 0.248
+          },
+          {
+            "chord": "C#m",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 63,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "uncertain",
+        "trackingRegime": null,
+        "confidence": 0.12,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:219.578",
+        "sec": 219.578,
+        "groundTruth": {
+          "timelineIndex": 60,
+          "chord": "B",
+          "kind": "score-probable"
+        },
+        "candidate": "B",
+        "top3": [
+          {
+            "chord": "B",
+            "score": 0.198,
+            "confidence": 0.583
+          },
+          {
+            "chord": "E",
+            "score": 0.142,
+            "confidence": 0.417
+          },
+          {
+            "chord": "C#m",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 60,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "uncertain",
+        "trackingRegime": null,
+        "confidence": 0.186,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:220.314",
+        "sec": 220.314,
+        "groundTruth": {
+          "timelineIndex": 60,
+          "chord": "B",
+          "kind": "score-probable"
+        },
+        "candidate": "B",
+        "top3": [
+          {
+            "chord": "B",
+            "score": 0.101,
+            "confidence": 0.632
+          },
+          {
+            "chord": "E",
+            "score": 0.059,
+            "confidence": 0.368
+          },
+          {
+            "chord": "C#m",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 72,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "uncertain",
+        "trackingRegime": null,
+        "confidence": 0.037,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:220.682",
+        "sec": 220.682,
+        "groundTruth": {
+          "timelineIndex": 60,
+          "chord": "B",
+          "kind": "score-probable"
+        },
+        "candidate": "unknown",
+        "top3": [
+          {
+            "chord": "B",
+            "score": 0.094,
+            "confidence": 0.588
+          },
+          {
+            "chord": "E",
+            "score": 0.066,
+            "confidence": 0.412
+          },
+          {
+            "chord": "C#m",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 72,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "uncertain",
+        "trackingRegime": null,
+        "confidence": 0.037,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:220.866",
+        "sec": 220.866,
+        "groundTruth": {
+          "timelineIndex": 60,
+          "chord": "B",
+          "kind": "score-probable"
+        },
+        "candidate": "B",
+        "top3": [
+          {
+            "chord": "B",
+            "score": 0.193,
+            "confidence": 0.61
+          },
+          {
+            "chord": "E",
+            "score": 0.124,
+            "confidence": 0.39
+          },
+          {
+            "chord": "C#m",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 72,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "uncertain",
+        "trackingRegime": null,
+        "confidence": 0.037,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:221.417",
+        "sec": 221.417,
+        "groundTruth": null,
+        "candidate": "unknown",
+        "top3": [
+          {
+            "chord": "A",
+            "score": 0.107,
+            "confidence": 0.36
+          },
+          {
+            "chord": "C#m",
+            "score": 0.095,
+            "confidence": 0.321
+          },
+          {
+            "chord": "E",
+            "score": 0.095,
+            "confidence": 0.319
+          }
+        ],
+        "estimatedTimelineIndex": 72,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "uncertain",
+        "trackingRegime": null,
+        "confidence": 0.016,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:221.970",
+        "sec": 221.97,
+        "groundTruth": {
+          "timelineIndex": 61,
+          "chord": "C#m",
+          "kind": "score-probable"
+        },
+        "candidate": "C#m",
+        "top3": [
+          {
+            "chord": "C#m",
+            "score": 0.199,
+            "confidence": 0.54
+          },
+          {
+            "chord": "E",
+            "score": 0.133,
+            "confidence": 0.361
+          },
+          {
+            "chord": "A",
+            "score": 0.036,
+            "confidence": 0.099
+          }
+        ],
+        "estimatedTimelineIndex": 72,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "uncertain",
+        "trackingRegime": null,
+        "confidence": 0.016,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:222.361",
+        "sec": 222.361,
+        "groundTruth": {
+          "timelineIndex": 61,
+          "chord": "C#m",
+          "kind": "score-probable"
+        },
+        "candidate": "C#m",
+        "top3": [
+          {
+            "chord": "C#m",
+            "score": 0.19,
+            "confidence": 0.549
+          },
+          {
+            "chord": "E",
+            "score": 0.133,
+            "confidence": 0.384
+          },
+          {
+            "chord": "A",
+            "score": 0.023,
+            "confidence": 0.067
+          }
+        ],
+        "estimatedTimelineIndex": 73,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "uncertain",
+        "trackingRegime": null,
+        "confidence": 0.016,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:222.544",
+        "sec": 222.544,
+        "groundTruth": {
+          "timelineIndex": 61,
+          "chord": "C#m",
+          "kind": "score-probable"
+        },
+        "candidate": "unknown",
+        "top3": [
+          {
+            "chord": "C#m",
+            "score": 0.218,
+            "confidence": 0.495
+          },
+          {
+            "chord": "E",
+            "score": 0.204,
+            "confidence": 0.463
+          },
+          {
+            "chord": "A",
+            "score": 0.019,
+            "confidence": 0.043
+          }
+        ],
+        "estimatedTimelineIndex": 73,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "uncertain",
+        "trackingRegime": null,
+        "confidence": 0.016,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:222.729",
+        "sec": 222.729,
+        "groundTruth": {
+          "timelineIndex": 61,
+          "chord": "C#m",
+          "kind": "score-probable"
+        },
+        "candidate": "C#m",
+        "top3": [
+          {
+            "chord": "C#m",
+            "score": 0.237,
+            "confidence": 0.533
+          },
+          {
+            "chord": "E",
+            "score": 0.208,
+            "confidence": 0.467
+          },
+          {
+            "chord": "A",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 73,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "uncertain",
+        "trackingRegime": null,
+        "confidence": 0.016,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:223.097",
+        "sec": 223.097,
+        "groundTruth": {
+          "timelineIndex": 61,
+          "chord": "C#m",
+          "kind": "score-probable"
+        },
+        "candidate": "unknown",
+        "top3": [
+          {
+            "chord": "C#m",
+            "score": 0.234,
+            "confidence": 0.514
+          },
+          {
+            "chord": "E",
+            "score": 0.221,
+            "confidence": 0.486
+          },
+          {
+            "chord": "A",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 73,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "uncertain",
+        "trackingRegime": null,
+        "confidence": 0.016,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:223.281",
+        "sec": 223.281,
+        "groundTruth": {
+          "timelineIndex": 61,
+          "chord": "C#m",
+          "kind": "score-probable"
+        },
+        "candidate": "C#m",
+        "top3": [
+          {
+            "chord": "C#m",
+            "score": 0.242,
+            "confidence": 0.533
+          },
+          {
+            "chord": "E",
+            "score": 0.197,
+            "confidence": 0.433
+          },
+          {
+            "chord": "A",
+            "score": 0.016,
+            "confidence": 0.034
+          }
+        ],
+        "estimatedTimelineIndex": 73,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "uncertain",
+        "trackingRegime": null,
+        "confidence": 0.016,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:223.465",
+        "sec": 223.465,
+        "groundTruth": {
+          "timelineIndex": 61,
+          "chord": "C#m",
+          "kind": "score-probable"
+        },
+        "candidate": "unknown",
+        "top3": [
+          {
+            "chord": "C#m",
+            "score": 0.138,
+            "confidence": 0.501
+          },
+          {
+            "chord": "E",
+            "score": 0.132,
+            "confidence": 0.48
+          },
+          {
+            "chord": "A",
+            "score": 0.005,
+            "confidence": 0.019
+          }
+        ],
+        "estimatedTimelineIndex": 73,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "uncertain",
+        "trackingRegime": null,
+        "confidence": 0.016,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:224.017",
+        "sec": 224.017,
+        "groundTruth": {
+          "timelineIndex": 61,
+          "chord": "C#m",
+          "kind": "score-probable"
+        },
+        "candidate": "C#m",
+        "top3": [
+          {
+            "chord": "C#m",
+            "score": 0.153,
+            "confidence": 0.528
+          },
+          {
+            "chord": "E",
+            "score": 0.105,
+            "confidence": 0.363
+          },
+          {
+            "chord": "A",
+            "score": 0.032,
+            "confidence": 0.109
+          }
+        ],
+        "estimatedTimelineIndex": 73,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "uncertain",
+        "trackingRegime": null,
+        "confidence": 0.016,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:224.201",
+        "sec": 224.201,
+        "groundTruth": null,
+        "candidate": "unknown",
+        "top3": [
+          {
+            "chord": "E",
+            "score": 0.09,
+            "confidence": 0.36
+          },
+          {
+            "chord": "C#m",
+            "score": 0.082,
+            "confidence": 0.329
+          },
+          {
+            "chord": "A",
+            "score": 0.077,
+            "confidence": 0.311
+          }
+        ],
+        "estimatedTimelineIndex": 73,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "uncertain",
+        "trackingRegime": null,
+        "confidence": 0.016,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:224.385",
+        "sec": 224.385,
+        "groundTruth": {
+          "timelineIndex": 62,
+          "chord": "A",
+          "kind": "score-probable"
+        },
+        "candidate": "A",
+        "top3": [
+          {
+            "chord": "A",
+            "score": 0.109,
+            "confidence": 0.559
+          },
+          {
+            "chord": "E",
+            "score": 0.044,
+            "confidence": 0.225
+          },
+          {
+            "chord": "C#m",
+            "score": 0.042,
+            "confidence": 0.216
+          }
+        ],
+        "estimatedTimelineIndex": 73,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "uncertain",
+        "trackingRegime": null,
+        "confidence": 0.016,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:224.776",
+        "sec": 224.776,
+        "groundTruth": {
+          "timelineIndex": 62,
+          "chord": "A",
+          "kind": "score-probable"
+        },
+        "candidate": "A",
+        "top3": [
+          {
+            "chord": "A",
+            "score": 0.112,
+            "confidence": 0.474
+          },
+          {
+            "chord": "C#m",
+            "score": 0.062,
+            "confidence": 0.263
+          },
+          {
+            "chord": "E",
+            "score": 0.062,
+            "confidence": 0.263
+          }
+        ],
+        "estimatedTimelineIndex": 62,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "uncertain",
+        "trackingRegime": null,
+        "confidence": 0.104,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:227.191",
+        "sec": 227.191,
+        "groundTruth": {
+          "timelineIndex": 62,
+          "chord": "A",
+          "kind": "score-probable"
+        },
+        "candidate": "unknown",
+        "top3": [
+          {
+            "chord": "A",
+            "score": 0.082,
+            "confidence": 0.545
+          },
+          {
+            "chord": "E",
+            "score": 0.035,
+            "confidence": 0.232
+          },
+          {
+            "chord": "C#m",
+            "score": 0.034,
+            "confidence": 0.224
+          }
+        ],
+        "estimatedTimelineIndex": 62,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "uncertain",
+        "trackingRegime": null,
+        "confidence": 0.104,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:227.375",
+        "sec": 227.375,
+        "groundTruth": {
+          "timelineIndex": 63,
+          "chord": "E",
+          "kind": "score-probable"
+        },
+        "candidate": "E",
+        "top3": [
+          {
+            "chord": "E",
+            "score": 0.177,
+            "confidence": 0.577
+          },
+          {
+            "chord": "C#m",
+            "score": 0.13,
+            "confidence": 0.423
+          },
+          {
+            "chord": "A",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 62,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "uncertain",
+        "trackingRegime": null,
+        "confidence": 0.104,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:227.743",
+        "sec": 227.743,
+        "groundTruth": {
+          "timelineIndex": 63,
+          "chord": "E",
+          "kind": "score-probable"
+        },
+        "candidate": "E",
+        "top3": [
+          {
+            "chord": "E",
+            "score": 0.172,
+            "confidence": 0.602
+          },
+          {
+            "chord": "B",
+            "score": 0.062,
+            "confidence": 0.216
+          },
+          {
+            "chord": "C#m",
+            "score": 0.052,
+            "confidence": 0.182
+          }
+        ],
+        "estimatedTimelineIndex": 63,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "uncertain",
+        "trackingRegime": null,
+        "confidence": 0.104,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:229.031",
+        "sec": 229.031,
+        "groundTruth": {
+          "timelineIndex": 63,
+          "chord": "E",
+          "kind": "score-probable"
+        },
+        "candidate": "unknown",
+        "top3": [
+          {
+            "chord": "E",
+            "score": 0.166,
+            "confidence": 0.476
+          },
+          {
+            "chord": "C#m",
+            "score": 0.16,
+            "confidence": 0.459
+          },
+          {
+            "chord": "A",
+            "score": 0.023,
+            "confidence": 0.065
+          }
+        ],
+        "estimatedTimelineIndex": 63,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "uncertain",
+        "trackingRegime": null,
+        "confidence": 0.104,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:229.422",
+        "sec": 229.422,
+        "groundTruth": {
+          "timelineIndex": 63,
+          "chord": "E",
+          "kind": "score-probable"
+        },
+        "candidate": "E",
+        "top3": [
+          {
+            "chord": "E",
+            "score": 0.18,
+            "confidence": 0.594
+          },
+          {
+            "chord": "C#m",
+            "score": 0.109,
+            "confidence": 0.358
+          },
+          {
+            "chord": "B",
+            "score": 0.015,
+            "confidence": 0.048
+          }
+        ],
+        "estimatedTimelineIndex": 63,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "uncertain",
+        "trackingRegime": null,
+        "confidence": 0.104,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:229.790",
+        "sec": 229.79,
+        "groundTruth": {
+          "timelineIndex": 63,
+          "chord": "E",
+          "kind": "score-probable"
+        },
+        "candidate": "unknown",
+        "top3": [
+          {
+            "chord": "E",
+            "score": 0.18,
+            "confidence": 0.522
+          },
+          {
+            "chord": "C#m",
+            "score": 0.164,
+            "confidence": 0.478
+          },
+          {
+            "chord": "A",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 63,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "uncertain",
+        "trackingRegime": null,
+        "confidence": 0.104,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:229.974",
+        "sec": 229.974,
+        "groundTruth": {
+          "timelineIndex": 63,
+          "chord": "E",
+          "kind": "score-probable"
+        },
+        "candidate": "E",
+        "top3": [
+          {
+            "chord": "E",
+            "score": 0.147,
+            "confidence": 0.583
+          },
+          {
+            "chord": "C#m",
+            "score": 0.105,
+            "confidence": 0.417
+          },
+          {
+            "chord": "A",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 63,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "uncertain",
+        "trackingRegime": null,
+        "confidence": 0.104,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:230.158",
+        "sec": 230.158,
+        "groundTruth": {
+          "timelineIndex": 63,
+          "chord": "E",
+          "kind": "score-probable"
+        },
+        "candidate": "unknown",
+        "top3": [
+          {
+            "chord": "E",
+            "score": 0.168,
+            "confidence": 0.537
+          },
+          {
+            "chord": "C#m",
+            "score": 0.145,
+            "confidence": 0.463
+          },
+          {
+            "chord": "A",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 63,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "uncertain",
+        "trackingRegime": null,
+        "confidence": 0.104,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:230.341",
+        "sec": 230.341,
+        "groundTruth": {
+          "timelineIndex": 63,
+          "chord": "E",
+          "kind": "score-probable"
+        },
+        "candidate": "E",
+        "top3": [
+          {
+            "chord": "E",
+            "score": 0.174,
+            "confidence": 0.594
+          },
+          {
+            "chord": "C#m",
+            "score": 0.119,
+            "confidence": 0.406
+          },
+          {
+            "chord": "A",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 63,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "uncertain",
+        "trackingRegime": null,
+        "confidence": 0.104,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:230.710",
+        "sec": 230.71,
+        "groundTruth": {
+          "timelineIndex": 63,
+          "chord": "E",
+          "kind": "score-probable"
+        },
+        "candidate": "unknown",
+        "top3": [
+          {
+            "chord": "E",
+            "score": 0.055,
+            "confidence": 0.703
+          },
+          {
+            "chord": "C#m",
+            "score": 0.012,
+            "confidence": 0.156
+          },
+          {
+            "chord": "A",
+            "score": 0.011,
+            "confidence": 0.141
+          }
+        ],
+        "estimatedTimelineIndex": 63,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "uncertain",
+        "trackingRegime": null,
+        "confidence": 0.104,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:230.894",
+        "sec": 230.894,
+        "groundTruth": {
+          "timelineIndex": 63,
+          "chord": "E",
+          "kind": "score-probable"
+        },
+        "candidate": "E",
+        "top3": [
+          {
+            "chord": "E",
+            "score": 0.173,
+            "confidence": 0.619
+          },
+          {
+            "chord": "C#m",
+            "score": 0.102,
+            "confidence": 0.366
+          },
+          {
+            "chord": "B",
+            "score": 0.004,
+            "confidence": 0.015
+          }
+        ],
+        "estimatedTimelineIndex": 63,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "uncertain",
+        "trackingRegime": null,
+        "confidence": 0.104,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:231.262",
+        "sec": 231.262,
+        "groundTruth": {
+          "timelineIndex": 63,
+          "chord": "E",
+          "kind": "score-probable"
+        },
+        "candidate": "E",
+        "top3": [
+          {
+            "chord": "E",
+            "score": 0.198,
+            "confidence": 0.549
+          },
+          {
+            "chord": "C#m",
+            "score": 0.096,
+            "confidence": 0.267
+          },
+          {
+            "chord": "B",
+            "score": 0.048,
+            "confidence": 0.133
+          }
+        ],
+        "estimatedTimelineIndex": 64,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "uncertain",
+        "trackingRegime": null,
+        "confidence": 0.36,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:231.837",
+        "sec": 231.837,
+        "groundTruth": {
+          "timelineIndex": 63,
+          "chord": "E",
+          "kind": "score-probable"
+        },
+        "candidate": "unknown",
+        "top3": [
+          {
+            "chord": "E",
+            "score": 0.175,
+            "confidence": 0.527
+          },
+          {
+            "chord": "C#m",
+            "score": 0.158,
+            "confidence": 0.473
+          },
+          {
+            "chord": "A",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 64,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "uncertain",
+        "trackingRegime": null,
+        "confidence": 0.36,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:232.021",
+        "sec": 232.021,
+        "groundTruth": {
+          "timelineIndex": 63,
+          "chord": "E",
+          "kind": "score-probable"
+        },
+        "candidate": "E",
+        "top3": [
+          {
+            "chord": "E",
+            "score": 0.161,
+            "confidence": 0.561
+          },
+          {
+            "chord": "C#m",
+            "score": 0.126,
+            "confidence": 0.439
+          },
+          {
+            "chord": "A",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 64,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "uncertain",
+        "trackingRegime": null,
+        "confidence": 0.36,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:232.389",
+        "sec": 232.389,
+        "groundTruth": {
+          "timelineIndex": 63,
+          "chord": "E",
+          "kind": "score-probable"
+        },
+        "candidate": "E",
+        "top3": [
+          {
+            "chord": "E",
+            "score": 0.164,
+            "confidence": 0.509
+          },
+          {
+            "chord": "B",
+            "score": 0.085,
+            "confidence": 0.265
+          },
+          {
+            "chord": "A",
+            "score": 0.049,
+            "confidence": 0.153
+          }
+        ],
+        "estimatedTimelineIndex": 67,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "uncertain",
+        "trackingRegime": null,
+        "confidence": 0.48,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:232.572",
+        "sec": 232.572,
+        "groundTruth": null,
+        "candidate": "A",
+        "top3": [
+          {
+            "chord": "A",
+            "score": 0.103,
+            "confidence": 0.521
+          },
+          {
+            "chord": "E",
+            "score": 0.055,
+            "confidence": 0.276
+          },
+          {
+            "chord": "C#m",
+            "score": 0.04,
+            "confidence": 0.203
+          }
+        ],
+        "estimatedTimelineIndex": 67,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "uncertain",
+        "trackingRegime": null,
+        "confidence": 0.48,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:232.757",
+        "sec": 232.757,
+        "groundTruth": null,
+        "candidate": "unknown",
+        "top3": [
+          {
+            "chord": "A",
+            "score": 0.096,
+            "confidence": 0.541
+          },
+          {
+            "chord": "E",
+            "score": 0.051,
+            "confidence": 0.284
+          },
+          {
+            "chord": "C#m",
+            "score": 0.031,
+            "confidence": 0.175
+          }
+        ],
+        "estimatedTimelineIndex": 67,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "uncertain",
+        "trackingRegime": null,
+        "confidence": 0.48,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:233.493",
+        "sec": 233.493,
+        "groundTruth": {
+          "timelineIndex": 69,
+          "chord": "C#m",
+          "kind": "score-probable"
+        },
+        "candidate": "C#m",
+        "top3": [
+          {
+            "chord": "C#m",
+            "score": 0.265,
+            "confidence": 0.508
+          },
+          {
+            "chord": "E",
+            "score": 0.182,
+            "confidence": 0.348
+          },
+          {
+            "chord": "A",
+            "score": 0.075,
+            "confidence": 0.143
+          }
+        ],
+        "estimatedTimelineIndex": 67,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "uncertain",
+        "trackingRegime": null,
+        "confidence": 0.48,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:233.861",
+        "sec": 233.861,
+        "groundTruth": {
+          "timelineIndex": 69,
+          "chord": "C#m",
+          "kind": "score-probable"
+        },
+        "candidate": "C#m",
+        "top3": [
+          {
+            "chord": "C#m",
+            "score": 0.206,
+            "confidence": 0.523
+          },
+          {
+            "chord": "E",
+            "score": 0.132,
+            "confidence": 0.335
+          },
+          {
+            "chord": "A",
+            "score": 0.056,
+            "confidence": 0.142
+          }
+        ],
+        "estimatedTimelineIndex": 69,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "uncertain",
+        "trackingRegime": null,
+        "confidence": 0.48,
+        "localPlausibility": null
+      },
+      {
+        "time": "00:234.804",
+        "sec": 234.804,
+        "groundTruth": {
+          "timelineIndex": 69,
+          "chord": "C#m",
+          "kind": "score-probable"
+        },
+        "candidate": "unknown",
+        "top3": [
+          {
+            "chord": "C#m",
+            "score": 0.229,
+            "confidence": 0.522
+          },
+          {
+            "chord": "E",
+            "score": 0.21,
+            "confidence": 0.478
+          },
+          {
+            "chord": "A",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 69,
+        "committedTimelineIndex": 59,
+        "displayedTimelineIndex": 59,
+        "mode": "uncertain",
+        "trackingRegime": null,
+        "confidence": 0.48,
+        "localPlausibility": null
+      }
+    ],
+    "OnlineChordAligner": [
+      {
+        "time": "00:205.272",
+        "sec": 205.272,
+        "groundTruth": null,
+        "candidate": "E",
+        "top3": [
+          {
+            "chord": "E",
+            "score": 0.206,
+            "confidence": 0.566
+          },
+          {
+            "chord": "B",
+            "score": 0.113,
+            "confidence": 0.311
+          },
+          {
+            "chord": "C#m",
+            "score": 0.045,
+            "confidence": 0.123
+          }
+        ],
+        "estimatedTimelineIndex": 3,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.18,
+        "localPlausibility": 0.539
+      },
+      {
+        "time": "00:205.456",
+        "sec": 205.456,
+        "groundTruth": null,
+        "candidate": "E",
+        "top3": [
+          {
+            "chord": "E",
+            "score": 0.201,
+            "confidence": 0.593
+          },
+          {
+            "chord": "C#m",
+            "score": 0.138,
+            "confidence": 0.407
+          },
+          {
+            "chord": "A",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 4,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.156,
+        "localPlausibility": 0.55
+      },
+      {
+        "time": "00:205.640",
+        "sec": 205.64,
+        "groundTruth": null,
+        "candidate": "E",
+        "top3": [
+          {
+            "chord": "E",
+            "score": 0.183,
+            "confidence": 0.594
+          },
+          {
+            "chord": "C#m",
+            "score": 0.081,
+            "confidence": 0.263
+          },
+          {
+            "chord": "B",
+            "score": 0.044,
+            "confidence": 0.143
+          }
+        ],
+        "estimatedTimelineIndex": 3,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.198,
+        "localPlausibility": 0.558
+      },
+      {
+        "time": "00:206.008",
+        "sec": 206.008,
+        "groundTruth": null,
+        "candidate": "E",
+        "top3": [
+          {
+            "chord": "E",
+            "score": 0.17,
+            "confidence": 0.555
+          },
+          {
+            "chord": "C#m",
+            "score": 0.136,
+            "confidence": 0.445
+          },
+          {
+            "chord": "A",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 4,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.185,
+        "localPlausibility": 0.535
+      },
+      {
+        "time": "00:206.192",
+        "sec": 206.192,
+        "groundTruth": null,
+        "candidate": "E",
+        "top3": [
+          {
+            "chord": "E",
+            "score": 0.178,
+            "confidence": 0.597
+          },
+          {
+            "chord": "C#m",
+            "score": 0.109,
+            "confidence": 0.364
+          },
+          {
+            "chord": "B",
+            "score": 0.012,
+            "confidence": 0.039
+          }
+        ],
+        "estimatedTimelineIndex": 3,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.194,
+        "localPlausibility": 0.529
+      },
+      {
+        "time": "00:206.560",
+        "sec": 206.56,
+        "groundTruth": null,
+        "candidate": "A",
+        "top3": [
+          {
+            "chord": "A",
+            "score": 0.141,
+            "confidence": 0.787
+          },
+          {
+            "chord": "E",
+            "score": 0.038,
+            "confidence": 0.213
+          },
+          {
+            "chord": "C#m",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 5,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.235,
+        "localPlausibility": 0.471
+      },
+      {
+        "time": "00:206.744",
+        "sec": 206.744,
+        "groundTruth": null,
+        "candidate": "unknown",
+        "top3": [
+          {
+            "chord": "A",
+            "score": 0.099,
+            "confidence": 0.426
+          },
+          {
+            "chord": "E",
+            "score": 0.075,
+            "confidence": 0.322
+          },
+          {
+            "chord": "C#m",
+            "score": 0.058,
+            "confidence": 0.252
+          }
+        ],
+        "estimatedTimelineIndex": 5,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.245,
+        "localPlausibility": 0.5
+      },
+      {
+        "time": "00:207.112",
+        "sec": 207.112,
+        "groundTruth": {
+          "timelineIndex": 57,
+          "chord": "B",
+          "kind": "score"
+        },
+        "candidate": "B",
+        "top3": [
+          {
+            "chord": "B",
+            "score": 0.226,
+            "confidence": 0.596
+          },
+          {
+            "chord": "E",
+            "score": 0.153,
+            "confidence": 0.404
+          },
+          {
+            "chord": "C#m",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 6,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.249,
+        "localPlausibility": 0.388
+      },
+      {
+        "time": "00:207.503",
+        "sec": 207.503,
+        "groundTruth": {
+          "timelineIndex": 57,
+          "chord": "B",
+          "kind": "score"
+        },
+        "candidate": "B",
+        "top3": [
+          {
+            "chord": "B",
+            "score": 0.188,
+            "confidence": 0.646
+          },
+          {
+            "chord": "E",
+            "score": 0.103,
+            "confidence": 0.354
+          },
+          {
+            "chord": "C#m",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 10,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "uncertain",
+        "trackingRegime": "relocalization",
+        "confidence": 0.299,
+        "localPlausibility": 0.335
+      },
+      {
+        "time": "00:208.791",
+        "sec": 208.791,
+        "groundTruth": {
+          "timelineIndex": 57,
+          "chord": "B",
+          "kind": "score"
+        },
+        "candidate": "B",
+        "top3": [
+          {
+            "chord": "B",
+            "score": 0.21,
+            "confidence": 0.602
+          },
+          {
+            "chord": "E",
+            "score": 0.139,
+            "confidence": 0.398
+          },
+          {
+            "chord": "C#m",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 12,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "uncertain",
+        "trackingRegime": "relocalization",
+        "confidence": 0.282,
+        "localPlausibility": 0.386
+      },
+      {
+        "time": "00:208.975",
+        "sec": 208.975,
+        "groundTruth": null,
+        "candidate": "E",
+        "top3": [
+          {
+            "chord": "E",
+            "score": 0.13,
+            "confidence": 0.568
+          },
+          {
+            "chord": "B",
+            "score": 0.085,
+            "confidence": 0.374
+          },
+          {
+            "chord": "A",
+            "score": 0.013,
+            "confidence": 0.058
+          }
+        ],
+        "estimatedTimelineIndex": 15,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.211,
+        "localPlausibility": 0.475
+      },
+      {
+        "time": "00:209.159",
+        "sec": 209.159,
+        "groundTruth": null,
+        "candidate": "B",
+        "top3": [
+          {
+            "chord": "B",
+            "score": 0.206,
+            "confidence": 0.67
+          },
+          {
+            "chord": "E",
+            "score": 0.101,
+            "confidence": 0.33
+          },
+          {
+            "chord": "C#m",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 19,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.277,
+        "localPlausibility": 0.364
+      },
+      {
+        "time": "00:209.343",
+        "sec": 209.343,
+        "groundTruth": null,
+        "candidate": "unknown",
+        "top3": [
+          {
+            "chord": "E",
+            "score": 0.087,
+            "confidence": 0.485
+          },
+          {
+            "chord": "C#m",
+            "score": 0.066,
+            "confidence": 0.37
+          },
+          {
+            "chord": "A",
+            "score": 0.026,
+            "confidence": 0.145
+          }
+        ],
+        "estimatedTimelineIndex": 19,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "uncertain",
+        "trackingRegime": "relocalization",
+        "confidence": 0.337,
+        "localPlausibility": 0.5
+      },
+      {
+        "time": "00:209.527",
+        "sec": 209.527,
+        "groundTruth": null,
+        "candidate": "A",
+        "top3": [
+          {
+            "chord": "A",
+            "score": 0.108,
+            "confidence": 0.921
+          },
+          {
+            "chord": "E",
+            "score": 0.006,
+            "confidence": 0.055
+          },
+          {
+            "chord": "C#m",
+            "score": 0.003,
+            "confidence": 0.023
+          }
+        ],
+        "estimatedTimelineIndex": 21,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "uncertain",
+        "trackingRegime": "relocalization",
+        "confidence": 0.354,
+        "localPlausibility": 0.535
+      },
+      {
+        "time": "00:210.102",
+        "sec": 210.102,
+        "groundTruth": null,
+        "candidate": "unknown",
+        "top3": [
+          {
+            "chord": "C#m",
+            "score": 0.127,
+            "confidence": 0.524
+          },
+          {
+            "chord": "E",
+            "score": 0.115,
+            "confidence": 0.476
+          },
+          {
+            "chord": "A",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 21,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "uncertain",
+        "trackingRegime": "relocalization",
+        "confidence": 0.469,
+        "localPlausibility": 0.5
+      },
+      {
+        "time": "00:210.288",
+        "sec": 210.288,
+        "groundTruth": null,
+        "candidate": "C#m",
+        "top3": [
+          {
+            "chord": "C#m",
+            "score": 0.152,
+            "confidence": 0.557
+          },
+          {
+            "chord": "E",
+            "score": 0.11,
+            "confidence": 0.403
+          },
+          {
+            "chord": "A",
+            "score": 0.011,
+            "confidence": 0.04
+          }
+        ],
+        "estimatedTimelineIndex": 22,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.217,
+        "localPlausibility": 0.454
+      },
+      {
+        "time": "00:210.470",
+        "sec": 210.47,
+        "groundTruth": null,
+        "candidate": "unknown",
+        "top3": [
+          {
+            "chord": "C#m",
+            "score": 0.26,
+            "confidence": 0.523
+          },
+          {
+            "chord": "E",
+            "score": 0.237,
+            "confidence": 0.477
+          },
+          {
+            "chord": "A",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 24,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.249,
+        "localPlausibility": 0.5
+      },
+      {
+        "time": "00:210.654",
+        "sec": 210.654,
+        "groundTruth": null,
+        "candidate": "C#m",
+        "top3": [
+          {
+            "chord": "C#m",
+            "score": 0.281,
+            "confidence": 0.532
+          },
+          {
+            "chord": "E",
+            "score": 0.248,
+            "confidence": 0.468
+          },
+          {
+            "chord": "A",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 26,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.151,
+        "localPlausibility": 0.434
+      },
+      {
+        "time": "00:210.838",
+        "sec": 210.838,
+        "groundTruth": null,
+        "candidate": "C#m",
+        "top3": [
+          {
+            "chord": "C#m",
+            "score": 0.246,
+            "confidence": 0.552
+          },
+          {
+            "chord": "E",
+            "score": 0.168,
+            "confidence": 0.375
+          },
+          {
+            "chord": "A",
+            "score": 0.033,
+            "confidence": 0.073
+          }
+        ],
+        "estimatedTimelineIndex": 31,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.149,
+        "localPlausibility": 0.427
+      },
+      {
+        "time": "00:211.022",
+        "sec": 211.022,
+        "groundTruth": null,
+        "candidate": "unknown",
+        "top3": [
+          {
+            "chord": "C#m",
+            "score": 0.158,
+            "confidence": 0.521
+          },
+          {
+            "chord": "E",
+            "score": 0.145,
+            "confidence": 0.479
+          },
+          {
+            "chord": "A",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 31,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.219,
+        "localPlausibility": 0.5
+      },
+      {
+        "time": "00:211.574",
+        "sec": 211.574,
+        "groundTruth": null,
+        "candidate": "C#m",
+        "top3": [
+          {
+            "chord": "C#m",
+            "score": 0.137,
+            "confidence": 0.598
+          },
+          {
+            "chord": "A",
+            "score": 0.062,
+            "confidence": 0.269
+          },
+          {
+            "chord": "E",
+            "score": 0.03,
+            "confidence": 0.133
+          }
+        ],
+        "estimatedTimelineIndex": 31,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.186,
+        "localPlausibility": 0.498
+      },
+      {
+        "time": "00:211.758",
+        "sec": 211.758,
+        "groundTruth": null,
+        "candidate": "C#m",
+        "top3": [
+          {
+            "chord": "C#m",
+            "score": 0.211,
+            "confidence": 0.452
+          },
+          {
+            "chord": "E",
+            "score": 0.179,
+            "confidence": 0.384
+          },
+          {
+            "chord": "A",
+            "score": 0.076,
+            "confidence": 0.164
+          }
+        ],
+        "estimatedTimelineIndex": 37,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.185,
+        "localPlausibility": 0.437
+      },
+      {
+        "time": "00:212.126",
+        "sec": 212.126,
+        "groundTruth": null,
+        "candidate": "A",
+        "top3": [
+          {
+            "chord": "A",
+            "score": 0.111,
+            "confidence": 0.559
+          },
+          {
+            "chord": "E",
+            "score": 0.044,
+            "confidence": 0.223
+          },
+          {
+            "chord": "C#m",
+            "score": 0.043,
+            "confidence": 0.218
+          }
+        ],
+        "estimatedTimelineIndex": 38,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.233,
+        "localPlausibility": 0.527
+      },
+      {
+        "time": "00:214.173",
+        "sec": 214.173,
+        "groundTruth": null,
+        "candidate": "A",
+        "top3": [
+          {
+            "chord": "A",
+            "score": 0.193,
+            "confidence": 0.873
+          },
+          {
+            "chord": "E",
+            "score": 0.014,
+            "confidence": 0.065
+          },
+          {
+            "chord": "C#m",
+            "score": 0.014,
+            "confidence": 0.062
+          }
+        ],
+        "estimatedTimelineIndex": 1,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.112,
+        "localPlausibility": 0.615
+      },
+      {
+        "time": "00:214.357",
+        "sec": 214.357,
+        "groundTruth": null,
+        "candidate": "unknown",
+        "top3": [
+          {
+            "chord": "A",
+            "score": 0.098,
+            "confidence": 0.401
+          },
+          {
+            "chord": "E",
+            "score": 0.076,
+            "confidence": 0.312
+          },
+          {
+            "chord": "C#m",
+            "score": 0.07,
+            "confidence": 0.287
+          }
+        ],
+        "estimatedTimelineIndex": 1,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.123,
+        "localPlausibility": 0.5
+      },
+      {
+        "time": "00:214.541",
+        "sec": 214.541,
+        "groundTruth": null,
+        "candidate": "A",
+        "top3": [
+          {
+            "chord": "A",
+            "score": 0.184,
+            "confidence": 0.583
+          },
+          {
+            "chord": "C#m",
+            "score": 0.071,
+            "confidence": 0.225
+          },
+          {
+            "chord": "E",
+            "score": 0.061,
+            "confidence": 0.191
+          }
+        ],
+        "estimatedTimelineIndex": 8,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.119,
+        "localPlausibility": 0.444
+      },
+      {
+        "time": "00:214.748",
+        "sec": 214.748,
+        "groundTruth": null,
+        "candidate": "unknown",
+        "top3": [
+          {
+            "chord": "E",
+            "score": 0.097,
+            "confidence": 0.356
+          },
+          {
+            "chord": "C#m",
+            "score": 0.092,
+            "confidence": 0.34
+          },
+          {
+            "chord": "A",
+            "score": 0.082,
+            "confidence": 0.304
+          }
+        ],
+        "estimatedTimelineIndex": 8,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.14,
+        "localPlausibility": 0.5
+      },
+      {
+        "time": "00:214.932",
+        "sec": 214.932,
+        "groundTruth": null,
+        "candidate": "A",
+        "top3": [
+          {
+            "chord": "A",
+            "score": 0.123,
+            "confidence": 0.742
+          },
+          {
+            "chord": "E",
+            "score": 0.024,
+            "confidence": 0.145
+          },
+          {
+            "chord": "C#m",
+            "score": 0.019,
+            "confidence": 0.113
+          }
+        ],
+        "estimatedTimelineIndex": 8,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.143,
+        "localPlausibility": 0.491
+      },
+      {
+        "time": "00:215.300",
+        "sec": 215.3,
+        "groundTruth": null,
+        "candidate": "B",
+        "top3": [
+          {
+            "chord": "B",
+            "score": 0.242,
+            "confidence": 0.622
+          },
+          {
+            "chord": "E",
+            "score": 0.147,
+            "confidence": 0.378
+          },
+          {
+            "chord": "C#m",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 10,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.162,
+        "localPlausibility": 0.304
+      },
+      {
+        "time": "00:216.036",
+        "sec": 216.036,
+        "groundTruth": null,
+        "candidate": "unknown",
+        "top3": [
+          {
+            "chord": "A",
+            "score": 0.082,
+            "confidence": 0.427
+          },
+          {
+            "chord": "E",
+            "score": 0.059,
+            "confidence": 0.308
+          },
+          {
+            "chord": "C#m",
+            "score": 0.051,
+            "confidence": 0.265
+          }
+        ],
+        "estimatedTimelineIndex": 10,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "uncertain",
+        "trackingRegime": "relocalization",
+        "confidence": 0.304,
+        "localPlausibility": 0.5
+      },
+      {
+        "time": "00:216.404",
+        "sec": 216.404,
+        "groundTruth": {
+          "timelineIndex": null,
+          "chord": "E",
+          "kind": "extra-not-in-score",
+          "note": "E extra informado por usuario"
+        },
+        "candidate": "E",
+        "top3": [
+          {
+            "chord": "E",
+            "score": 0.19,
+            "confidence": 0.605
+          },
+          {
+            "chord": "C#m",
+            "score": 0.096,
+            "confidence": 0.304
+          },
+          {
+            "chord": "B",
+            "score": 0.029,
+            "confidence": 0.091
+          }
+        ],
+        "estimatedTimelineIndex": 11,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.176,
+        "localPlausibility": 0.501
+      },
+      {
+        "time": "00:216.772",
+        "sec": 216.772,
+        "groundTruth": {
+          "timelineIndex": null,
+          "chord": "E",
+          "kind": "extra-not-in-score",
+          "note": "E extra informado por usuario"
+        },
+        "candidate": "E",
+        "top3": [
+          {
+            "chord": "E",
+            "score": 0.203,
+            "confidence": 0.59
+          },
+          {
+            "chord": "B",
+            "score": 0.116,
+            "confidence": 0.338
+          },
+          {
+            "chord": "C#m",
+            "score": 0.025,
+            "confidence": 0.072
+          }
+        ],
+        "estimatedTimelineIndex": 9,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.144,
+        "localPlausibility": 0.456
+      },
+      {
+        "time": "00:217.347",
+        "sec": 217.347,
+        "groundTruth": {
+          "timelineIndex": null,
+          "chord": "E",
+          "kind": "extra-not-in-score",
+          "note": "E extra informado por usuario"
+        },
+        "candidate": "E",
+        "top3": [
+          {
+            "chord": "E",
+            "score": 0.251,
+            "confidence": 0.568
+          },
+          {
+            "chord": "B",
+            "score": 0.191,
+            "confidence": 0.432
+          },
+          {
+            "chord": "C#m",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 3,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.232,
+        "localPlausibility": 0.507
+      },
+      {
+        "time": "00:217.899",
+        "sec": 217.899,
+        "groundTruth": {
+          "timelineIndex": null,
+          "chord": "E",
+          "kind": "extra-not-in-score",
+          "note": "E extra informado por usuario"
+        },
+        "candidate": "E",
+        "top3": [
+          {
+            "chord": "E",
+            "score": 0.194,
+            "confidence": 0.604
+          },
+          {
+            "chord": "C#m",
+            "score": 0.126,
+            "confidence": 0.394
+          },
+          {
+            "chord": "B",
+            "score": 0.001,
+            "confidence": 0.002
+          }
+        ],
+        "estimatedTimelineIndex": 4,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.182,
+        "localPlausibility": 0.555
+      },
+      {
+        "time": "00:218.083",
+        "sec": 218.083,
+        "groundTruth": {
+          "timelineIndex": null,
+          "chord": "E",
+          "kind": "extra-not-in-score",
+          "note": "E extra informado por usuario"
+        },
+        "candidate": "E",
+        "top3": [
+          {
+            "chord": "E",
+            "score": 0.175,
+            "confidence": 0.594
+          },
+          {
+            "chord": "C#m",
+            "score": 0.119,
+            "confidence": 0.406
+          },
+          {
+            "chord": "A",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 6,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.179,
+        "localPlausibility": 0.465
+      },
+      {
+        "time": "00:218.819",
+        "sec": 218.819,
+        "groundTruth": null,
+        "candidate": "unknown",
+        "top3": [
+          {
+            "chord": "A",
+            "score": 0.095,
+            "confidence": 0.452
+          },
+          {
+            "chord": "E",
+            "score": 0.061,
+            "confidence": 0.287
+          },
+          {
+            "chord": "C#m",
+            "score": 0.055,
+            "confidence": 0.261
+          }
+        ],
+        "estimatedTimelineIndex": 6,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.275,
+        "localPlausibility": 0.5
+      },
+      {
+        "time": "00:219.186",
+        "sec": 219.186,
+        "groundTruth": {
+          "timelineIndex": 60,
+          "chord": "B",
+          "kind": "score-probable"
+        },
+        "candidate": "B",
+        "top3": [
+          {
+            "chord": "B",
+            "score": 0.212,
+            "confidence": 0.752
+          },
+          {
+            "chord": "E",
+            "score": 0.07,
+            "confidence": 0.248
+          },
+          {
+            "chord": "C#m",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 10,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.227,
+        "localPlausibility": 0.324
+      },
+      {
+        "time": "00:220.682",
+        "sec": 220.682,
+        "groundTruth": {
+          "timelineIndex": 60,
+          "chord": "B",
+          "kind": "score-probable"
+        },
+        "candidate": "unknown",
+        "top3": [
+          {
+            "chord": "B",
+            "score": 0.094,
+            "confidence": 0.588
+          },
+          {
+            "chord": "E",
+            "score": 0.066,
+            "confidence": 0.412
+          },
+          {
+            "chord": "C#m",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 10,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "uncertain",
+        "trackingRegime": "relocalization",
+        "confidence": 0.386,
+        "localPlausibility": 0.5
+      },
+      {
+        "time": "00:220.866",
+        "sec": 220.866,
+        "groundTruth": {
+          "timelineIndex": 60,
+          "chord": "B",
+          "kind": "score-probable"
+        },
+        "candidate": "B",
+        "top3": [
+          {
+            "chord": "B",
+            "score": 0.193,
+            "confidence": 0.61
+          },
+          {
+            "chord": "E",
+            "score": 0.124,
+            "confidence": 0.39
+          },
+          {
+            "chord": "C#m",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 12,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "uncertain",
+        "trackingRegime": "relocalization",
+        "confidence": 0.363,
+        "localPlausibility": 0.382
+      },
+      {
+        "time": "00:221.417",
+        "sec": 221.417,
+        "groundTruth": null,
+        "candidate": "unknown",
+        "top3": [
+          {
+            "chord": "A",
+            "score": 0.107,
+            "confidence": 0.36
+          },
+          {
+            "chord": "C#m",
+            "score": 0.095,
+            "confidence": 0.321
+          },
+          {
+            "chord": "E",
+            "score": 0.095,
+            "confidence": 0.319
+          }
+        ],
+        "estimatedTimelineIndex": 15,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "uncertain",
+        "trackingRegime": "relocalization",
+        "confidence": 0.293,
+        "localPlausibility": 0.5
+      },
+      {
+        "time": "00:221.970",
+        "sec": 221.97,
+        "groundTruth": {
+          "timelineIndex": 61,
+          "chord": "C#m",
+          "kind": "score-probable"
+        },
+        "candidate": "C#m",
+        "top3": [
+          {
+            "chord": "C#m",
+            "score": 0.199,
+            "confidence": 0.54
+          },
+          {
+            "chord": "E",
+            "score": 0.133,
+            "confidence": 0.361
+          },
+          {
+            "chord": "A",
+            "score": 0.036,
+            "confidence": 0.099
+          }
+        ],
+        "estimatedTimelineIndex": 16,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "uncertain",
+        "trackingRegime": "relocalization",
+        "confidence": 0.358,
+        "localPlausibility": 0.462
+      },
+      {
+        "time": "00:222.544",
+        "sec": 222.544,
+        "groundTruth": {
+          "timelineIndex": 61,
+          "chord": "C#m",
+          "kind": "score-probable"
+        },
+        "candidate": "unknown",
+        "top3": [
+          {
+            "chord": "C#m",
+            "score": 0.218,
+            "confidence": 0.495
+          },
+          {
+            "chord": "E",
+            "score": 0.204,
+            "confidence": 0.463
+          },
+          {
+            "chord": "A",
+            "score": 0.019,
+            "confidence": 0.043
+          }
+        ],
+        "estimatedTimelineIndex": 16,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "uncertain",
+        "trackingRegime": "relocalization",
+        "confidence": 0.423,
+        "localPlausibility": 0.5
+      },
+      {
+        "time": "00:222.729",
+        "sec": 222.729,
+        "groundTruth": {
+          "timelineIndex": 61,
+          "chord": "C#m",
+          "kind": "score-probable"
+        },
+        "candidate": "C#m",
+        "top3": [
+          {
+            "chord": "C#m",
+            "score": 0.237,
+            "confidence": 0.533
+          },
+          {
+            "chord": "E",
+            "score": 0.208,
+            "confidence": 0.467
+          },
+          {
+            "chord": "A",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 18,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.223,
+        "localPlausibility": 0.434
+      },
+      {
+        "time": "00:223.097",
+        "sec": 223.097,
+        "groundTruth": {
+          "timelineIndex": 61,
+          "chord": "C#m",
+          "kind": "score-probable"
+        },
+        "candidate": "unknown",
+        "top3": [
+          {
+            "chord": "C#m",
+            "score": 0.234,
+            "confidence": 0.514
+          },
+          {
+            "chord": "E",
+            "score": 0.221,
+            "confidence": 0.486
+          },
+          {
+            "chord": "A",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 18,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.209,
+        "localPlausibility": 0.5
+      },
+      {
+        "time": "00:223.281",
+        "sec": 223.281,
+        "groundTruth": {
+          "timelineIndex": 61,
+          "chord": "C#m",
+          "kind": "score-probable"
+        },
+        "candidate": "C#m",
+        "top3": [
+          {
+            "chord": "C#m",
+            "score": 0.242,
+            "confidence": 0.533
+          },
+          {
+            "chord": "E",
+            "score": 0.197,
+            "confidence": 0.433
+          },
+          {
+            "chord": "A",
+            "score": 0.016,
+            "confidence": 0.034
+          }
+        ],
+        "estimatedTimelineIndex": 20,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.138,
+        "localPlausibility": 0.442
+      },
+      {
+        "time": "00:223.465",
+        "sec": 223.465,
+        "groundTruth": {
+          "timelineIndex": 61,
+          "chord": "C#m",
+          "kind": "score-probable"
+        },
+        "candidate": "unknown",
+        "top3": [
+          {
+            "chord": "C#m",
+            "score": 0.138,
+            "confidence": 0.501
+          },
+          {
+            "chord": "E",
+            "score": 0.132,
+            "confidence": 0.48
+          },
+          {
+            "chord": "A",
+            "score": 0.005,
+            "confidence": 0.019
+          }
+        ],
+        "estimatedTimelineIndex": 20,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.137,
+        "localPlausibility": 0.5
+      },
+      {
+        "time": "00:223.649",
+        "sec": 223.649,
+        "groundTruth": {
+          "timelineIndex": 61,
+          "chord": "C#m",
+          "kind": "score-probable"
+        },
+        "candidate": "unknown",
+        "top3": [
+          {
+            "chord": "C#m",
+            "score": 0.089,
+            "confidence": 0.497
+          },
+          {
+            "chord": "A",
+            "score": 0.049,
+            "confidence": 0.272
+          },
+          {
+            "chord": "E",
+            "score": 0.041,
+            "confidence": 0.231
+          }
+        ],
+        "estimatedTimelineIndex": 18,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.136,
+        "localPlausibility": 0.5
+      },
+      {
+        "time": "00:224.017",
+        "sec": 224.017,
+        "groundTruth": {
+          "timelineIndex": 61,
+          "chord": "C#m",
+          "kind": "score-probable"
+        },
+        "candidate": "C#m",
+        "top3": [
+          {
+            "chord": "C#m",
+            "score": 0.153,
+            "confidence": 0.528
+          },
+          {
+            "chord": "E",
+            "score": 0.105,
+            "confidence": 0.363
+          },
+          {
+            "chord": "A",
+            "score": 0.032,
+            "confidence": 0.109
+          }
+        ],
+        "estimatedTimelineIndex": 20,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.113,
+        "localPlausibility": 0.459
+      },
+      {
+        "time": "00:224.201",
+        "sec": 224.201,
+        "groundTruth": null,
+        "candidate": "unknown",
+        "top3": [
+          {
+            "chord": "E",
+            "score": 0.09,
+            "confidence": 0.36
+          },
+          {
+            "chord": "C#m",
+            "score": 0.082,
+            "confidence": 0.329
+          },
+          {
+            "chord": "A",
+            "score": 0.077,
+            "confidence": 0.311
+          }
+        ],
+        "estimatedTimelineIndex": 20,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.113,
+        "localPlausibility": 0.5
+      },
+      {
+        "time": "00:224.385",
+        "sec": 224.385,
+        "groundTruth": {
+          "timelineIndex": 62,
+          "chord": "A",
+          "kind": "score-probable"
+        },
+        "candidate": "A",
+        "top3": [
+          {
+            "chord": "A",
+            "score": 0.109,
+            "confidence": 0.559
+          },
+          {
+            "chord": "E",
+            "score": 0.044,
+            "confidence": 0.225
+          },
+          {
+            "chord": "C#m",
+            "score": 0.042,
+            "confidence": 0.216
+          }
+        ],
+        "estimatedTimelineIndex": 21,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.144,
+        "localPlausibility": 0.526
+      },
+      {
+        "time": "00:226.248",
+        "sec": 226.248,
+        "groundTruth": {
+          "timelineIndex": 62,
+          "chord": "A",
+          "kind": "score-probable"
+        },
+        "candidate": "A",
+        "top3": [
+          {
+            "chord": "A",
+            "score": 0.176,
+            "confidence": 1
+          },
+          {
+            "chord": "C#m",
+            "score": 0,
+            "confidence": 0
+          },
+          {
+            "chord": "E",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 8,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.166,
+        "localPlausibility": 0.643
+      },
+      {
+        "time": "00:227.191",
+        "sec": 227.191,
+        "groundTruth": {
+          "timelineIndex": 62,
+          "chord": "A",
+          "kind": "score-probable"
+        },
+        "candidate": "unknown",
+        "top3": [
+          {
+            "chord": "A",
+            "score": 0.082,
+            "confidence": 0.545
+          },
+          {
+            "chord": "E",
+            "score": 0.035,
+            "confidence": 0.232
+          },
+          {
+            "chord": "C#m",
+            "score": 0.034,
+            "confidence": 0.224
+          }
+        ],
+        "estimatedTimelineIndex": 8,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.194,
+        "localPlausibility": 0.5
+      },
+      {
+        "time": "00:227.375",
+        "sec": 227.375,
+        "groundTruth": {
+          "timelineIndex": 63,
+          "chord": "E",
+          "kind": "score-probable"
+        },
+        "candidate": "E",
+        "top3": [
+          {
+            "chord": "E",
+            "score": 0.177,
+            "confidence": 0.577
+          },
+          {
+            "chord": "C#m",
+            "score": 0.13,
+            "confidence": 0.423
+          },
+          {
+            "chord": "A",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 9,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.21,
+        "localPlausibility": 0.465
+      },
+      {
+        "time": "00:229.031",
+        "sec": 229.031,
+        "groundTruth": {
+          "timelineIndex": 63,
+          "chord": "E",
+          "kind": "score-probable"
+        },
+        "candidate": "unknown",
+        "top3": [
+          {
+            "chord": "E",
+            "score": 0.166,
+            "confidence": 0.476
+          },
+          {
+            "chord": "C#m",
+            "score": 0.16,
+            "confidence": 0.459
+          },
+          {
+            "chord": "A",
+            "score": 0.023,
+            "confidence": 0.065
+          }
+        ],
+        "estimatedTimelineIndex": 9,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.248,
+        "localPlausibility": 0.5
+      },
+      {
+        "time": "00:229.215",
+        "sec": 229.215,
+        "groundTruth": {
+          "timelineIndex": 63,
+          "chord": "E",
+          "kind": "score-probable"
+        },
+        "candidate": "unknown",
+        "top3": [
+          {
+            "chord": "E",
+            "score": 0.162,
+            "confidence": 0.522
+          },
+          {
+            "chord": "C#m",
+            "score": 0.148,
+            "confidence": 0.478
+          },
+          {
+            "chord": "A",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 3,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.243,
+        "localPlausibility": 0.5
+      },
+      {
+        "time": "00:229.422",
+        "sec": 229.422,
+        "groundTruth": {
+          "timelineIndex": 63,
+          "chord": "E",
+          "kind": "score-probable"
+        },
+        "candidate": "E",
+        "top3": [
+          {
+            "chord": "E",
+            "score": 0.18,
+            "confidence": 0.594
+          },
+          {
+            "chord": "C#m",
+            "score": 0.109,
+            "confidence": 0.358
+          },
+          {
+            "chord": "B",
+            "score": 0.015,
+            "confidence": 0.048
+          }
+        ],
+        "estimatedTimelineIndex": 6,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.15,
+        "localPlausibility": 0.562
+      },
+      {
+        "time": "00:229.606",
+        "sec": 229.606,
+        "groundTruth": {
+          "timelineIndex": 63,
+          "chord": "E",
+          "kind": "score-probable"
+        },
+        "candidate": "E",
+        "top3": [
+          {
+            "chord": "E",
+            "score": 0.201,
+            "confidence": 0.568
+          },
+          {
+            "chord": "B",
+            "score": 0.11,
+            "confidence": 0.312
+          },
+          {
+            "chord": "C#m",
+            "score": 0.042,
+            "confidence": 0.12
+          }
+        ],
+        "estimatedTimelineIndex": 3,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.189,
+        "localPlausibility": 0.539
+      },
+      {
+        "time": "00:229.790",
+        "sec": 229.79,
+        "groundTruth": {
+          "timelineIndex": 63,
+          "chord": "E",
+          "kind": "score-probable"
+        },
+        "candidate": "unknown",
+        "top3": [
+          {
+            "chord": "E",
+            "score": 0.18,
+            "confidence": 0.522
+          },
+          {
+            "chord": "C#m",
+            "score": 0.164,
+            "confidence": 0.478
+          },
+          {
+            "chord": "A",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 3,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.21,
+        "localPlausibility": 0.5
+      },
+      {
+        "time": "00:229.974",
+        "sec": 229.974,
+        "groundTruth": {
+          "timelineIndex": 63,
+          "chord": "E",
+          "kind": "score-probable"
+        },
+        "candidate": "E",
+        "top3": [
+          {
+            "chord": "E",
+            "score": 0.147,
+            "confidence": 0.583
+          },
+          {
+            "chord": "C#m",
+            "score": 0.105,
+            "confidence": 0.417
+          },
+          {
+            "chord": "A",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 4,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.155,
+        "localPlausibility": 0.546
+      },
+      {
+        "time": "00:230.158",
+        "sec": 230.158,
+        "groundTruth": {
+          "timelineIndex": 63,
+          "chord": "E",
+          "kind": "score-probable"
+        },
+        "candidate": "unknown",
+        "top3": [
+          {
+            "chord": "E",
+            "score": 0.168,
+            "confidence": 0.537
+          },
+          {
+            "chord": "C#m",
+            "score": 0.145,
+            "confidence": 0.463
+          },
+          {
+            "chord": "A",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 9,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.168,
+        "localPlausibility": 0.5
+      },
+      {
+        "time": "00:230.341",
+        "sec": 230.341,
+        "groundTruth": {
+          "timelineIndex": 63,
+          "chord": "E",
+          "kind": "score-probable"
+        },
+        "candidate": "E",
+        "top3": [
+          {
+            "chord": "E",
+            "score": 0.174,
+            "confidence": 0.594
+          },
+          {
+            "chord": "C#m",
+            "score": 0.119,
+            "confidence": 0.406
+          },
+          {
+            "chord": "A",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 9,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.148,
+        "localPlausibility": 0.55
+      },
+      {
+        "time": "00:230.710",
+        "sec": 230.71,
+        "groundTruth": {
+          "timelineIndex": 63,
+          "chord": "E",
+          "kind": "score-probable"
+        },
+        "candidate": "unknown",
+        "top3": [
+          {
+            "chord": "E",
+            "score": 0.055,
+            "confidence": 0.703
+          },
+          {
+            "chord": "C#m",
+            "score": 0.012,
+            "confidence": 0.156
+          },
+          {
+            "chord": "A",
+            "score": 0.011,
+            "confidence": 0.141
+          }
+        ],
+        "estimatedTimelineIndex": 9,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.212,
+        "localPlausibility": 0.5
+      },
+      {
+        "time": "00:230.894",
+        "sec": 230.894,
+        "groundTruth": {
+          "timelineIndex": 63,
+          "chord": "E",
+          "kind": "score-probable"
+        },
+        "candidate": "E",
+        "top3": [
+          {
+            "chord": "E",
+            "score": 0.173,
+            "confidence": 0.619
+          },
+          {
+            "chord": "C#m",
+            "score": 0.102,
+            "confidence": 0.366
+          },
+          {
+            "chord": "B",
+            "score": 0.004,
+            "confidence": 0.015
+          }
+        ],
+        "estimatedTimelineIndex": 9,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.137,
+        "localPlausibility": 0.48
+      },
+      {
+        "time": "00:231.262",
+        "sec": 231.262,
+        "groundTruth": {
+          "timelineIndex": 63,
+          "chord": "E",
+          "kind": "score-probable"
+        },
+        "candidate": "E",
+        "top3": [
+          {
+            "chord": "E",
+            "score": 0.198,
+            "confidence": 0.549
+          },
+          {
+            "chord": "C#m",
+            "score": 0.096,
+            "confidence": 0.267
+          },
+          {
+            "chord": "B",
+            "score": 0.048,
+            "confidence": 0.133
+          }
+        ],
+        "estimatedTimelineIndex": 6,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.203,
+        "localPlausibility": 0.465
+      },
+      {
+        "time": "00:231.837",
+        "sec": 231.837,
+        "groundTruth": {
+          "timelineIndex": 63,
+          "chord": "E",
+          "kind": "score-probable"
+        },
+        "candidate": "unknown",
+        "top3": [
+          {
+            "chord": "E",
+            "score": 0.175,
+            "confidence": 0.527
+          },
+          {
+            "chord": "C#m",
+            "score": 0.158,
+            "confidence": 0.473
+          },
+          {
+            "chord": "A",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 6,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.234,
+        "localPlausibility": 0.5
+      },
+      {
+        "time": "00:232.021",
+        "sec": 232.021,
+        "groundTruth": {
+          "timelineIndex": 63,
+          "chord": "E",
+          "kind": "score-probable"
+        },
+        "candidate": "E",
+        "top3": [
+          {
+            "chord": "E",
+            "score": 0.161,
+            "confidence": 0.561
+          },
+          {
+            "chord": "C#m",
+            "score": 0.126,
+            "confidence": 0.439
+          },
+          {
+            "chord": "A",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 9,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.183,
+        "localPlausibility": 0.452
+      },
+      {
+        "time": "00:232.572",
+        "sec": 232.572,
+        "groundTruth": null,
+        "candidate": "A",
+        "top3": [
+          {
+            "chord": "A",
+            "score": 0.103,
+            "confidence": 0.521
+          },
+          {
+            "chord": "E",
+            "score": 0.055,
+            "confidence": 0.276
+          },
+          {
+            "chord": "C#m",
+            "score": 0.04,
+            "confidence": 0.203
+          }
+        ],
+        "estimatedTimelineIndex": 8,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.156,
+        "localPlausibility": 0.417
+      },
+      {
+        "time": "00:232.757",
+        "sec": 232.757,
+        "groundTruth": null,
+        "candidate": "unknown",
+        "top3": [
+          {
+            "chord": "A",
+            "score": 0.096,
+            "confidence": 0.541
+          },
+          {
+            "chord": "E",
+            "score": 0.051,
+            "confidence": 0.284
+          },
+          {
+            "chord": "C#m",
+            "score": 0.031,
+            "confidence": 0.175
+          }
+        ],
+        "estimatedTimelineIndex": 8,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.163,
+        "localPlausibility": 0.5
+      },
+      {
+        "time": "00:233.493",
+        "sec": 233.493,
+        "groundTruth": {
+          "timelineIndex": 69,
+          "chord": "C#m",
+          "kind": "score-probable"
+        },
+        "candidate": "C#m",
+        "top3": [
+          {
+            "chord": "C#m",
+            "score": 0.265,
+            "confidence": 0.508
+          },
+          {
+            "chord": "E",
+            "score": 0.182,
+            "confidence": 0.348
+          },
+          {
+            "chord": "A",
+            "score": 0.075,
+            "confidence": 0.143
+          }
+        ],
+        "estimatedTimelineIndex": 11,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "lost",
+        "trackingRegime": "relocalization",
+        "confidence": 0.148,
+        "localPlausibility": 0.544
+      },
+      {
+        "time": "00:234.804",
+        "sec": 234.804,
+        "groundTruth": {
+          "timelineIndex": 69,
+          "chord": "C#m",
+          "kind": "score-probable"
+        },
+        "candidate": "unknown",
+        "top3": [
+          {
+            "chord": "C#m",
+            "score": 0.229,
+            "confidence": 0.522
+          },
+          {
+            "chord": "E",
+            "score": 0.21,
+            "confidence": 0.478
+          },
+          {
+            "chord": "A",
+            "score": 0,
+            "confidence": 0
+          }
+        ],
+        "estimatedTimelineIndex": 11,
+        "committedTimelineIndex": 0,
+        "displayedTimelineIndex": 14,
+        "mode": "uncertain",
+        "trackingRegime": "relocalization",
+        "confidence": 0.383,
+        "localPlausibility": 0.5
+      }
+    ]
+  }
+}
