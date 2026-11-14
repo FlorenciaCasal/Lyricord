@@ -204,7 +204,7 @@ export function SongDetailScreen({ navigation, route }: Props) {
 
   const songDisplayTitle = song ? getSongDisplayTitle(song) : "";
   const songDisplayMeta = song ? getSongDisplayMeta(song) : "";
-  const hasSongDisplayMeta = songDisplayMeta !== "Sin datos adicionales";
+  const hasSongDisplayMeta = songDisplayMeta.length > 0;
   const sourceContent = song?.content ?? "";
   const sourceKey = song?.key ?? "";
   const content = useMemo(() => (sourceContent ? transposeSongText(sourceContent, semitones) : ""), [sourceContent, semitones]);

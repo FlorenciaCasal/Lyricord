@@ -23,7 +23,7 @@ test("biblioteca muestra el titulo base para canciones principales", () => {
   };
 
   assert.equal(getSongDisplayTitle(song), "Cae el sol");
-  assert.equal(getSongDisplayMeta(song), "Sin datos adicionales");
+  assert.equal(getSongDisplayMeta(song), "");
 });
 
 test("versiones antiguas llamadas Nueva version usan fallback legible", () => {

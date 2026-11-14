@@ -22,5 +22,5 @@ export function getSongDisplayMeta(song: DisplayableSong) {
     ? [`Versión de ${song.title}`, song.artist, song.key]
     : [song.artist, song.key];
 
-  return parts.filter(Boolean).join(" · ") || "Sin datos adicionales";
+  return parts.filter(Boolean).join(" · ");
 }

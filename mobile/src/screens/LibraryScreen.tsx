@@ -7,6 +7,7 @@ import { DevelopmentSongSyncControl } from "../components/DevelopmentSongSyncCon
 import { SongSyncConflictNotices } from "../components/SongSyncConflictNotices";
 import { SongSyncStatusIndicator } from "../components/SongSyncStatusIndicator";
 import { useAutomaticSongSync, useLocalSongOwnership, useSongRepository } from "../data/songs";
+import { applyAnonymousSongLinkDecision } from "../data/songs/local/anonymousSongLinking";
 import { colors } from "../theme";
 import type { RootStackParamList, SongListItem } from "../types";
 import { shouldShowGuestAccountAccess } from "../utils/accountAccess";
@@ -31,9 +32,12 @@ export function LibraryScreen({ navigation }: Props) {
   const [refreshing, setRefreshing] = useState(false);
   const [syncPreviewRefreshKey, setSyncPreviewRefreshKey] = useState(0);
   const [error, setError] = useState<string | null>(null);
-  const linkPromptOwnerRef = useRef<string | null>(null);
-  const linkPromptCheckingRef = useRef(false);
+  const [anonymousSongCount, setAnonymousSongCount] = useState(0);
+  const [linkingAnonymousSongs, setLinkingAnonymousSongs] = useState(false);
+  const activeOwnerIdRef = useRef<string | null>(user?.id ?? null);
+  const linkConfirmationOpenRef = useRef(false);
   const previousAutomaticSyncStatusRef = useRef(automaticSyncState.status);
+  activeOwnerIdRef.current = user?.id ?? null;
 
   const load = useCallback(async (refresh = false, silent = false) => {
     if (!silent) {
@@ -62,51 +66,74 @@ export function LibraryScreen({ navigation }: Props) {
   }, [automaticSyncState.status, load]);
 
   useEffect(() => {
-    linkPromptOwnerRef.current = null;
-    linkPromptCheckingRef.current = false;
+    activeOwnerIdRef.current = user?.id ?? null;
+    linkConfirmationOpenRef.current = false;
+    setAnonymousSongCount(0);
+    setLinkingAnonymousSongs(false);
   }, [user?.id]);
 
-  useFocusEffect(useCallback(() => {
-    if (!user || linkPromptOwnerRef.current === user.id || linkPromptCheckingRef.current) return undefined;
+  const refreshAnonymousSongCount = useCallback(async () => {
+    const ownerId = user?.id;
+    if (!ownerId) {
+      setAnonymousSongCount(0);
+      return;
+    }
 
-    let active = true;
-    linkPromptCheckingRef.current = true;
-    localSongOwnership.getAnonymousSongSummary()
-      .then((summary) => {
-        if (!active || summary.songCount === 0) return;
-        linkPromptOwnerRef.current = user.id;
-        const repertoryLabel = summary.groupCount === 1 ? "1 canción" : `${summary.groupCount} canciones`;
-        Alert.alert(
-          "Guardá tu repertorio en tu cuenta",
-          `Encontramos ${repertoryLabel} en este dispositivo. Podés vincularlas a tu cuenta para dejarlas listas para el respaldo.`,
-          [
-            { text: "Ahora no", style: "cancel" },
-            {
-              text: "Vincular",
-              onPress: () => {
-                void localSongOwnership.linkAnonymousSongsToOwner(user.id)
-                  .then(async () => {
-                    notifyOwnershipLinked();
-                    await load();
-                  })
-                  .catch(() => {
-                    linkPromptOwnerRef.current = null;
-                    Alert.alert("No pudimos vincular las canciones", "Tus canciones siguen guardadas en este dispositivo. Probá de nuevo más tarde.");
-                  });
-              },
-            },
-          ],
-        );
-      })
-      .catch(() => undefined)
-      .finally(() => {
-        linkPromptCheckingRef.current = false;
-      });
+    const summary = await localSongOwnership.getAnonymousSongSummary();
+    if (activeOwnerIdRef.current === ownerId) {
+      setAnonymousSongCount(summary.songCount);
+    }
+  }, [localSongOwnership, user?.id]);
 
-    return () => {
-      active = false;
+  const confirmAnonymousSongLinking = useCallback(() => {
+    const ownerId = user?.id;
+    if (!ownerId || anonymousSongCount === 0 || linkingAnonymousSongs || linkConfirmationOpenRef.current) return;
+
+    linkConfirmationOpenRef.current = true;
+    const linkScope = anonymousSongCount === 1
+      ? "Se vinculará la canción guardada en este dispositivo."
+      : `Se vincularán todas las canciones guardadas en este dispositivo (${anonymousSongCount} en total).`;
+    const closeConfirmation = () => {
+      linkConfirmationOpenRef.current = false;
     };
-  }, [load, localSongOwnership, notifyOwnershipLinked, user]));
+    Alert.alert(
+      "Guardar en mi cuenta",
+      `${linkScope} Después Musum intentará respaldarlas en tu cuenta.`,
+      [
+        { text: "Ahora no", style: "cancel", onPress: closeConfirmation },
+        {
+          text: "Guardar en mi cuenta",
+          onPress: () => {
+            closeConfirmation();
+            setLinkingAnonymousSongs(true);
+            void applyAnonymousSongLinkDecision({
+              decision: "confirm",
+              ownerUserId: ownerId,
+              ownership: localSongOwnership,
+              isOwnerActive: (candidate) => activeOwnerIdRef.current === candidate,
+              notifyOwnershipLinked,
+            })
+              .then(async () => {
+                if (activeOwnerIdRef.current !== ownerId) return;
+                await Promise.all([load(), refreshAnonymousSongCount()]);
+              })
+              .catch(() => {
+                if (activeOwnerIdRef.current === ownerId) {
+                  Alert.alert(
+                    "No pudimos vincular las canciones",
+                    "Tus canciones siguen guardadas en este dispositivo. Probá de nuevo más tarde.",
+                  );
+                }
+              })
+              .finally(() => {
+                if (activeOwnerIdRef.current === ownerId) setLinkingAnonymousSongs(false);
+              });
+          },
+        },
+      ],
+      { cancelable: true, onDismiss: closeConfirmation },
+    );
+  }, [anonymousSongCount, linkingAnonymousSongs, load, localSongOwnership, notifyOwnershipLinked, refreshAnonymousSongCount, user?.id]);
 
   const filteredSongs = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
@@ -128,7 +155,8 @@ export function LibraryScreen({ navigation }: Props) {
   useFocusEffect(useCallback(() => {
     if (user) notifyLibraryFocused();
     void load();
-  }, [load, notifyLibraryFocused, user]));
+    void refreshAnonymousSongCount().catch(() => undefined);
+  }, [load, notifyLibraryFocused, refreshAnonymousSongCount, user]));
   useLayoutEffect(() => {
     navigation.setOptions({
       headerLeft: user
@@ -162,7 +190,7 @@ export function LibraryScreen({ navigation }: Props) {
       ListHeaderComponent={(
         <View style={styles.heading}>
           <View style={styles.headingTop}>
-            <View>
+            <View style={styles.headingCopy}>
               <Text style={styles.eyebrow}>TU BIBLIOTECA</Text>
               <Text style={styles.title}>Letras y acordes</Text>
             </View>
@@ -201,6 +229,36 @@ export function LibraryScreen({ navigation }: Props) {
             </>
           ) : null}
           {error ? <Text style={styles.error}>{error}</Text> : null}
+          {user && anonymousSongCount > 0 ? (
+            <View style={styles.anonymousSongsNotice}>
+              <View style={styles.anonymousSongsCopy}>
+                <Text style={styles.anonymousSongsTitle}>
+                  {anonymousSongCount === 1
+                    ? "1 canción está sólo en este dispositivo"
+                    : `${anonymousSongCount} canciones están sólo en este dispositivo`}
+                </Text>
+                <Text style={styles.anonymousSongsText}>
+                  Guardalas en tu cuenta para que Musum pueda respaldarlas.
+                </Text>
+              </View>
+              <Pressable
+                accessibilityRole="button"
+                disabled={linkingAnonymousSongs}
+                style={({ pressed }) => [
+                  styles.anonymousSongsButton,
+                  pressed && !linkingAnonymousSongs && styles.anonymousSongsButtonPressed,
+                  linkingAnonymousSongs && styles.anonymousSongsButtonDisabled,
+                ]}
+                onPress={confirmAnonymousSongLinking}
+              >
+                {linkingAnonymousSongs ? (
+                  <ActivityIndicator color={colors.background} size="small" />
+                ) : (
+                  <Text style={styles.anonymousSongsButtonText}>Guardar en mi cuenta</Text>
+                )}
+              </Pressable>
+            </View>
+          ) : null}
           {user ? <SongSyncStatusIndicator /> : null}
           {__DEV__ && user ? (
             <Pressable
@@ -249,21 +307,24 @@ export function LibraryScreen({ navigation }: Props) {
           </View>
         )
       )}
-      renderItem={({ item }) => (
-        <Pressable
-          style={({ pressed }) => [styles.song, pressed && styles.songPressed]}
-          onPress={() => navigation.navigate("SongDetail", { songId: item.id, title: getSongDisplayTitle(item) })}
-        >
-          <View style={styles.songIcon}>
-            <Text style={styles.songIconText}>♫</Text>
-          </View>
-          <View style={styles.songTextBlock}>
-            <Text style={styles.songTitle} numberOfLines={1}>{getSongDisplayTitle(item)}</Text>
-            <Text style={styles.songMeta} numberOfLines={1}>{getSongDisplayMeta(item)}</Text>
-          </View>
-          <Text style={styles.open}>›</Text>
-        </Pressable>
-      )}
+      renderItem={({ item }) => {
+        const displayMeta = getSongDisplayMeta(item);
+        return (
+          <Pressable
+            style={({ pressed }) => [styles.song, pressed && styles.songPressed]}
+            onPress={() => navigation.navigate("SongDetail", { songId: item.id, title: getSongDisplayTitle(item) })}
+          >
+            <View style={styles.songIcon}>
+              <Text style={styles.songIconText}>♫</Text>
+            </View>
+            <View style={styles.songTextBlock}>
+              <Text style={styles.songTitle} numberOfLines={1}>{getSongDisplayTitle(item)}</Text>
+              {displayMeta ? <Text style={styles.songMeta} numberOfLines={1}>{displayMeta}</Text> : null}
+            </View>
+            <Text style={styles.open}>›</Text>
+          </Pressable>
+        );
+      }}
     />
   );
 }
@@ -272,11 +333,12 @@ const styles = StyleSheet.create({
   center: { flex: 1, alignItems: "center", justifyContent: "center", backgroundColor: colors.background },
   list: { padding: 18, paddingBottom: 40, gap: 11 },
   heading: { marginBottom: 12, gap: 12 },
-  headingTop: { flexDirection: "row", alignItems: "flex-end", justifyContent: "space-between", gap: 14 },
+  headingTop: { flexDirection: "row", alignItems: "flex-end", justifyContent: "space-between", gap: 12 },
+  headingCopy: { flex: 1, minWidth: 0 },
   eyebrow: { color: colors.greenPressed, fontWeight: "900", letterSpacing: 3.2, fontSize: 12 },
   title: { color: colors.text, fontSize: 34, lineHeight: 38, fontWeight: "900", letterSpacing: -0.9 },
   accountButton: {
-    minHeight: 40,
+    minHeight: 44,
     borderRadius: 20,
     borderWidth: 1,
     borderColor: colors.border,
@@ -287,6 +349,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     gap: 7,
     marginBottom: 1,
+    flexShrink: 0,
   },
   accountButtonPressed: { borderColor: colors.green, backgroundColor: "rgba(166, 230, 62, 0.08)" },
   accountButtonText: { color: colors.green, fontSize: 13, fontWeight: "900" },
@@ -301,6 +364,28 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
   error: { color: colors.danger, marginTop: 8 },
+  anonymousSongsNotice: {
+    borderWidth: 1,
+    borderColor: "rgba(166, 230, 62, 0.24)",
+    borderRadius: 18,
+    backgroundColor: "rgba(166, 230, 62, 0.06)",
+    padding: 14,
+    gap: 12,
+  },
+  anonymousSongsCopy: { gap: 4 },
+  anonymousSongsTitle: { color: colors.text, fontSize: 14, lineHeight: 19, fontWeight: "900" },
+  anonymousSongsText: { color: colors.muted, fontSize: 13, lineHeight: 18 },
+  anonymousSongsButton: {
+    minHeight: 44,
+    borderRadius: 14,
+    backgroundColor: colors.green,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingHorizontal: 14,
+  },
+  anonymousSongsButtonPressed: { backgroundColor: colors.greenPressed },
+  anonymousSongsButtonDisabled: { opacity: 0.65 },
+  anonymousSongsButtonText: { color: colors.background, fontSize: 14, fontWeight: "900" },
   logout: { color: colors.green, fontWeight: "700", fontSize: 16 },
   premiumLink: { color: colors.green, fontWeight: "800", fontSize: 15 },
   newButton: {

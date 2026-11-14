@@ -315,6 +315,7 @@ export function SongPlayModeScreen({ navigation, route }: Props) {
 
   if (error && !song) return <View style={styles.center}><Text style={styles.error}>{error}</Text></View>;
   if (loading || !song) return <View style={styles.center}><ActivityIndicator color={colors.green} size="large" /></View>;
+  const songMeta = [song.artist, song.versionName, song.key].filter(Boolean).join(" · ");
 
   return (
     <View style={styles.root}>
@@ -357,7 +358,7 @@ export function SongPlayModeScreen({ navigation, route }: Props) {
 
       <ScrollView ref={scrollRef} style={styles.songScroll} contentContainerStyle={styles.songContent}>
         <Text style={styles.title}>{song.title}</Text>
-        <Text style={styles.meta}>{[song.artist, song.versionName, song.key].filter(Boolean).join(" · ") || "Sin datos adicionales"}</Text>
+        {songMeta ? <Text style={styles.meta}>{songMeta}</Text> : null}
         <ScrollView horizontal style={styles.songBox} contentContainerStyle={styles.songBoxContent} showsHorizontalScrollIndicator>
           <View>
             {lines.map((line, lineIndex) => (
