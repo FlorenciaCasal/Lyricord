@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import * as ImagePicker from "expo-image-picker";
 import {
   ActivityIndicator,
@@ -23,6 +23,7 @@ import { useSongRepository } from "../data/songs";
 import { colors } from "../theme";
 import type { RootStackParamList, SongDetail, SongFormValues } from "../types";
 import { canUseCloudOcr, CLOUD_OCR_AUTH_REQUIRED_MESSAGE } from "../utils/authGates";
+import { appendExtractedSongContent } from "../utils/ocrContent";
 import {
   createVersionFormValues,
   toVersionCreateValues,
@@ -130,6 +131,7 @@ export function SongFormScreen({ navigation, route }: Props) {
   const [error, setError] = useState<string | null>(null);
   const [keyboardVisible, setKeyboardVisible] = useState(false);
   const [versionSemitones, setVersionSemitones] = useState(0);
+  const ocrInFlightRef = useRef(false);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -251,7 +253,10 @@ export function SongFormScreen({ navigation, route }: Props) {
         fileName: asset.fileName,
         mimeType: asset.mimeType,
       });
-      setField("content", text);
+      setValues((current) => ({
+        ...current,
+        content: appendExtractedSongContent(current.content, text),
+      }));
     } catch (reason) {
       setError(reason instanceof Error ? reason.message : "No pudimos extraer texto de la imagen.");
     } finally {
@@ -260,6 +265,7 @@ export function SongFormScreen({ navigation, route }: Props) {
   }
 
   async function importImage() {
+    if (ocrInFlightRef.current) return;
     if (!canUseCloudOcr(user)) {
       Alert.alert("Cuenta necesaria para OCR", CLOUD_OCR_AUTH_REQUIRED_MESSAGE, [
         {
@@ -275,19 +281,24 @@ export function SongFormScreen({ navigation, route }: Props) {
       return;
     }
 
-    const hasPermission = await resolvePermission(
-      "photos",
-      () => ImagePicker.getMediaLibraryPermissionsAsync(false),
-      () => ImagePicker.requestMediaLibraryPermissionsAsync(false),
-    );
-    if (!hasPermission) return;
+    ocrInFlightRef.current = true;
+    try {
+      const hasPermission = await resolvePermission(
+        "photos",
+        () => ImagePicker.getMediaLibraryPermissionsAsync(false),
+        () => ImagePicker.requestMediaLibraryPermissionsAsync(false),
+      );
+      if (!hasPermission) return;
 
-    const result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ["images"],
-      quality: 0.9,
-    });
-    if (!result.canceled && result.assets[0]) {
-      await runOcrFromAsset(result.assets[0]);
+      const result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ["images"],
+        quality: 0.9,
+      });
+      if (!result.canceled && result.assets[0]) {
+        await runOcrFromAsset(result.assets[0]);
+      }
+    } finally {
+      ocrInFlightRef.current = false;
     }
   }
 
@@ -400,15 +411,20 @@ export function SongFormScreen({ navigation, route }: Props) {
         />
         {!isCreateVersion ? (
           <Text style={styles.contentHelp}>
-            ¿Algún acorde quedó mal? Podés editarlo y acomodarlo cuando quieras.
+            Podés corregir la letra y los acordes cuando quieras
           </Text>
         ) : null}
 
         {!isCreateVersion ? <View style={styles.ocrRow}>
           <Pressable style={styles.secondaryButton} onPress={() => void importImage()} disabled={ocrLoading}>
-            <Text style={styles.secondaryButtonText}>Extraer desde imagen</Text>
+            <Text style={styles.secondaryButtonText}>Importar desde imagen</Text>
           </Pressable>
         </View> : null}
+        {!isCreateVersion ? (
+          <Text style={styles.contentHelp}>
+            Importá una imagen por vez. Si agregás otra, su texto se suma debajo del anterior
+          </Text>
+        ) : null}
         {!isCreateVersion && ocrLoading ? <Text style={styles.helper}>Extrayendo texto...</Text> : null}
 
         {!isCreateVersion ? <Pressable
