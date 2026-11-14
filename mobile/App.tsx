@@ -110,7 +110,7 @@ function RootNavigator() {
 }
 
 function AppWithLocalSongs() {
-  const { user } = useAuth();
+  const { premium, user } = useAuth();
   const [localSongRepository, setLocalSongRepository] = useState<LocalSongRepository | null>(null);
   const [manualSyncController, setManualSyncController] = useState<ManualSongSyncController | null>(null);
   const [automaticSyncCoordinator, setAutomaticSyncCoordinator] = useState<AutomaticSongSyncCoordinator | null>(null);
@@ -147,11 +147,26 @@ function AppWithLocalSongs() {
 
   const songRepository = useMemo(
     () => {
-      const repository = localSongRepository?.forOwner(user?.id ?? null);
+      const maxActiveRecords = premium?.entitlements.premium
+        ? null
+        : (premium?.limits.maxSongs ?? 10);
+      const knownRemoteActiveRecords = user ? (premium?.usage?.activeSongs ?? null) : 0;
+      const repository = localSongRepository?.forOwner(
+        user?.id ?? null,
+        maxActiveRecords,
+        knownRemoteActiveRecords,
+      );
       if (!repository || !automaticSyncCoordinator) return null;
       return createAutoSyncSongRepository(repository, () => automaticSyncCoordinator.requestSync("local-change"));
     },
-    [automaticSyncCoordinator, localSongRepository, user?.id],
+    [
+      automaticSyncCoordinator,
+      localSongRepository,
+      premium?.entitlements.premium,
+      premium?.limits.maxSongs,
+      premium?.usage?.activeSongs,
+      user?.id,
+    ],
   );
 
   if (repositoryError) {

@@ -1,6 +1,7 @@
 import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { getSongLimitForUser } from "@/lib/premium/entitlements";
+import { createSongWithinLimit } from "@/lib/premium/song-quota";
 import { buildSongVersionDraft, type SongVersionPayload } from "@/lib/song-version-utils";
 
 export type SongListItem = Prisma.SongGetPayload<{
@@ -145,21 +146,10 @@ function parseSongInput(formData: FormData) {
   });
 }
 
-async function hasReachedSongLimit(userId: string) {
-  const maxSongs = await getSongLimitForUser(userId);
-  if (maxSongs === null) return false;
-
-  const songCount = await prisma.song.count({
-    where: { userId, deletedAt: null },
-  });
-
-  return songCount >= maxSongs;
-}
-
 async function getSongLimitMessage(userId: string) {
   const maxSongs = await getSongLimitForUser(userId);
-  if (maxSongs === null) return "Alcanzaste el limite de canciones.";
-  return `Alcanzaste el limite inicial de ${maxSongs} canciones para esta beta.`;
+  if (maxSongs === null) return "Alcanzaste el límite de canciones.";
+  return `Tu plan Free permite hasta ${maxSongs} canciones y versiones. Podés editar o eliminar las que ya tenés.`;
 }
 
 export async function searchSongs(userId: string, query?: string) {
@@ -243,30 +233,26 @@ export async function createSong(userId: string, formData: FormData) {
   if (Object.keys(errors).length > 0) {
     return {
       success: false as const,
+      reason: "validation-error" as const,
       errors,
     };
   }
 
   try {
-    if (await hasReachedSongLimit(userId)) {
+    const result = await createSongWithinLimit({ userId, data: input });
+    if (result.status === "limit-reached") {
       return {
         success: false as const,
+        reason: "limit-reached" as const,
         errors: {
           form: await getSongLimitMessage(userId),
         },
       };
     }
 
-    const song = await prisma.song.create({
-      data: {
-        ...input,
-        userId,
-      },
-    });
-
     return {
       success: true as const,
-      song,
+      song: result.song,
     };
   } catch {
     return {
@@ -284,34 +270,31 @@ export async function createSongFromPayload(userId: string, payload: SongInputPa
   if (Object.keys(errors).length > 0) {
     return {
       success: false as const,
+      reason: "validation-error" as const,
       errors,
     };
   }
 
   try {
-    if (await hasReachedSongLimit(userId)) {
+    const result = await createSongWithinLimit({ userId, data: input });
+    if (result.status === "limit-reached") {
       return {
         success: false as const,
+        reason: "limit-reached" as const,
         errors: {
           form: await getSongLimitMessage(userId),
         },
       };
     }
 
-    const song = await prisma.song.create({
-      data: {
-        ...input,
-        userId,
-      },
-    });
-
     return {
       success: true as const,
-      song,
+      song: result.song,
     };
   } catch {
     return {
       success: false as const,
+      reason: "internal-error" as const,
       errors: {
         form: "No pudimos guardar la cancion. Intenta de nuevo.",
       },
@@ -368,20 +351,18 @@ export async function createSongVersion(
     };
   }
 
-  if (await hasReachedSongLimit(userId)) {
+  const { userId: draftUserId, ...versionData } = draft;
+  const result = await createSongWithinLimit({ userId: draftUserId, data: versionData });
+  if (result.status === "limit-reached") {
     return {
       success: false,
       reason: "limit-reached",
     };
   }
 
-  const version = await prisma.song.create({
-    data: draft,
-  });
-
   return {
     success: true,
-    version,
+    version: result.song,
   };
 }
 

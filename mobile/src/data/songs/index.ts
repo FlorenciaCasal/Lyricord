@@ -5,6 +5,7 @@ export { SongRepositoryProvider, useSongRepository } from "./SongRepositoryProvi
 export { createAutoSyncSongRepository } from "./AutoSyncSongRepository";
 export {
   createLocalSongRepository,
+  LocalSongCapacityUnknownError,
   LocalSongNotFoundError,
   LocalSongRepository,
   type AnonymousSongSummary,

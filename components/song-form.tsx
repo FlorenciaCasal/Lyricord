@@ -76,6 +76,7 @@ export function SongForm({
 
     const hadExistingContent = content.trim().length > 0;
     const ocrFormData = new FormData(formRef.current);
+    ocrFormData.set("ocrOperationId", crypto.randomUUID());
 
     startOcrTransition(async () => {
       const result = await extractSongTextAction(ocrFormData);

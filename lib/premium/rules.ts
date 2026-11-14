@@ -6,23 +6,30 @@ export type PremiumEntitlements = {
 
 export type PremiumLimits = {
   maxSongs: number | null;
+  /** Legacy field kept for installed clients. The backend no longer applies a daily OCR quota. */
   ocrDailyLimit: number | null;
+  ocrTotalLimit: number | null;
 };
 
 export type PremiumStatus = {
   plan: MusumPlan;
   entitlements: PremiumEntitlements;
   limits: PremiumLimits;
+  usage?: {
+    activeSongs: number;
+  };
 };
 
 export const FREE_LIMITS: PremiumLimits = {
-  maxSongs: 20,
+  maxSongs: 10,
   ocrDailyLimit: 5,
+  ocrTotalLimit: 5,
 };
 
 export const PREMIUM_LIMITS: PremiumLimits = {
   maxSongs: null,
   ocrDailyLimit: null,
+  ocrTotalLimit: null,
 };
 
 export function normalizePlan(plan: string | null | undefined): MusumPlan {

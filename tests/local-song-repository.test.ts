@@ -2,6 +2,8 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import {
   createLocalSongRepository,
+  LocalSongCapacityUnknownError,
+  LocalSongLimitReachedError,
   LocalSongNotFoundError,
 } from "../mobile/src/data/songs/local/LocalSongRepository.ts";
 import {
@@ -216,6 +218,25 @@ class InMemoryLocalSongDatabase implements LocalSongDatabase {
       return { count } as T;
     }
 
+    if (/SELECT COUNT\(\*\) AS count[\s\S]*owner_user_id = \?[\s\S]*remote_id IS (NOT )?NULL[\s\S]*deleted_at IS NULL/i.test(source)) {
+      const ownerUserId = params[0] as string;
+      const wantsRemote = /remote_id IS NOT NULL/i.test(source);
+      const count = Array.from(this.rows.values()).filter((row) =>
+        row.owner_user_id === ownerUserId &&
+        (wantsRemote ? row.remote_id !== null : row.remote_id === null) &&
+        !row.deleted_at
+      ).length;
+      return { count } as T;
+    }
+
+    if (/SELECT COUNT\(\*\) AS count[\s\S]*owner_user_id IS \?[\s\S]*deleted_at IS NULL/i.test(source)) {
+      const ownerUserId = params[0] as string | null;
+      const count = Array.from(this.rows.values()).filter((row) =>
+        row.owner_user_id === ownerUserId && !row.deleted_at
+      ).length;
+      return { count } as T;
+    }
+
     throw new Error(`Unsupported getFirstAsync SQL in test fake: ${source}`);
   }
 
@@ -347,6 +368,73 @@ test("LocalSongRepository creates, lists, gets and updates songs", async () => {
   assert.equal(updated.notes, null);
   assert.equal((await repository.getSong(created.id)).title, "Cae el sol editada");
   assert.equal((await repository.getSyncRecord(created.id)).syncStatus, "local_only");
+});
+
+test("LocalSongRepository limita a diez registros y cuenta cada version", async () => {
+  const database = new InMemoryLocalSongDatabase();
+  const base = await createLocalSongRepository(database);
+  const repository = base.forOwner(null, 10);
+  const principal = await repository.createSong(baseSong);
+  let lastVersionId = "";
+
+  for (let index = 1; index < 10; index += 1) {
+    lastVersionId = (await repository.createVersion(principal.id, {
+      versionName: `Versión ${index}`,
+      key: "",
+      content: baseSong.content,
+    })).id;
+  }
+
+  await assert.rejects(
+    repository.createVersion(principal.id, { versionName: "Versión 10", key: "", content: baseSong.content }),
+    LocalSongLimitReachedError,
+  );
+  const edited = await repository.updateSong(principal.id, { ...baseSong, title: "Editada en el límite" });
+  assert.equal(edited.title, "Editada en el límite");
+  await repository.deleteSong(lastVersionId);
+  assert.equal((await repository.createVersion(principal.id, {
+    versionName: "Lugar liberado",
+    key: "",
+    content: baseSong.content,
+  })).versionName, "Lugar liberado");
+});
+
+test("LocalSongRepository conserva historicas sobre el limite y Premium sigue ilimitado", async () => {
+  const database = new InMemoryLocalSongDatabase();
+  const base = await createLocalSongRepository(database);
+  const premium = base.forOwner("premium_owner", null);
+  for (let index = 0; index < 12; index += 1) {
+    await premium.createSong({ ...baseSong, title: `Premium ${index}` });
+  }
+
+  const downgraded = base.forOwner("premium_owner", 10, 12);
+  assert.equal((await downgraded.listSongs()).length, 12);
+  await assert.rejects(downgraded.createSong({ ...baseSong, title: "Nueva" }), LocalSongLimitReachedError);
+  await downgraded.updateSong((await downgraded.listSongs())[0].id, { ...baseSong, title: "Todavía editable" });
+});
+
+test("LocalSongRepository considera el total remoto conocido aunque SQLite todavia no lo haya descargado", async () => {
+  const database = new InMemoryLocalSongDatabase();
+  const base = await createLocalSongRepository(database);
+  const repository = base.forOwner("owner_remoto", 10, 10);
+
+  await assert.rejects(
+    repository.createSong({ ...baseSong, title: "No debe exceder el remoto" }),
+    LocalSongLimitReachedError,
+  );
+  assert.equal((await repository.listSongs()).length, 0);
+});
+
+test("LocalSongRepository aplica una politica conservadora si desconoce la capacidad remota", async () => {
+  const database = new InMemoryLocalSongDatabase();
+  const base = await createLocalSongRepository(database);
+  const repository = base.forOwner("owner_sin_estado", 10, null);
+
+  await assert.rejects(
+    repository.createSong({ ...baseSong, title: "Requiere capacidad conocida" }),
+    LocalSongCapacityUnknownError,
+  );
+  assert.equal((await repository.listSongs()).length, 0);
 });
 
 test("LocalSongRepository marks remote edits as dirty without changing local-only status", async () => {

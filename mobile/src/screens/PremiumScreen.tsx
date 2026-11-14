@@ -212,7 +212,7 @@ export function PremiumScreen({ navigation }: Props) {
           Biblioteca: {formatMaybeLimit(premium?.limits.maxSongs, "canciones")}
         </Text>
         <Text style={styles.statusText}>
-          OCR diario: {formatMaybeLimit(premium?.limits.ocrDailyLimit, "usos")}
+          OCR: {formatMaybeLimit(premium?.limits.ocrTotalLimit ?? premium?.limits.ocrDailyLimit, "extracciones totales")}
         </Text>
       </View>
 

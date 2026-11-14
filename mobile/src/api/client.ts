@@ -61,7 +61,9 @@ async function responseError(response: Response) {
   return new ApiRequestError(parsed.message, {
     status: response.status,
     code: parsed.code,
-    retryable: response.status === 408 || response.status === 429 || response.status >= 500,
+    retryable: parsed.code !== "LIMIT_REACHED" && (
+      response.status === 408 || response.status === 429 || response.status >= 500
+    ),
   });
 }
 
@@ -273,7 +275,10 @@ export async function extractTextFromImage(image: { uri: string; fileName?: stri
   const response = await authenticatedFetch("/api/v1/mobile/ocr", {
     method: "POST",
     body: formData,
-    headers: { Accept: "application/json" },
+    headers: {
+      Accept: "application/json",
+      "x-musum-operation-id": `ocr_${Date.now().toString(36)}_${Math.random().toString(36).slice(2)}`,
+    },
     fetchImpl: expoFetch,
   });
   return ((await response.json()) as { text: string }).text;

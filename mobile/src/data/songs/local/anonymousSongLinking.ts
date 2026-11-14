@@ -14,12 +14,14 @@ export async function applyAnonymousSongLinkDecision({
   ownership,
   isOwnerActive,
   notifyOwnershipLinked,
+  capacity,
 }: {
   decision: AnonymousSongLinkDecision;
   ownerUserId: string;
   ownership: LocalSongOwnership;
   isOwnerActive: (ownerUserId: string) => boolean;
   notifyOwnershipLinked: () => void;
+  capacity?: { maxSongs: number | null; remoteActive: number };
 }): Promise<AnonymousSongLinkResult> {
   if (decision === "cancel") {
     return { linkedCount: 0, status: "cancelled", syncRequested: false };
@@ -29,7 +31,7 @@ export async function applyAnonymousSongLinkDecision({
     return { linkedCount: 0, status: "stale-session", syncRequested: false };
   }
 
-  const { linkedCount } = await ownership.linkAnonymousSongsToOwner(ownerUserId);
+  const { linkedCount } = await ownership.linkAnonymousSongsToOwner(ownerUserId, capacity);
   const ownerStillActive = isOwnerActive(ownerUserId);
   if (linkedCount > 0 && ownerStillActive) {
     notifyOwnershipLinked();

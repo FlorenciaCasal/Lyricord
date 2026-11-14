@@ -68,6 +68,33 @@ export class LocalSongNotFoundError extends Error {
   }
 }
 
+export class LocalSongLimitReachedError extends Error {
+  readonly limit: number;
+
+  constructor(limit: number) {
+    super(`Tu plan permite hasta ${limit} canciones y versiones. Podés seguir editando o eliminar las que ya tenés.`);
+    this.name = "LocalSongLimitReachedError";
+    this.limit = limit;
+  }
+}
+
+export class AnonymousSongCapacityError extends Error {
+  readonly missingPlaces: number;
+
+  constructor(missingPlaces: number) {
+    super(`Necesitás ${missingPlaces === 1 ? "1 lugar más" : `${missingPlaces} lugares más`} para vincular todo el repertorio.`);
+    this.name = "AnonymousSongCapacityError";
+    this.missingPlaces = missingPlaces;
+  }
+}
+
+export class LocalSongCapacityUnknownError extends Error {
+  constructor() {
+    super("Necesitás conexión para comprobar si hay espacio disponible en tu cuenta. Tus canciones existentes siguen disponibles.");
+    this.name = "LocalSongCapacityUnknownError";
+  }
+}
+
 function optionalText(value: string) {
   const normalized = value.trim();
   return normalized.length > 0 ? normalized : null;
@@ -163,14 +190,27 @@ export async function createLocalSongRepository(database: LocalSongDatabase): Pr
 export class LocalSongRepository implements SongRepository {
   private readonly database: LocalSongDatabase;
   private readonly ownerUserId: string | null | undefined;
+  private readonly maxActiveRecords: number | null;
+  private readonly knownRemoteActiveRecords: number | null;
 
-  constructor(database: LocalSongDatabase, ownerUserId?: string | null) {
+  constructor(
+    database: LocalSongDatabase,
+    ownerUserId?: string | null,
+    maxActiveRecords: number | null = null,
+    knownRemoteActiveRecords: number | null = null,
+  ) {
     this.database = database;
     this.ownerUserId = ownerUserId;
+    this.maxActiveRecords = maxActiveRecords;
+    this.knownRemoteActiveRecords = knownRemoteActiveRecords;
   }
 
-  forOwner(ownerUserId: string | null) {
-    return new LocalSongRepository(this.database, ownerUserId);
+  forOwner(
+    ownerUserId: string | null,
+    maxActiveRecords: number | null = null,
+    knownRemoteActiveRecords: number | null = null,
+  ) {
+    return new LocalSongRepository(this.database, ownerUserId, maxActiveRecords, knownRemoteActiveRecords);
   }
 
   async listSongs() {
@@ -193,8 +233,10 @@ export class LocalSongRepository implements SongRepository {
     const now = new Date().toISOString();
     const id = createLocalSongId();
 
-    await this.database.runAsync(
-      `INSERT INTO local_songs (
+    await runInTransaction(this.database, async (transaction) => {
+      await this.assertCreationCapacity(transaction, this.ownerUserId ?? null);
+      await transaction.runAsync(
+        `INSERT INTO local_songs (
         id,
         remote_id,
         version_group_id,
@@ -232,9 +274,10 @@ export class LocalSongRepository implements SongRepository {
       input.content,
       input.notes,
       input.versionName,
-      now,
-      now,
-    );
+        now,
+        now,
+      );
+    });
 
     return this.getSong(id);
   }
@@ -377,19 +420,19 @@ export class LocalSongRepository implements SongRepository {
 
   async createVersion(id: string, values?: SongVersionCreateValues) {
     const source = await this.requireSongRow(id);
-    const existing = await this.database.getFirstAsync<CountRow>(
-      `SELECT COUNT(*) AS count FROM local_songs WHERE version_group_id = ? AND deleted_at IS NULL`,
-      source.version_group_id,
-    );
-    const existingVersionCount = existing?.count ?? 0;
     const now = new Date().toISOString();
     const versionId = createLocalSongId();
     const key = values ? optionalText(values.key) : source.song_key;
     const content = values?.content ?? source.content;
-    const versionName = optionalText(values?.versionName ?? "") ?? defaultVersionName(source, key, existingVersionCount);
-
-    await this.database.runAsync(
-      `INSERT INTO local_songs (
+    await runInTransaction(this.database, async (transaction) => {
+      await this.assertCreationCapacity(transaction, source.owner_user_id);
+      const existing = await transaction.getFirstAsync<CountRow>(
+        `SELECT COUNT(*) AS count FROM local_songs WHERE version_group_id = ? AND deleted_at IS NULL`,
+        source.version_group_id,
+      );
+      const versionName = optionalText(values?.versionName ?? "") ?? defaultVersionName(source, key, existing?.count ?? 0);
+      await transaction.runAsync(
+        `INSERT INTO local_songs (
         id,
         remote_id,
         version_group_id,
@@ -427,9 +470,10 @@ export class LocalSongRepository implements SongRepository {
       content,
       source.notes,
       versionName,
-      now,
-      now,
-    );
+        now,
+        now,
+      );
+    });
 
     return this.getSong(versionId);
   }
@@ -468,21 +512,58 @@ export class LocalSongRepository implements SongRepository {
     };
   }
 
-  async linkAnonymousSongsToOwner(ownerUserId: string) {
+  async linkAnonymousSongsToOwner(
+    ownerUserId: string,
+    capacity?: { maxSongs: number | null; remoteActive: number },
+  ) {
     const normalizedOwner = ownerUserId.trim();
     if (!normalizedOwner) throw new Error("Necesitás iniciar sesión para guardar las canciones en tu cuenta.");
 
-    const result = await this.database.runAsync(
-      `UPDATE local_songs
-        SET owner_user_id = ?,
-            sync_status = 'local_only',
-            sync_error = NULL
-        WHERE owner_user_id IS NULL
-          AND remote_id IS NULL`,
-      normalizedOwner,
-    );
+    return runInTransaction(this.database, async (transaction) => {
+      const anonymous = await transaction.getFirstAsync<CountRow>(
+        `SELECT COUNT(*) AS count FROM local_songs
+          WHERE owner_user_id IS NULL AND remote_id IS NULL AND deleted_at IS NULL`,
+      );
+      const anonymousCount = anonymous?.count ?? 0;
+      if (capacity?.maxSongs !== null && capacity?.maxSongs !== undefined) {
+        const ownedUnsynced = await transaction.getFirstAsync<CountRow>(
+          `SELECT COUNT(*) AS count FROM local_songs
+            WHERE owner_user_id = ? AND remote_id IS NULL AND deleted_at IS NULL`,
+          normalizedOwner,
+        );
+        const projected = capacity.remoteActive + (ownedUnsynced?.count ?? 0) + anonymousCount;
+        if (projected > capacity.maxSongs) {
+          throw new AnonymousSongCapacityError(projected - capacity.maxSongs);
+        }
+      }
 
-    return { linkedCount: result.changes };
+      const result = await transaction.runAsync(
+        `UPDATE local_songs
+          SET owner_user_id = ?,
+              sync_status = 'local_only',
+              sync_error = NULL
+          WHERE owner_user_id IS NULL
+            AND remote_id IS NULL
+            AND deleted_at IS NULL`,
+        normalizedOwner,
+      );
+      if (result.changes !== anonymousCount) {
+        throw new Error("El repertorio local cambió mientras se vinculaba.");
+      }
+      return { linkedCount: result.changes };
+    });
+  }
+
+  async getOwnedUnsyncedSongCount(ownerUserId: string) {
+    const row = await this.database.getFirstAsync<CountRow>(
+      `SELECT COUNT(*) AS count
+        FROM local_songs
+        WHERE owner_user_id = ?
+          AND remote_id IS NULL
+          AND deleted_at IS NULL`,
+      ownerUserId,
+    );
+    return row?.count ?? 0;
   }
 
   async listPendingSyncSongs(ownerUserId: string) {
@@ -527,5 +608,41 @@ export class LocalSongRepository implements SongRepository {
       clause: " AND (owner_user_id IS NULL OR owner_user_id = ?)",
       params: [this.ownerUserId],
     };
+  }
+
+  private async assertCreationCapacity(transaction: LocalSongDatabaseConnection, ownerUserId: string | null) {
+    const effectiveLimit = ownerUserId === null ? 10 : this.maxActiveRecords;
+    if (effectiveLimit === null) return;
+
+    if (ownerUserId === null) {
+      const row = await transaction.getFirstAsync<CountRow>(
+        `SELECT COUNT(*) AS count
+          FROM local_songs
+          WHERE owner_user_id IS ?
+            AND deleted_at IS NULL`,
+        null,
+      );
+      if ((row?.count ?? 0) >= effectiveLimit) throw new LocalSongLimitReachedError(effectiveLimit);
+      return;
+    }
+
+    if (this.knownRemoteActiveRecords === null) throw new LocalSongCapacityUnknownError();
+
+    const [synced, unsynced] = await Promise.all([
+      transaction.getFirstAsync<CountRow>(
+        `SELECT COUNT(*) AS count FROM local_songs
+          WHERE owner_user_id = ? AND remote_id IS NOT NULL AND deleted_at IS NULL`,
+        ownerUserId,
+      ),
+      transaction.getFirstAsync<CountRow>(
+        `SELECT COUNT(*) AS count FROM local_songs
+          WHERE owner_user_id = ? AND remote_id IS NULL AND deleted_at IS NULL`,
+        ownerUserId,
+      ),
+    ]);
+    const projectedActiveRecords = Math.max(this.knownRemoteActiveRecords, synced?.count ?? 0) + (unsynced?.count ?? 0);
+    if (projectedActiveRecords >= effectiveLimit) {
+      throw new LocalSongLimitReachedError(effectiveLimit);
+    }
   }
 }

@@ -28,6 +28,9 @@ export async function POST(request: Request) {
 
     const result = await createMobileSong(userId, payload);
     if (!result.success) {
+      if (result.reason === "limit-reached") {
+        return mobileApiError(422, "LIMIT_REACHED", result.errors.form ?? "Alcanzaste el límite de canciones y versiones.");
+      }
       return Response.json({ errors: result.errors }, { status: 422 });
     }
 

@@ -3,7 +3,11 @@ import type { AnonymousSongSummary } from "./LocalSongRepository";
 
 export type LocalSongOwnership = {
   getAnonymousSongSummary(): Promise<AnonymousSongSummary>;
-  linkAnonymousSongsToOwner(ownerUserId: string): Promise<{ linkedCount: number }>;
+  getOwnedUnsyncedSongCount(ownerUserId: string): Promise<number>;
+  linkAnonymousSongsToOwner(
+    ownerUserId: string,
+    capacity?: { maxSongs: number | null; remoteActive: number },
+  ): Promise<{ linkedCount: number }>;
 };
 
 const LocalSongOwnershipContext = createContext<LocalSongOwnership | null>(null);

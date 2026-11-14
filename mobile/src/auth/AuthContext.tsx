@@ -7,7 +7,7 @@ type AuthContextValue = {
   status: "loading" | "authenticated" | "unauthenticated";
   user: User | null;
   premium: PremiumStatus | null;
-  refreshPremium: () => Promise<void>;
+  refreshPremium: () => Promise<PremiumStatus>;
   signIn: (email: string, password: string) => Promise<void>;
   signOut: () => Promise<void>;
 };
@@ -57,7 +57,9 @@ export function AuthProvider({ children }: PropsWithChildren) {
     user,
     premium,
     async refreshPremium() {
-      setPremium(await api.getPremiumStatus());
+      const status = await api.getPremiumStatus();
+      setPremium(status);
+      return status;
     },
     async signIn(email, password) {
       const session = await api.login(email, password);

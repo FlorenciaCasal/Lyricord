@@ -6,7 +6,9 @@ export type PremiumStatus = {
   limits: {
     maxSongs: number | null;
     ocrDailyLimit: number | null;
+    ocrTotalLimit?: number | null;
   };
+  usage?: { activeSongs: number };
 };
 
 export type User = { id: string; email: string };

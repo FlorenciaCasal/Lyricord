@@ -9,8 +9,7 @@ import {
 import { getAuthSession } from "@/lib/auth";
 import { validateOcrImageFile } from "@/lib/ocr-upload";
 import {
-  getOcrUsageStatus,
-  recordOcrUsage,
+  reserveOcrUsage,
 } from "@/lib/usage";
 import {
   createSong,
@@ -97,16 +96,13 @@ export async function extractSongTextAction(
     };
   }
 
-  const usageStatus = await getOcrUsageStatus(userId);
-
-  if (!usageStatus.allowed) {
+  const usage = await reserveOcrUsage(userId, String(formData.get("ocrOperationId") ?? ""));
+  if (!usage.allowed) {
     return {
       success: false,
-      error: `Alcanzaste el limite diario de ${usageStatus.dailyLimit ?? "OCR"} usos de OCR para esta beta. Podes pegar el texto manualmente y volver a intentar manana.`,
+      error: `Ya usaste las ${usage.totalLimit} extracciones gratuitas de tu cuenta. Podés pegar el texto manualmente o pasar a Premium.`,
     };
   }
-
-  await recordOcrUsage(userId);
 
   return extractTextFromImage(image);
 }

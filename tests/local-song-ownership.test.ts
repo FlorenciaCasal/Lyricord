@@ -5,6 +5,7 @@ import { join } from "node:path";
 import { DatabaseSync, type SQLInputValue } from "node:sqlite";
 import test from "node:test";
 import {
+  AnonymousSongCapacityError,
   createLocalSongRepository,
   type LocalSongSyncRecord,
 } from "../mobile/src/data/songs/local/LocalSongRepository.ts";
@@ -105,6 +106,34 @@ test("linking is idempotent and never reassigns another account songs", async ()
     assert.deepEqual(await repository.forOwner(null).listSongs(), []);
     await assert.rejects(() => repository.forOwner(OWNER_1).getSong(foreign.id));
     await assert.rejects(() => repository.forOwner(OWNER_2).getSong(anonymous.id));
+  } finally {
+    database.close();
+  }
+});
+
+test("linking is all-or-nothing when a Free account lacks capacity", async () => {
+  const database = new NodeLocalSongDatabase();
+  try {
+    const repository = await createLocalSongRepository(database);
+    const principal = await repository.createSong(song("Anónima"));
+    const version = await repository.createVersion(principal.id, {
+      versionName: "Versión anónima",
+      key: "D",
+      content: "D A",
+    });
+
+    await assert.rejects(
+      repository.linkAnonymousSongsToOwner(OWNER_1, { maxSongs: 10, remoteActive: 9 }),
+      AnonymousSongCapacityError,
+    );
+    assert.equal((await repository.getSyncRecord(principal.id)).ownerUserId, null);
+    assert.equal((await repository.getSyncRecord(version.id)).ownerUserId, null);
+    assert.deepEqual(await repository.getAnonymousSongSummary(), { songCount: 2, groupCount: 1 });
+
+    assert.deepEqual(
+      await repository.linkAnonymousSongsToOwner(OWNER_1, { maxSongs: 10, remoteActive: 8 }),
+      { linkedCount: 2 },
+    );
   } finally {
     database.close();
   }

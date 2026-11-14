@@ -8,6 +8,7 @@ import { SongSyncConflictNotices } from "../components/SongSyncConflictNotices";
 import { SongSyncStatusIndicator } from "../components/SongSyncStatusIndicator";
 import { useAutomaticSongSync, useLocalSongOwnership, useSongRepository } from "../data/songs";
 import { applyAnonymousSongLinkDecision } from "../data/songs/local/anonymousSongLinking";
+import { evaluateAnonymousSongCapacity } from "../data/songs/local/anonymousSongCapacity";
 import { colors } from "../theme";
 import type { RootStackParamList, SongListItem } from "../types";
 import { shouldShowGuestAccountAccess } from "../utils/accountAccess";
@@ -17,7 +18,7 @@ import { shouldRefreshSyncPreview } from "../data/songs/sync/AutomaticSongSyncCo
 type Props = NativeStackScreenProps<RootStackParamList, "Library">;
 
 export function LibraryScreen({ navigation }: Props) {
-  const { premium, signOut, user } = useAuth();
+  const { premium, refreshPremium, signOut, user } = useAuth();
   const songRepository = useSongRepository();
   const localSongOwnership = useLocalSongOwnership();
   const {
@@ -89,51 +90,97 @@ export function LibraryScreen({ navigation }: Props) {
     const ownerId = user?.id;
     if (!ownerId || anonymousSongCount === 0 || linkingAnonymousSongs || linkConfirmationOpenRef.current) return;
 
-    linkConfirmationOpenRef.current = true;
-    const linkScope = anonymousSongCount === 1
-      ? "Se vinculará la canción guardada en este dispositivo."
-      : `Se vincularán todas las canciones guardadas en este dispositivo (${anonymousSongCount} en total).`;
-    const closeConfirmation = () => {
-      linkConfirmationOpenRef.current = false;
-    };
-    Alert.alert(
-      "Guardar en mi cuenta",
-      `${linkScope} Después Musum intentará respaldarlas en tu cuenta.`,
-      [
-        { text: "Ahora no", style: "cancel", onPress: closeConfirmation },
-        {
-          text: "Guardar en mi cuenta",
-          onPress: () => {
-            closeConfirmation();
-            setLinkingAnonymousSongs(true);
-            void applyAnonymousSongLinkDecision({
-              decision: "confirm",
-              ownerUserId: ownerId,
-              ownership: localSongOwnership,
-              isOwnerActive: (candidate) => activeOwnerIdRef.current === candidate,
-              notifyOwnershipLinked,
-            })
-              .then(async () => {
-                if (activeOwnerIdRef.current !== ownerId) return;
-                await Promise.all([load(), refreshAnonymousSongCount()]);
+    setLinkingAnonymousSongs(true);
+    void Promise.all([
+      refreshPremium(),
+      localSongOwnership.getAnonymousSongSummary(),
+      localSongOwnership.getOwnedUnsyncedSongCount(ownerId),
+    ]).then(([currentPremium, anonymousSummary, ownedUnsynced]) => {
+      if (activeOwnerIdRef.current !== ownerId) return;
+      const currentAnonymousCount = anonymousSummary.songCount;
+      setAnonymousSongCount(currentAnonymousCount);
+      if (currentAnonymousCount === 0) return;
+
+      const maxSongs = currentPremium.limits.maxSongs;
+      if (maxSongs !== null && currentPremium.usage?.activeSongs === undefined) {
+        throw new Error("El servidor no informó la capacidad actual de la cuenta.");
+      }
+      const remoteActive = currentPremium.usage?.activeSongs ?? 0;
+      const capacity = evaluateAnonymousSongCapacity({
+        maxSongs,
+        remoteActive,
+        ownedUnsynced,
+        anonymousSongs: currentAnonymousCount,
+      });
+      if (!capacity.allowed) {
+        const missingPlaces = capacity.missingPlaces;
+        Alert.alert(
+          "No hay espacio para vincular todo",
+          `Necesitás ${missingPlaces === 1 ? "1 lugar más" : `${missingPlaces} lugares más`} para guardar las ${currentAnonymousCount} canciones en tu cuenta. Tus canciones siguen intactas en este dispositivo. Podés liberar espacio o pasar a Premium.`,
+          [
+            { text: "Ahora no", style: "cancel" },
+            { text: "Ver Premium", onPress: () => navigation.navigate("Premium") },
+          ],
+        );
+        return;
+      }
+
+      linkConfirmationOpenRef.current = true;
+      const linkScope = currentAnonymousCount === 1
+        ? "Se vinculará la canción guardada en este dispositivo."
+        : `Se vincularán todas las canciones guardadas en este dispositivo (${currentAnonymousCount} en total).`;
+      const closeConfirmation = () => {
+        linkConfirmationOpenRef.current = false;
+      };
+      Alert.alert(
+        "Guardar en mi cuenta",
+        `${linkScope} Después Musum intentará respaldarlas en tu cuenta.`,
+        [
+          { text: "Ahora no", style: "cancel", onPress: closeConfirmation },
+          {
+            text: "Guardar en mi cuenta",
+            onPress: () => {
+              closeConfirmation();
+              setLinkingAnonymousSongs(true);
+              void applyAnonymousSongLinkDecision({
+                decision: "confirm",
+                ownerUserId: ownerId,
+                ownership: localSongOwnership,
+                isOwnerActive: (candidate) => activeOwnerIdRef.current === candidate,
+                notifyOwnershipLinked,
+                capacity: { maxSongs, remoteActive },
               })
-              .catch(() => {
-                if (activeOwnerIdRef.current === ownerId) {
-                  Alert.alert(
-                    "No pudimos vincular las canciones",
-                    "Tus canciones siguen guardadas en este dispositivo. Probá de nuevo más tarde.",
-                  );
-                }
-              })
-              .finally(() => {
-                if (activeOwnerIdRef.current === ownerId) setLinkingAnonymousSongs(false);
-              });
+                .then(async () => {
+                  if (activeOwnerIdRef.current !== ownerId) return;
+                  await Promise.all([load(), refreshAnonymousSongCount()]);
+                })
+                .catch(() => {
+                  if (activeOwnerIdRef.current === ownerId) {
+                    Alert.alert(
+                      "No pudimos vincular las canciones",
+                      "Tus canciones siguen guardadas en este dispositivo. Probá de nuevo más tarde.",
+                    );
+                  }
+                })
+                .finally(() => {
+                  if (activeOwnerIdRef.current === ownerId) setLinkingAnonymousSongs(false);
+                });
+            },
           },
-        },
-      ],
-      { cancelable: true, onDismiss: closeConfirmation },
-    );
-  }, [anonymousSongCount, linkingAnonymousSongs, load, localSongOwnership, notifyOwnershipLinked, refreshAnonymousSongCount, user?.id]);
+        ],
+        { cancelable: true, onDismiss: closeConfirmation },
+      );
+    }).catch(() => {
+      if (activeOwnerIdRef.current === ownerId) {
+        Alert.alert(
+          "No pudimos comprobar el espacio disponible",
+          "Tus canciones siguen guardadas en este dispositivo. Conectate a Internet y probá de nuevo.",
+        );
+      }
+    }).finally(() => {
+      if (activeOwnerIdRef.current === ownerId) setLinkingAnonymousSongs(false);
+    });
+  }, [anonymousSongCount, linkingAnonymousSongs, load, localSongOwnership, navigation, notifyOwnershipLinked, refreshAnonymousSongCount, refreshPremium, user?.id]);
 
   const filteredSongs = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
@@ -192,7 +239,14 @@ export function LibraryScreen({ navigation }: Props) {
           <View style={styles.headingTop}>
             <View style={styles.headingCopy}>
               <Text style={styles.eyebrow}>TU BIBLIOTECA</Text>
-              <Text style={styles.title}>Letras y acordes</Text>
+              <Text
+                numberOfLines={shouldShowGuestAccountAccess(user?.id) ? 1 : undefined}
+                adjustsFontSizeToFit={shouldShowGuestAccountAccess(user?.id)}
+                minimumFontScale={0.82}
+                style={[styles.title, shouldShowGuestAccountAccess(user?.id) && styles.guestTitle]}
+              >
+                Letras y acordes
+              </Text>
             </View>
             {shouldShowGuestAccountAccess(user?.id) ? (
               <Pressable
@@ -337,6 +391,7 @@ const styles = StyleSheet.create({
   headingCopy: { flex: 1, minWidth: 0 },
   eyebrow: { color: colors.greenPressed, fontWeight: "900", letterSpacing: 3.2, fontSize: 12 },
   title: { color: colors.text, fontSize: 34, lineHeight: 38, fontWeight: "900", letterSpacing: -0.9 },
+  guestTitle: { fontSize: 31, lineHeight: 36, flexShrink: 1 },
   accountButton: {
     minHeight: 44,
     borderRadius: 20,

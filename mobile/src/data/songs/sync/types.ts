@@ -51,7 +51,7 @@ export type SongSyncPushResult = {
   song?: RemoteSongSyncRecord;
   songs?: RemoteSongSyncRecord[];
   error?: {
-    code: "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "INTERNAL_ERROR";
+    code: "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "LIMIT_REACHED" | "INTERNAL_ERROR";
     message: string;
   };
 };
