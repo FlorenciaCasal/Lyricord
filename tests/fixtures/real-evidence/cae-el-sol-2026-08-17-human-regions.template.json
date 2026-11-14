@@ -1,0 +1,6540 @@
+{
+  "version": 1,
+  "kind": "human-region-ground-truth-template",
+  "recordingFile": "lyricord-evidence-cae-el-sol-2026-08-17T15-53-34-267Z.json",
+  "referenceVideo": "cae-el-sol-reference-2026-08-17T15-53-34.mp4",
+  "name": "Cae el sol",
+  "notes": [
+    "Manual review required: this file is only a worksheet. Do not treat assisted evidence as ground truth.",
+    "Open the reference video, seek to each region, and fill humanEvents from what was actually played.",
+    "Use timelineIndex for written score events, timelineIndex: null for extra observed chords, and omittedWrittenEvents for written chords skipped by the player.",
+    "Times are relative to the beginning of the recording/video."
+  ],
+  "annotationSchema": {
+    "humanEvents": [
+      {
+        "startTime": "mm:ss.mmm",
+        "endTime": "mm:ss.mmm",
+        "playedChord": "C#m",
+        "timelineIndex": 0,
+        "status": "played-written | extra | uncertain",
+        "notes": "timelineIndex must be null for extra chords not written in the score"
+      }
+    ],
+    "omittedWrittenEvents": [
+      {
+        "approximateTime": "mm:ss.mmm",
+        "timelineIndex": 0,
+        "chord": "C#m",
+        "notes": "Written event that was not actually played"
+      }
+    ]
+  },
+  "writtenTimeline": [
+    {
+      "timelineIndex": 0,
+      "chord": "C#m",
+      "originalChord": "C # m",
+      "lineIndex": 0,
+      "charStart": 8,
+      "charEnd": 13,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": "intro"
+    },
+    {
+      "timelineIndex": 1,
+      "chord": "A",
+      "originalChord": "A",
+      "lineIndex": 0,
+      "charStart": 14,
+      "charEnd": 15,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": "intro"
+    },
+    {
+      "timelineIndex": 2,
+      "chord": "E",
+      "originalChord": "E",
+      "lineIndex": 0,
+      "charStart": 16,
+      "charEnd": 17,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": "intro"
+    },
+    {
+      "timelineIndex": 3,
+      "chord": "E",
+      "originalChord": "E",
+      "lineIndex": 0,
+      "charStart": 18,
+      "charEnd": 19,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": "intro"
+    },
+    {
+      "timelineIndex": 4,
+      "chord": "C#m",
+      "originalChord": "C # m",
+      "lineIndex": 2,
+      "charStart": 0,
+      "charEnd": 5,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 5,
+      "chord": "A",
+      "originalChord": "A",
+      "lineIndex": 2,
+      "charStart": 15,
+      "charEnd": 16,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 6,
+      "chord": "E",
+      "originalChord": "E",
+      "lineIndex": 2,
+      "charStart": 25,
+      "charEnd": 26,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 7,
+      "chord": "C#m",
+      "originalChord": "C # m",
+      "lineIndex": 4,
+      "charStart": 0,
+      "charEnd": 5,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 8,
+      "chord": "A",
+      "originalChord": "A",
+      "lineIndex": 4,
+      "charStart": 15,
+      "charEnd": 16,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 9,
+      "chord": "E",
+      "originalChord": "E",
+      "lineIndex": 4,
+      "charStart": 25,
+      "charEnd": 26,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 10,
+      "chord": "B",
+      "originalChord": "B",
+      "lineIndex": 6,
+      "charStart": 0,
+      "charEnd": 1,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 11,
+      "chord": "C#m",
+      "originalChord": "C # m",
+      "lineIndex": 6,
+      "charStart": 32,
+      "charEnd": 37,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 12,
+      "chord": "B",
+      "originalChord": "B",
+      "lineIndex": 8,
+      "charStart": 0,
+      "charEnd": 1,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 13,
+      "chord": "C#m",
+      "originalChord": "C # m",
+      "lineIndex": 8,
+      "charStart": 30,
+      "charEnd": 35,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 14,
+      "chord": "A",
+      "originalChord": "A",
+      "lineIndex": 8,
+      "charStart": 45,
+      "charEnd": 46,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 15,
+      "chord": "B",
+      "originalChord": "B",
+      "lineIndex": 10,
+      "charStart": 0,
+      "charEnd": 1,
+      "boundaryBefore": null,
+      "boundaryAfter": "silencio",
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 16,
+      "chord": "C#m",
+      "originalChord": "C # m",
+      "lineIndex": 13,
+      "charStart": 0,
+      "charEnd": 5,
+      "boundaryBefore": "silencio",
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 17,
+      "chord": "A",
+      "originalChord": "A",
+      "lineIndex": 13,
+      "charStart": 28,
+      "charEnd": 29,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 18,
+      "chord": "E",
+      "originalChord": "E",
+      "lineIndex": 13,
+      "charStart": 54,
+      "charEnd": 55,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 19,
+      "chord": "B",
+      "originalChord": "B",
+      "lineIndex": 15,
+      "charStart": 0,
+      "charEnd": 1,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 20,
+      "chord": "C#m",
+      "originalChord": "C # m",
+      "lineIndex": 17,
+      "charStart": 0,
+      "charEnd": 5,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 21,
+      "chord": "A",
+      "originalChord": "A",
+      "lineIndex": 17,
+      "charStart": 30,
+      "charEnd": 31,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 22,
+      "chord": "E",
+      "originalChord": "E",
+      "lineIndex": 17,
+      "charStart": 52,
+      "charEnd": 53,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 23,
+      "chord": "B",
+      "originalChord": "B",
+      "lineIndex": 19,
+      "charStart": 0,
+      "charEnd": 1,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 24,
+      "chord": "C#m",
+      "originalChord": "C # m",
+      "lineIndex": 19,
+      "charStart": 32,
+      "charEnd": 37,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 25,
+      "chord": "A",
+      "originalChord": "A",
+      "lineIndex": 19,
+      "charStart": 40,
+      "charEnd": 41,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 26,
+      "chord": "E",
+      "originalChord": "E",
+      "lineIndex": 19,
+      "charStart": 44,
+      "charEnd": 45,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 27,
+      "chord": "E",
+      "originalChord": "E",
+      "lineIndex": 21,
+      "charStart": 0,
+      "charEnd": 1,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 28,
+      "chord": "C#m",
+      "originalChord": "C # m",
+      "lineIndex": 23,
+      "charStart": 0,
+      "charEnd": 5,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 29,
+      "chord": "A",
+      "originalChord": "A",
+      "lineIndex": 23,
+      "charStart": 13,
+      "charEnd": 14,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 30,
+      "chord": "E",
+      "originalChord": "E",
+      "lineIndex": 23,
+      "charStart": 24,
+      "charEnd": 25,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 31,
+      "chord": "C#m",
+      "originalChord": "C # m",
+      "lineIndex": 25,
+      "charStart": 0,
+      "charEnd": 5,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 32,
+      "chord": "A",
+      "originalChord": "A",
+      "lineIndex": 25,
+      "charStart": 12,
+      "charEnd": 13,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 33,
+      "chord": "E",
+      "originalChord": "E",
+      "lineIndex": 25,
+      "charStart": 23,
+      "charEnd": 24,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 34,
+      "chord": "B",
+      "originalChord": "B",
+      "lineIndex": 27,
+      "charStart": 0,
+      "charEnd": 1,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 35,
+      "chord": "C#m",
+      "originalChord": "C # m",
+      "lineIndex": 27,
+      "charStart": 26,
+      "charEnd": 31,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 36,
+      "chord": "B",
+      "originalChord": "B",
+      "lineIndex": 30,
+      "charStart": 0,
+      "charEnd": 1,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 37,
+      "chord": "C#m",
+      "originalChord": "C # m",
+      "lineIndex": 30,
+      "charStart": 27,
+      "charEnd": 32,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 38,
+      "chord": "A",
+      "originalChord": "A",
+      "lineIndex": 30,
+      "charStart": 43,
+      "charEnd": 44,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 39,
+      "chord": "B",
+      "originalChord": "B",
+      "lineIndex": 32,
+      "charStart": 0,
+      "charEnd": 1,
+      "boundaryBefore": null,
+      "boundaryAfter": "silencio",
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 40,
+      "chord": "C#m",
+      "originalChord": "C # m",
+      "lineIndex": 35,
+      "charStart": 0,
+      "charEnd": 5,
+      "boundaryBefore": "silencio",
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 41,
+      "chord": "A",
+      "originalChord": "A",
+      "lineIndex": 35,
+      "charStart": 28,
+      "charEnd": 29,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 42,
+      "chord": "E",
+      "originalChord": "E",
+      "lineIndex": 35,
+      "charStart": 53,
+      "charEnd": 54,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 43,
+      "chord": "B",
+      "originalChord": "B",
+      "lineIndex": 37,
+      "charStart": 0,
+      "charEnd": 1,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 44,
+      "chord": "C#m",
+      "originalChord": "C # m",
+      "lineIndex": 39,
+      "charStart": 0,
+      "charEnd": 5,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 45,
+      "chord": "A",
+      "originalChord": "A",
+      "lineIndex": 39,
+      "charStart": 30,
+      "charEnd": 31,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 46,
+      "chord": "E",
+      "originalChord": "E",
+      "lineIndex": 39,
+      "charStart": 52,
+      "charEnd": 53,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 47,
+      "chord": "B",
+      "originalChord": "B",
+      "lineIndex": 41,
+      "charStart": 0,
+      "charEnd": 1,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 48,
+      "chord": "C#m",
+      "originalChord": "C # m",
+      "lineIndex": 41,
+      "charStart": 27,
+      "charEnd": 32,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 49,
+      "chord": "A",
+      "originalChord": "A",
+      "lineIndex": 41,
+      "charStart": 35,
+      "charEnd": 36,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 50,
+      "chord": "E",
+      "originalChord": "E",
+      "lineIndex": 44,
+      "charStart": 0,
+      "charEnd": 1,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 51,
+      "chord": "C#m",
+      "originalChord": "C # m",
+      "lineIndex": 47,
+      "charStart": 0,
+      "charEnd": 5,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 52,
+      "chord": "A",
+      "originalChord": "A",
+      "lineIndex": 47,
+      "charStart": 8,
+      "charEnd": 9,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 53,
+      "chord": "E",
+      "originalChord": "E",
+      "lineIndex": 49,
+      "charStart": 0,
+      "charEnd": 1,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 54,
+      "chord": "C#m",
+      "originalChord": "C # m",
+      "lineIndex": 52,
+      "charStart": 0,
+      "charEnd": 5,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 55,
+      "chord": "A",
+      "originalChord": "A",
+      "lineIndex": 52,
+      "charStart": 26,
+      "charEnd": 27,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 56,
+      "chord": "E",
+      "originalChord": "E",
+      "lineIndex": 52,
+      "charStart": 51,
+      "charEnd": 52,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 57,
+      "chord": "B",
+      "originalChord": "B",
+      "lineIndex": 54,
+      "charStart": 0,
+      "charEnd": 1,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 58,
+      "chord": "C#m",
+      "originalChord": "C # m",
+      "lineIndex": 58,
+      "charStart": 0,
+      "charEnd": 5,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 59,
+      "chord": "A",
+      "originalChord": "A",
+      "lineIndex": 58,
+      "charStart": 28,
+      "charEnd": 29,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 60,
+      "chord": "B",
+      "originalChord": "B",
+      "lineIndex": 60,
+      "charStart": 0,
+      "charEnd": 1,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 61,
+      "chord": "C#m",
+      "originalChord": "C # m",
+      "lineIndex": 60,
+      "charStart": 27,
+      "charEnd": 32,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 62,
+      "chord": "A",
+      "originalChord": "A",
+      "lineIndex": 62,
+      "charStart": 0,
+      "charEnd": 1,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 63,
+      "chord": "E",
+      "originalChord": "E",
+      "lineIndex": 62,
+      "charStart": 10,
+      "charEnd": 11,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 64,
+      "chord": "E",
+      "originalChord": "E",
+      "lineIndex": 65,
+      "charStart": 0,
+      "charEnd": 1,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 65,
+      "chord": "C#m",
+      "originalChord": "C # m",
+      "lineIndex": 67,
+      "charStart": 0,
+      "charEnd": 5,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 66,
+      "chord": "A",
+      "originalChord": "A",
+      "lineIndex": 67,
+      "charStart": 26,
+      "charEnd": 27,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 67,
+      "chord": "E",
+      "originalChord": "E",
+      "lineIndex": 67,
+      "charStart": 50,
+      "charEnd": 51,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 68,
+      "chord": "B",
+      "originalChord": "B",
+      "lineIndex": 69,
+      "charStart": 0,
+      "charEnd": 1,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 69,
+      "chord": "C#m",
+      "originalChord": "C # m",
+      "lineIndex": 72,
+      "charStart": 0,
+      "charEnd": 5,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 70,
+      "chord": "A",
+      "originalChord": "A",
+      "lineIndex": 72,
+      "charStart": 28,
+      "charEnd": 29,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 71,
+      "chord": "E",
+      "originalChord": "E",
+      "lineIndex": 72,
+      "charStart": 51,
+      "charEnd": 52,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 72,
+      "chord": "B",
+      "originalChord": "B",
+      "lineIndex": 74,
+      "charStart": 0,
+      "charEnd": 1,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 73,
+      "chord": "C#m",
+      "originalChord": "C # m",
+      "lineIndex": 74,
+      "charStart": 26,
+      "charEnd": 31,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 74,
+      "chord": "C#m",
+      "originalChord": "C # m",
+      "lineIndex": 77,
+      "charStart": 0,
+      "charEnd": 5,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 75,
+      "chord": "A",
+      "originalChord": "A",
+      "lineIndex": 77,
+      "charStart": 6,
+      "charEnd": 7,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    },
+    {
+      "timelineIndex": 76,
+      "chord": "E",
+      "originalChord": "E",
+      "lineIndex": 77,
+      "charStart": 8,
+      "charEnd": 9,
+      "boundaryBefore": null,
+      "boundaryAfter": null,
+      "sectionMarker": null
+    }
+  ],
+  "regions": [
+    {
+      "id": "region-1",
+      "label": "first-divergence",
+      "startTime": "0:05.000",
+      "endTime": "0:20.000",
+      "instructions": [
+        "Listen/watch this exact region in the reference video.",
+        "Fill humanEvents with the chords actually played, including extra chords with timelineIndex: null.",
+        "Add omittedWrittenEvents for written timeline events visible in expectedReference that were skipped.",
+        "Assisted evidence below is only a cue, not truth."
+      ],
+      "humanEvents": [
+        {
+          "startTime": "",
+          "endTime": "",
+          "playedChord": "",
+          "timelineIndex": null,
+          "status": "played-written | extra | uncertain",
+          "notes": ""
+        }
+      ],
+      "omittedWrittenEvents": [],
+      "expectedReference": [
+        {
+          "timelineIndex": 2,
+          "chord": "E",
+          "originalChord": "E",
+          "lineIndex": 0,
+          "charStart": 16,
+          "charEnd": 17,
+          "acousticCue": {
+            "maxScore": 0.285,
+            "candidateFrames": 28,
+            "top3Frames": 81
+          }
+        },
+        {
+          "timelineIndex": 3,
+          "chord": "E",
+          "originalChord": "E",
+          "lineIndex": 0,
+          "charStart": 18,
+          "charEnd": 19,
+          "acousticCue": {
+            "maxScore": 0.285,
+            "candidateFrames": 28,
+            "top3Frames": 81
+          }
+        },
+        {
+          "timelineIndex": 6,
+          "chord": "E",
+          "originalChord": "E",
+          "lineIndex": 2,
+          "charStart": 25,
+          "charEnd": 26,
+          "acousticCue": {
+            "maxScore": 0.285,
+            "candidateFrames": 28,
+            "top3Frames": 81
+          }
+        },
+        {
+          "timelineIndex": 9,
+          "chord": "E",
+          "originalChord": "E",
+          "lineIndex": 4,
+          "charStart": 25,
+          "charEnd": 26,
+          "acousticCue": {
+            "maxScore": 0.285,
+            "candidateFrames": 28,
+            "top3Frames": 81
+          }
+        },
+        {
+          "timelineIndex": 18,
+          "chord": "E",
+          "originalChord": "E",
+          "lineIndex": 13,
+          "charStart": 54,
+          "charEnd": 55,
+          "acousticCue": {
+            "maxScore": 0.285,
+            "candidateFrames": 28,
+            "top3Frames": 81
+          }
+        },
+        {
+          "timelineIndex": 22,
+          "chord": "E",
+          "originalChord": "E",
+          "lineIndex": 17,
+          "charStart": 52,
+          "charEnd": 53,
+          "acousticCue": {
+            "maxScore": 0.285,
+            "candidateFrames": 28,
+            "top3Frames": 81
+          }
+        },
+        {
+          "timelineIndex": 26,
+          "chord": "E",
+          "originalChord": "E",
+          "lineIndex": 19,
+          "charStart": 44,
+          "charEnd": 45,
+          "acousticCue": {
+            "maxScore": 0.285,
+            "candidateFrames": 28,
+            "top3Frames": 81
+          }
+        },
+        {
+          "timelineIndex": 27,
+          "chord": "E",
+          "originalChord": "E",
+          "lineIndex": 21,
+          "charStart": 0,
+          "charEnd": 1,
+          "acousticCue": {
+            "maxScore": 0.285,
+            "candidateFrames": 28,
+            "top3Frames": 81
+          }
+        },
+        {
+          "timelineIndex": 30,
+          "chord": "E",
+          "originalChord": "E",
+          "lineIndex": 23,
+          "charStart": 24,
+          "charEnd": 25,
+          "acousticCue": {
+            "maxScore": 0.285,
+            "candidateFrames": 28,
+            "top3Frames": 81
+          }
+        },
+        {
+          "timelineIndex": 33,
+          "chord": "E",
+          "originalChord": "E",
+          "lineIndex": 25,
+          "charStart": 23,
+          "charEnd": 24,
+          "acousticCue": {
+            "maxScore": 0.285,
+            "candidateFrames": 28,
+            "top3Frames": 81
+          }
+        },
+        {
+          "timelineIndex": 42,
+          "chord": "E",
+          "originalChord": "E",
+          "lineIndex": 35,
+          "charStart": 53,
+          "charEnd": 54,
+          "acousticCue": {
+            "maxScore": 0.285,
+            "candidateFrames": 28,
+            "top3Frames": 81
+          }
+        },
+        {
+          "timelineIndex": 46,
+          "chord": "E",
+          "originalChord": "E",
+          "lineIndex": 39,
+          "charStart": 52,
+          "charEnd": 53,
+          "acousticCue": {
+            "maxScore": 0.285,
+            "candidateFrames": 28,
+            "top3Frames": 81
+          }
+        },
+        {
+          "timelineIndex": 50,
+          "chord": "E",
+          "originalChord": "E",
+          "lineIndex": 44,
+          "charStart": 0,
+          "charEnd": 1,
+          "acousticCue": {
+            "maxScore": 0.285,
+            "candidateFrames": 28,
+            "top3Frames": 81
+          }
+        },
+        {
+          "timelineIndex": 53,
+          "chord": "E",
+          "originalChord": "E",
+          "lineIndex": 49,
+          "charStart": 0,
+          "charEnd": 1,
+          "acousticCue": {
+            "maxScore": 0.285,
+            "candidateFrames": 28,
+            "top3Frames": 81
+          }
+        },
+        {
+          "timelineIndex": 56,
+          "chord": "E",
+          "originalChord": "E",
+          "lineIndex": 52,
+          "charStart": 51,
+          "charEnd": 52,
+          "acousticCue": {
+            "maxScore": 0.285,
+            "candidateFrames": 28,
+            "top3Frames": 81
+          }
+        },
+        {
+          "timelineIndex": 63,
+          "chord": "E",
+          "originalChord": "E",
+          "lineIndex": 62,
+          "charStart": 10,
+          "charEnd": 11,
+          "acousticCue": {
+            "maxScore": 0.285,
+            "candidateFrames": 28,
+            "top3Frames": 81
+          }
+        }
+      ],
+      "assistedEvidence": {
+        "candidateSegments": [
+          {
+            "startTime": "0:05.014",
+            "endTime": "0:05.198",
+            "candidate": "C#m",
+            "frameCount": 1,
+            "meanConfidence": 0.566,
+            "maxConfidence": 0.566,
+            "meanRms": 0.0607,
+            "maxOnsetStrength": 0.235,
+            "maxChromaDelta": 0.024,
+            "top3": [
+              {
+                "chord": "C#m",
+                "score": 0.216
+              },
+              {
+                "chord": "E",
+                "score": 0.166
+              },
+              {
+                "chord": "A",
+                "score": 0.015
+              }
+            ]
+          },
+          {
+            "startTime": "0:05.198",
+            "endTime": "0:05.566",
+            "candidate": "unknown",
+            "frameCount": 2,
+            "meanConfidence": 0.516,
+            "maxConfidence": 0.518,
+            "meanRms": 0.149,
+            "maxOnsetStrength": 0.92,
+            "maxChromaDelta": 0.054,
+            "top3": [
+              {
+                "chord": "C#m",
+                "score": 0.299
+              },
+              {
+                "chord": "E",
+                "score": 0.281
+              },
+              {
+                "chord": "A",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "0:05.566",
+            "endTime": "0:05.750",
+            "candidate": "C#m",
+            "frameCount": 1,
+            "meanConfidence": 0.538,
+            "maxConfidence": 0.538,
+            "meanRms": 0.0663,
+            "maxOnsetStrength": 0.92,
+            "maxChromaDelta": 0.02,
+            "top3": [
+              {
+                "chord": "C#m",
+                "score": 0.284
+              },
+              {
+                "chord": "E",
+                "score": 0.244
+              },
+              {
+                "chord": "A",
+                "score": 0.008
+              }
+            ]
+          },
+          {
+            "startTime": "0:05.750",
+            "endTime": "0:05.934",
+            "candidate": "unknown",
+            "frameCount": 1,
+            "meanConfidence": 0.507,
+            "maxConfidence": 0.507,
+            "meanRms": 0.1266,
+            "maxOnsetStrength": 0.78,
+            "maxChromaDelta": 0.028,
+            "top3": [
+              {
+                "chord": "C#m",
+                "score": 0.243
+              },
+              {
+                "chord": "E",
+                "score": 0.236
+              },
+              {
+                "chord": "A",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "0:05.957",
+            "endTime": "0:06.164",
+            "candidate": "C#m",
+            "frameCount": 1,
+            "meanConfidence": 0.533,
+            "maxConfidence": 0.533,
+            "meanRms": 0.0645,
+            "maxOnsetStrength": 0.92,
+            "maxChromaDelta": 0.027,
+            "top3": [
+              {
+                "chord": "C#m",
+                "score": 0.27
+              },
+              {
+                "chord": "E",
+                "score": 0.237
+              },
+              {
+                "chord": "A",
+                "score": 0.008
+              }
+            ]
+          },
+          {
+            "startTime": "0:06.141",
+            "endTime": "0:06.325",
+            "candidate": "unknown",
+            "frameCount": 1,
+            "meanConfidence": 0.514,
+            "maxConfidence": 0.514,
+            "meanRms": 0.1176,
+            "maxOnsetStrength": 0.78,
+            "maxChromaDelta": 0.031,
+            "top3": [
+              {
+                "chord": "C#m",
+                "score": 0.219
+              },
+              {
+                "chord": "E",
+                "score": 0.207
+              },
+              {
+                "chord": "A",
+                "score": 0.007
+              }
+            ]
+          },
+          {
+            "startTime": "0:06.325",
+            "endTime": "0:06.693",
+            "candidate": "C#m",
+            "frameCount": 2,
+            "meanConfidence": 0.623,
+            "maxConfidence": 0.641,
+            "meanRms": 0.0519,
+            "maxOnsetStrength": 0.92,
+            "maxChromaDelta": 0.057,
+            "top3": [
+              {
+                "chord": "C#m",
+                "score": 0.181
+              },
+              {
+                "chord": "E",
+                "score": 0.11
+              },
+              {
+                "chord": "A",
+                "score": 0.026
+              }
+            ]
+          },
+          {
+            "startTime": "0:06.693",
+            "endTime": "0:07.245",
+            "candidate": "unknown",
+            "frameCount": 3,
+            "meanConfidence": 0.563,
+            "maxConfidence": 0.652,
+            "meanRms": 0.1981,
+            "maxOnsetStrength": 0.92,
+            "maxChromaDelta": 0.085,
+            "top3": [
+              {
+                "chord": "C#m",
+                "score": 0.181
+              },
+              {
+                "chord": "E",
+                "score": 0.17
+              },
+              {
+                "chord": "A",
+                "score": 0.06
+              }
+            ]
+          },
+          {
+            "startTime": "0:07.245",
+            "endTime": "0:07.429",
+            "candidate": "A",
+            "frameCount": 1,
+            "meanConfidence": 0.657,
+            "maxConfidence": 0.657,
+            "meanRms": 0.1038,
+            "maxOnsetStrength": 0.92,
+            "maxChromaDelta": 0.013,
+            "top3": [
+              {
+                "chord": "A",
+                "score": 0.102
+              },
+              {
+                "chord": "E",
+                "score": 0.053
+              },
+              {
+                "chord": "C#m",
+                "score": 0.038
+              }
+            ]
+          },
+          {
+            "startTime": "0:07.428",
+            "endTime": "0:07.798",
+            "candidate": "unknown",
+            "frameCount": 2,
+            "meanConfidence": 0.517,
+            "maxConfidence": 0.53,
+            "meanRms": 0.2871,
+            "maxOnsetStrength": 0.92,
+            "maxChromaDelta": 0.072,
+            "top3": [
+              {
+                "chord": "C#m",
+                "score": 0.157
+              },
+              {
+                "chord": "E",
+                "score": 0.154
+              },
+              {
+                "chord": "A",
+                "score": 0.069
+              }
+            ]
+          },
+          {
+            "startTime": "0:07.797",
+            "endTime": "0:08.165",
+            "candidate": "A",
+            "frameCount": 2,
+            "meanConfidence": 0.581,
+            "maxConfidence": 0.59,
+            "meanRms": 0.0707,
+            "maxOnsetStrength": 0.92,
+            "maxChromaDelta": 0.045,
+            "top3": [
+              {
+                "chord": "A",
+                "score": 0.13
+              },
+              {
+                "chord": "C#m",
+                "score": 0.094
+              },
+              {
+                "chord": "E",
+                "score": 0.091
+              }
+            ]
+          },
+          {
+            "startTime": "0:08.165",
+            "endTime": "0:08.349",
+            "candidate": "C#m",
+            "frameCount": 1,
+            "meanConfidence": 0.539,
+            "maxConfidence": 0.539,
+            "meanRms": 0.1712,
+            "maxOnsetStrength": 0.78,
+            "maxChromaDelta": 0.045,
+            "top3": [
+              {
+                "chord": "C#m",
+                "score": 0.191
+              },
+              {
+                "chord": "A",
+                "score": 0.163
+              },
+              {
+                "chord": "E",
+                "score": 0.137
+              }
+            ]
+          },
+          {
+            "startTime": "0:08.372",
+            "endTime": "0:08.579",
+            "candidate": "unknown",
+            "frameCount": 1,
+            "meanConfidence": 0.53,
+            "maxConfidence": 0.53,
+            "meanRms": 0.0938,
+            "maxOnsetStrength": 0.78,
+            "maxChromaDelta": 0.02,
+            "top3": [
+              {
+                "chord": "A",
+                "score": 0.17
+              },
+              {
+                "chord": "C#m",
+                "score": 0.151
+              },
+              {
+                "chord": "E",
+                "score": 0.105
+              }
+            ]
+          },
+          {
+            "startTime": "0:08.556",
+            "endTime": "0:08.924",
+            "candidate": "A",
+            "frameCount": 2,
+            "meanConfidence": 0.573,
+            "maxConfidence": 0.607,
+            "meanRms": 0.0857,
+            "maxOnsetStrength": 0.92,
+            "maxChromaDelta": 0.058,
+            "top3": [
+              {
+                "chord": "A",
+                "score": 0.215
+              },
+              {
+                "chord": "C#m",
+                "score": 0.161
+              },
+              {
+                "chord": "E",
+                "score": 0.119
+              }
+            ]
+          },
+          {
+            "startTime": "0:08.924",
+            "endTime": "0:09.108",
+            "candidate": "unknown",
+            "frameCount": 1,
+            "meanConfidence": 0.526,
+            "maxConfidence": 0.526,
+            "meanRms": 0.0593,
+            "maxOnsetStrength": 0.78,
+            "maxChromaDelta": 0.073,
+            "top3": [
+              {
+                "chord": "A",
+                "score": 0.266
+              },
+              {
+                "chord": "C#m",
+                "score": 0.24
+              },
+              {
+                "chord": "E",
+                "score": 0.192
+              }
+            ]
+          },
+          {
+            "startTime": "0:09.108",
+            "endTime": "0:09.476",
+            "candidate": "A",
+            "frameCount": 2,
+            "meanConfidence": 0.66,
+            "maxConfidence": 0.668,
+            "meanRms": 0.2467,
+            "maxOnsetStrength": 0.92,
+            "maxChromaDelta": 0.129,
+            "top3": [
+              {
+                "chord": "A",
+                "score": 0.149
+              },
+              {
+                "chord": "C#m",
+                "score": 0.076
+              },
+              {
+                "chord": "E",
+                "score": 0.076
+              }
+            ]
+          },
+          {
+            "startTime": "0:09.476",
+            "endTime": "0:09.660",
+            "candidate": "unknown",
+            "frameCount": 1,
+            "meanConfidence": 0.647,
+            "maxConfidence": 0.647,
+            "meanRms": 0.1015,
+            "maxOnsetStrength": 0.78,
+            "maxChromaDelta": 0.027,
+            "top3": [
+              {
+                "chord": "A",
+                "score": 0.098
+              },
+              {
+                "chord": "E",
+                "score": 0.054
+              },
+              {
+                "chord": "C#m",
+                "score": 0.048
+              }
+            ]
+          },
+          {
+            "startTime": "0:09.660",
+            "endTime": "0:10.212",
+            "candidate": "A",
+            "frameCount": 3,
+            "meanConfidence": 0.687,
+            "maxConfidence": 0.758,
+            "meanRms": 0.2069,
+            "maxOnsetStrength": 0.92,
+            "maxChromaDelta": 0.064,
+            "top3": [
+              {
+                "chord": "A",
+                "score": 0.14
+              },
+              {
+                "chord": "C#m",
+                "score": 0.065
+              },
+              {
+                "chord": "E",
+                "score": 0.061
+              }
+            ]
+          },
+          {
+            "startTime": "0:10.211",
+            "endTime": "0:10.394",
+            "candidate": "unknown",
+            "frameCount": 1,
+            "meanConfidence": 0.601,
+            "maxConfidence": 0.601,
+            "meanRms": 0.1587,
+            "maxOnsetStrength": 0.78,
+            "maxChromaDelta": 0.016,
+            "top3": [
+              {
+                "chord": "A",
+                "score": 0.082
+              },
+              {
+                "chord": "E",
+                "score": 0.054
+              },
+              {
+                "chord": "C#m",
+                "score": 0.043
+              }
+            ]
+          },
+          {
+            "startTime": "0:10.396",
+            "endTime": "0:12.259",
+            "candidate": "E",
+            "frameCount": 10,
+            "meanConfidence": 0.647,
+            "maxConfidence": 0.708,
+            "meanRms": 0.1839,
+            "maxOnsetStrength": 0.92,
+            "maxChromaDelta": 0.086,
+            "top3": [
+              {
+                "chord": "E",
+                "score": 0.183
+              },
+              {
+                "chord": "C#m",
+                "score": 0.093
+              },
+              {
+                "chord": "B",
+                "score": 0.039
+              }
+            ]
+          },
+          {
+            "startTime": "0:12.259",
+            "endTime": "0:12.627",
+            "candidate": "unknown",
+            "frameCount": 2,
+            "meanConfidence": 0.513,
+            "maxConfidence": 0.519,
+            "meanRms": 0.2443,
+            "maxOnsetStrength": 0.92,
+            "maxChromaDelta": 0.117,
+            "top3": [
+              {
+                "chord": "E",
+                "score": 0.178
+              },
+              {
+                "chord": "C#m",
+                "score": 0.169
+              },
+              {
+                "chord": "A",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "0:12.627",
+            "endTime": "0:15.985",
+            "candidate": "E",
+            "frameCount": 18,
+            "meanConfidence": 0.634,
+            "maxConfidence": 0.734,
+            "meanRms": 0.156,
+            "maxOnsetStrength": 0.92,
+            "maxChromaDelta": 0.111,
+            "top3": [
+              {
+                "chord": "E",
+                "score": 0.177
+              },
+              {
+                "chord": "C#m",
+                "score": 0.093
+              },
+              {
+                "chord": "B",
+                "score": 0.042
+              }
+            ]
+          },
+          {
+            "startTime": "0:15.985",
+            "endTime": "0:16.353",
+            "candidate": "unknown",
+            "frameCount": 2,
+            "meanConfidence": 0.567,
+            "maxConfidence": 0.616,
+            "meanRms": 0.235,
+            "maxOnsetStrength": 0.92,
+            "maxChromaDelta": 0.053,
+            "top3": [
+              {
+                "chord": "E",
+                "score": 0.066
+              },
+              {
+                "chord": "C#m",
+                "score": 0.066
+              },
+              {
+                "chord": "A",
+                "score": 0.061
+              }
+            ]
+          },
+          {
+            "startTime": "0:16.353",
+            "endTime": "0:16.905",
+            "candidate": "C#m",
+            "frameCount": 3,
+            "meanConfidence": 0.635,
+            "maxConfidence": 0.67,
+            "meanRms": 0.1235,
+            "maxOnsetStrength": 0.92,
+            "maxChromaDelta": 0.056,
+            "top3": [
+              {
+                "chord": "C#m",
+                "score": 0.226
+              },
+              {
+                "chord": "E",
+                "score": 0.129
+              },
+              {
+                "chord": "A",
+                "score": 0.074
+              }
+            ]
+          },
+          {
+            "startTime": "0:16.904",
+            "endTime": "0:17.087",
+            "candidate": "unknown",
+            "frameCount": 1,
+            "meanConfidence": 0.516,
+            "maxConfidence": 0.516,
+            "meanRms": 0.188,
+            "maxOnsetStrength": 0.78,
+            "maxChromaDelta": 0.078,
+            "top3": [
+              {
+                "chord": "C#m",
+                "score": 0.102
+              },
+              {
+                "chord": "E",
+                "score": 0.096
+              },
+              {
+                "chord": "A",
+                "score": 0.029
+              }
+            ]
+          },
+          {
+            "startTime": "0:17.089",
+            "endTime": "0:17.641",
+            "candidate": "C#m",
+            "frameCount": 3,
+            "meanConfidence": 0.557,
+            "maxConfidence": 0.569,
+            "meanRms": 0.1105,
+            "maxOnsetStrength": 0.92,
+            "maxChromaDelta": 0.066,
+            "top3": [
+              {
+                "chord": "C#m",
+                "score": 0.237
+              },
+              {
+                "chord": "E",
+                "score": 0.189
+              },
+              {
+                "chord": "A",
+                "score": 0.006
+              }
+            ]
+          },
+          {
+            "startTime": "0:17.641",
+            "endTime": "0:17.825",
+            "candidate": "unknown",
+            "frameCount": 1,
+            "meanConfidence": 0.525,
+            "maxConfidence": 0.525,
+            "meanRms": 0.1109,
+            "maxOnsetStrength": 0.78,
+            "maxChromaDelta": 0.034,
+            "top3": [
+              {
+                "chord": "C#m",
+                "score": 0.257
+              },
+              {
+                "chord": "E",
+                "score": 0.232
+              },
+              {
+                "chord": "A",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "0:17.825",
+            "endTime": "0:18.009",
+            "candidate": "C#m",
+            "frameCount": 1,
+            "meanConfidence": 0.571,
+            "maxConfidence": 0.571,
+            "meanRms": 0.0698,
+            "maxOnsetStrength": 0.92,
+            "maxChromaDelta": 0.048,
+            "top3": [
+              {
+                "chord": "C#m",
+                "score": 0.183
+              },
+              {
+                "chord": "E",
+                "score": 0.138
+              },
+              {
+                "chord": "A",
+                "score": 0.034
+              }
+            ]
+          },
+          {
+            "startTime": "0:18.008",
+            "endTime": "0:18.191",
+            "candidate": "unknown",
+            "frameCount": 1,
+            "meanConfidence": 0.536,
+            "maxConfidence": 0.536,
+            "meanRms": 0.1234,
+            "maxOnsetStrength": 0.78,
+            "maxChromaDelta": 0.068,
+            "top3": [
+              {
+                "chord": "C#m",
+                "score": 0.09
+              },
+              {
+                "chord": "E",
+                "score": 0.078
+              },
+              {
+                "chord": "A",
+                "score": 0.009
+              }
+            ]
+          },
+          {
+            "startTime": "0:18.216",
+            "endTime": "0:18.424",
+            "candidate": "C#m",
+            "frameCount": 1,
+            "meanConfidence": 0.626,
+            "maxConfidence": 0.626,
+            "meanRms": 0.0651,
+            "maxOnsetStrength": 0.92,
+            "maxChromaDelta": 0.048,
+            "top3": [
+              {
+                "chord": "C#m",
+                "score": 0.124
+              },
+              {
+                "chord": "A",
+                "score": 0.074
+              },
+              {
+                "chord": "E",
+                "score": 0.028
+              }
+            ]
+          },
+          {
+            "startTime": "0:18.400",
+            "endTime": "0:18.766",
+            "candidate": "unknown",
+            "frameCount": 2,
+            "meanConfidence": 0.515,
+            "maxConfidence": 0.527,
+            "meanRms": 0.1869,
+            "maxOnsetStrength": 0.92,
+            "maxChromaDelta": 0.078,
+            "top3": [
+              {
+                "chord": "C#m",
+                "score": 0.184
+              },
+              {
+                "chord": "E",
+                "score": 0.174
+              },
+              {
+                "chord": "A",
+                "score": 0.041
+              }
+            ]
+          },
+          {
+            "startTime": "0:18.768",
+            "endTime": "0:18.953",
+            "candidate": "A",
+            "frameCount": 1,
+            "meanConfidence": 0.695,
+            "maxConfidence": 0.695,
+            "meanRms": 0.1972,
+            "maxOnsetStrength": 0.92,
+            "maxChromaDelta": 0.07,
+            "top3": [
+              {
+                "chord": "A",
+                "score": 0.13
+              },
+              {
+                "chord": "E",
+                "score": 0.057
+              },
+              {
+                "chord": "C#m",
+                "score": 0.054
+              }
+            ]
+          },
+          {
+            "startTime": "0:18.952",
+            "endTime": "0:19.136",
+            "candidate": "unknown",
+            "frameCount": 1,
+            "meanConfidence": 0.67,
+            "maxConfidence": 0.67,
+            "meanRms": 0.2132,
+            "maxOnsetStrength": 0.78,
+            "maxChromaDelta": 0.018,
+            "top3": [
+              {
+                "chord": "A",
+                "score": 0.098
+              },
+              {
+                "chord": "E",
+                "score": 0.048
+              },
+              {
+                "chord": "C#m",
+                "score": 0.044
+              }
+            ]
+          },
+          {
+            "startTime": "0:19.136",
+            "endTime": "0:19.870",
+            "candidate": "A",
+            "frameCount": 4,
+            "meanConfidence": 0.639,
+            "maxConfidence": 0.683,
+            "meanRms": 0.1884,
+            "maxOnsetStrength": 0.92,
+            "maxChromaDelta": 0.066,
+            "top3": [
+              {
+                "chord": "A",
+                "score": 0.145
+              },
+              {
+                "chord": "C#m",
+                "score": 0.081
+              },
+              {
+                "chord": "E",
+                "score": 0.079
+              }
+            ]
+          },
+          {
+            "startTime": "0:19.872",
+            "endTime": "0:20.057",
+            "candidate": "unknown",
+            "frameCount": 1,
+            "meanConfidence": 0.502,
+            "maxConfidence": 0.502,
+            "meanRms": 0.2618,
+            "maxOnsetStrength": 0.78,
+            "maxChromaDelta": 0.068,
+            "top3": [
+              {
+                "chord": "E",
+                "score": 0.13
+              },
+              {
+                "chord": "C#m",
+                "score": 0.129
+              },
+              {
+                "chord": "A",
+                "score": 0.057
+              }
+            ]
+          }
+        ],
+        "observedEventSegments": [
+          {
+            "startTime": "0:05.014",
+            "endTime": "0:05.382",
+            "durationMs": 368,
+            "eventType": "uncertain",
+            "chord": "unknown",
+            "confidence": 0.526,
+            "onsetStrength": 0.78,
+            "meanChromaDelta": 0.039,
+            "maxChromaDelta": 0.054,
+            "topCandidates": [
+              {
+                "chord": "C#m",
+                "score": 0.258
+              },
+              {
+                "chord": "E",
+                "score": 0.225
+              },
+              {
+                "chord": "A",
+                "score": 0.007
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "C#m",
+                "score": 0.258
+              },
+              {
+                "chord": "E",
+                "score": 0.225
+              },
+              {
+                "chord": "A",
+                "score": 0.007
+              },
+              {
+                "chord": "B",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "0:05.382",
+            "endTime": "0:05.566",
+            "durationMs": 184,
+            "eventType": "silence",
+            "chord": "unknown",
+            "confidence": 0.518,
+            "onsetStrength": 0.92,
+            "meanChromaDelta": 0.012,
+            "maxChromaDelta": 0.012,
+            "topCandidates": [
+              {
+                "chord": "C#m",
+                "score": 0.298
+              },
+              {
+                "chord": "E",
+                "score": 0.277
+              },
+              {
+                "chord": "A",
+                "score": 0
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "C#m",
+                "score": 0.298
+              },
+              {
+                "chord": "E",
+                "score": 0.277
+              },
+              {
+                "chord": "A",
+                "score": 0
+              },
+              {
+                "chord": "B",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "0:05.566",
+            "endTime": "0:06.164",
+            "durationMs": 598,
+            "eventType": "uncertain",
+            "chord": "unknown",
+            "confidence": 0.521,
+            "onsetStrength": 0.92,
+            "meanChromaDelta": 0.025,
+            "maxChromaDelta": 0.028,
+            "topCandidates": [
+              {
+                "chord": "C#m",
+                "score": 0.266
+              },
+              {
+                "chord": "E",
+                "score": 0.239
+              },
+              {
+                "chord": "A",
+                "score": 0.006
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "C#m",
+                "score": 0.266
+              },
+              {
+                "chord": "E",
+                "score": 0.239
+              },
+              {
+                "chord": "A",
+                "score": 0.006
+              },
+              {
+                "chord": "B",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "0:06.141",
+            "endTime": "0:06.325",
+            "durationMs": 184,
+            "eventType": "silence",
+            "chord": "unknown",
+            "confidence": 0.505,
+            "onsetStrength": 0.78,
+            "meanChromaDelta": 0.031,
+            "maxChromaDelta": 0.031,
+            "topCandidates": [
+              {
+                "chord": "C#m",
+                "score": 0.219
+              },
+              {
+                "chord": "E",
+                "score": 0.207
+              },
+              {
+                "chord": "A",
+                "score": 0.007
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "C#m",
+                "score": 0.219
+              },
+              {
+                "chord": "E",
+                "score": 0.207
+              },
+              {
+                "chord": "A",
+                "score": 0.007
+              },
+              {
+                "chord": "B",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "0:06.325",
+            "endTime": "0:06.693",
+            "durationMs": 368,
+            "eventType": "uncertain",
+            "chord": "unknown",
+            "confidence": 0.571,
+            "onsetStrength": 0.92,
+            "meanChromaDelta": 0.036,
+            "maxChromaDelta": 0.057,
+            "topCandidates": [
+              {
+                "chord": "C#m",
+                "score": 0.181
+              },
+              {
+                "chord": "E",
+                "score": 0.11
+              },
+              {
+                "chord": "A",
+                "score": 0.026
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "C#m",
+                "score": 0.181
+              },
+              {
+                "chord": "E",
+                "score": 0.11
+              },
+              {
+                "chord": "A",
+                "score": 0.026
+              },
+              {
+                "chord": "B",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "0:06.693",
+            "endTime": "0:07.245",
+            "durationMs": 552,
+            "eventType": "silence",
+            "chord": "unknown",
+            "confidence": 0.44,
+            "onsetStrength": 0.92,
+            "meanChromaDelta": 0.066,
+            "maxChromaDelta": 0.085,
+            "topCandidates": [
+              {
+                "chord": "C#m",
+                "score": 0.181
+              },
+              {
+                "chord": "E",
+                "score": 0.17
+              },
+              {
+                "chord": "A",
+                "score": 0.06
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "C#m",
+                "score": 0.181
+              },
+              {
+                "chord": "E",
+                "score": 0.17
+              },
+              {
+                "chord": "A",
+                "score": 0.06
+              },
+              {
+                "chord": "B",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "0:07.245",
+            "endTime": "0:07.611",
+            "durationMs": 366,
+            "eventType": "uncertain",
+            "chord": "unknown",
+            "confidence": 0.415,
+            "onsetStrength": 0.92,
+            "meanChromaDelta": 0.043,
+            "maxChromaDelta": 0.072,
+            "topCandidates": [
+              {
+                "chord": "E",
+                "score": 0.129
+              },
+              {
+                "chord": "C#m",
+                "score": 0.123
+              },
+              {
+                "chord": "A",
+                "score": 0.059
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "E",
+                "score": 0.129
+              },
+              {
+                "chord": "C#m",
+                "score": 0.123
+              },
+              {
+                "chord": "A",
+                "score": 0.059
+              },
+              {
+                "chord": "B",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "0:07.613",
+            "endTime": "0:07.798",
+            "durationMs": 185,
+            "eventType": "silence",
+            "chord": "unknown",
+            "confidence": 0.364,
+            "onsetStrength": 0.92,
+            "meanChromaDelta": 0.058,
+            "maxChromaDelta": 0.058,
+            "topCandidates": [
+              {
+                "chord": "A",
+                "score": 0.121
+              },
+              {
+                "chord": "C#m",
+                "score": 0.107
+              },
+              {
+                "chord": "E",
+                "score": 0.104
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "A",
+                "score": 0.121
+              },
+              {
+                "chord": "C#m",
+                "score": 0.107
+              },
+              {
+                "chord": "E",
+                "score": 0.104
+              },
+              {
+                "chord": "B",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "0:07.797",
+            "endTime": "0:08.349",
+            "durationMs": 552,
+            "eventType": "uncertain",
+            "chord": "unknown",
+            "confidence": 0.378,
+            "onsetStrength": 0.92,
+            "meanChromaDelta": 0.032,
+            "maxChromaDelta": 0.045,
+            "topCandidates": [
+              {
+                "chord": "A",
+                "score": 0.141
+              },
+              {
+                "chord": "C#m",
+                "score": 0.126
+              },
+              {
+                "chord": "E",
+                "score": 0.106
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "A",
+                "score": 0.141
+              },
+              {
+                "chord": "C#m",
+                "score": 0.126
+              },
+              {
+                "chord": "E",
+                "score": 0.106
+              },
+              {
+                "chord": "B",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "0:08.372",
+            "endTime": "0:08.579",
+            "durationMs": 207,
+            "eventType": "silence",
+            "chord": "unknown",
+            "confidence": 0.399,
+            "onsetStrength": 0.78,
+            "meanChromaDelta": 0.02,
+            "maxChromaDelta": 0.02,
+            "topCandidates": [
+              {
+                "chord": "A",
+                "score": 0.17
+              },
+              {
+                "chord": "C#m",
+                "score": 0.151
+              },
+              {
+                "chord": "E",
+                "score": 0.105
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "A",
+                "score": 0.17
+              },
+              {
+                "chord": "C#m",
+                "score": 0.151
+              },
+              {
+                "chord": "E",
+                "score": 0.105
+              },
+              {
+                "chord": "B",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "0:08.556",
+            "endTime": "0:08.924",
+            "durationMs": 368,
+            "eventType": "uncertain",
+            "chord": "unknown",
+            "confidence": 0.434,
+            "onsetStrength": 0.92,
+            "meanChromaDelta": 0.045,
+            "maxChromaDelta": 0.058,
+            "topCandidates": [
+              {
+                "chord": "A",
+                "score": 0.215
+              },
+              {
+                "chord": "C#m",
+                "score": 0.161
+              },
+              {
+                "chord": "E",
+                "score": 0.119
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "A",
+                "score": 0.215
+              },
+              {
+                "chord": "C#m",
+                "score": 0.161
+              },
+              {
+                "chord": "E",
+                "score": 0.119
+              },
+              {
+                "chord": "B",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "0:08.924",
+            "endTime": "0:09.108",
+            "durationMs": 184,
+            "eventType": "silence",
+            "chord": "unknown",
+            "confidence": 0.381,
+            "onsetStrength": 0.78,
+            "meanChromaDelta": 0.073,
+            "maxChromaDelta": 0.073,
+            "topCandidates": [
+              {
+                "chord": "A",
+                "score": 0.266
+              },
+              {
+                "chord": "C#m",
+                "score": 0.24
+              },
+              {
+                "chord": "E",
+                "score": 0.192
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "A",
+                "score": 0.266
+              },
+              {
+                "chord": "C#m",
+                "score": 0.24
+              },
+              {
+                "chord": "E",
+                "score": 0.192
+              },
+              {
+                "chord": "B",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "0:09.108",
+            "endTime": "0:09.476",
+            "durationMs": 368,
+            "eventType": "uncertain",
+            "chord": "unknown",
+            "confidence": 0.495,
+            "onsetStrength": 0.92,
+            "meanChromaDelta": 0.073,
+            "maxChromaDelta": 0.129,
+            "topCandidates": [
+              {
+                "chord": "A",
+                "score": 0.149
+              },
+              {
+                "chord": "C#m",
+                "score": 0.076
+              },
+              {
+                "chord": "E",
+                "score": 0.076
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "A",
+                "score": 0.149
+              },
+              {
+                "chord": "C#m",
+                "score": 0.076
+              },
+              {
+                "chord": "E",
+                "score": 0.076
+              },
+              {
+                "chord": "B",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "0:09.476",
+            "endTime": "0:09.660",
+            "durationMs": 184,
+            "eventType": "silence",
+            "chord": "unknown",
+            "confidence": 0.492,
+            "onsetStrength": 0.78,
+            "meanChromaDelta": 0.027,
+            "maxChromaDelta": 0.027,
+            "topCandidates": [
+              {
+                "chord": "A",
+                "score": 0.098
+              },
+              {
+                "chord": "E",
+                "score": 0.054
+              },
+              {
+                "chord": "C#m",
+                "score": 0.048
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "A",
+                "score": 0.098
+              },
+              {
+                "chord": "E",
+                "score": 0.054
+              },
+              {
+                "chord": "C#m",
+                "score": 0.048
+              },
+              {
+                "chord": "B",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "0:09.660",
+            "endTime": "0:10.212",
+            "durationMs": 552,
+            "eventType": "uncertain",
+            "chord": "unknown",
+            "confidence": 0.526,
+            "onsetStrength": 0.92,
+            "meanChromaDelta": 0.046,
+            "maxChromaDelta": 0.064,
+            "topCandidates": [
+              {
+                "chord": "A",
+                "score": 0.14
+              },
+              {
+                "chord": "C#m",
+                "score": 0.065
+              },
+              {
+                "chord": "E",
+                "score": 0.061
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "A",
+                "score": 0.14
+              },
+              {
+                "chord": "C#m",
+                "score": 0.065
+              },
+              {
+                "chord": "E",
+                "score": 0.061
+              },
+              {
+                "chord": "B",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "0:10.211",
+            "endTime": "0:10.394",
+            "durationMs": 183,
+            "eventType": "silence",
+            "chord": "unknown",
+            "confidence": 0.455,
+            "onsetStrength": 0.78,
+            "meanChromaDelta": 0.016,
+            "maxChromaDelta": 0.016,
+            "topCandidates": [
+              {
+                "chord": "A",
+                "score": 0.082
+              },
+              {
+                "chord": "E",
+                "score": 0.054
+              },
+              {
+                "chord": "C#m",
+                "score": 0.043
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "A",
+                "score": 0.082
+              },
+              {
+                "chord": "E",
+                "score": 0.054
+              },
+              {
+                "chord": "C#m",
+                "score": 0.043
+              },
+              {
+                "chord": "B",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "0:10.396",
+            "endTime": "0:11.153",
+            "durationMs": 757,
+            "eventType": "chord",
+            "chord": "E",
+            "confidence": 0.592,
+            "onsetStrength": 0.92,
+            "meanChromaDelta": 0.043,
+            "maxChromaDelta": 0.086,
+            "topCandidates": [
+              {
+                "chord": "E",
+                "score": 0.179
+              },
+              {
+                "chord": "C#m",
+                "score": 0.093
+              },
+              {
+                "chord": "B",
+                "score": 0.03
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "E",
+                "score": 0.179
+              },
+              {
+                "chord": "C#m",
+                "score": 0.093
+              },
+              {
+                "chord": "B",
+                "score": 0.03
+              },
+              {
+                "chord": "A",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "0:11.154",
+            "endTime": "0:12.259",
+            "durationMs": 1105,
+            "eventType": "uncertain",
+            "chord": "unknown",
+            "confidence": 0.571,
+            "onsetStrength": 0.74,
+            "meanChromaDelta": 0.053,
+            "maxChromaDelta": 0.078,
+            "topCandidates": [
+              {
+                "chord": "E",
+                "score": 0.186
+              },
+              {
+                "chord": "C#m",
+                "score": 0.093
+              },
+              {
+                "chord": "B",
+                "score": 0.045
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "E",
+                "score": 0.186
+              },
+              {
+                "chord": "C#m",
+                "score": 0.093
+              },
+              {
+                "chord": "B",
+                "score": 0.045
+              },
+              {
+                "chord": "A",
+                "score": 0.002
+              }
+            ]
+          },
+          {
+            "startTime": "0:12.259",
+            "endTime": "0:12.627",
+            "durationMs": 368,
+            "eventType": "silence",
+            "chord": "unknown",
+            "confidence": 0.513,
+            "onsetStrength": 0.92,
+            "meanChromaDelta": 0.068,
+            "maxChromaDelta": 0.117,
+            "topCandidates": [
+              {
+                "chord": "E",
+                "score": 0.178
+              },
+              {
+                "chord": "C#m",
+                "score": 0.169
+              },
+              {
+                "chord": "A",
+                "score": 0
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "E",
+                "score": 0.178
+              },
+              {
+                "chord": "C#m",
+                "score": 0.169
+              },
+              {
+                "chord": "A",
+                "score": 0
+              },
+              {
+                "chord": "B",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "0:12.627",
+            "endTime": "0:15.985",
+            "durationMs": 3358,
+            "eventType": "uncertain",
+            "chord": "unknown",
+            "confidence": 0.533,
+            "onsetStrength": 0.92,
+            "meanChromaDelta": 0.046,
+            "maxChromaDelta": 0.111,
+            "topCandidates": [
+              {
+                "chord": "E",
+                "score": 0.177
+              },
+              {
+                "chord": "C#m",
+                "score": 0.093
+              },
+              {
+                "chord": "B",
+                "score": 0.042
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "E",
+                "score": 0.177
+              },
+              {
+                "chord": "C#m",
+                "score": 0.093
+              },
+              {
+                "chord": "B",
+                "score": 0.042
+              },
+              {
+                "chord": "A",
+                "score": 0.02
+              }
+            ]
+          },
+          {
+            "startTime": "0:15.985",
+            "endTime": "0:16.353",
+            "durationMs": 368,
+            "eventType": "silence",
+            "chord": "unknown",
+            "confidence": 0.344,
+            "onsetStrength": 0.92,
+            "meanChromaDelta": 0.039,
+            "maxChromaDelta": 0.053,
+            "topCandidates": [
+              {
+                "chord": "E",
+                "score": 0.066
+              },
+              {
+                "chord": "C#m",
+                "score": 0.066
+              },
+              {
+                "chord": "A",
+                "score": 0.061
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "E",
+                "score": 0.066
+              },
+              {
+                "chord": "C#m",
+                "score": 0.066
+              },
+              {
+                "chord": "A",
+                "score": 0.061
+              },
+              {
+                "chord": "B",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "0:16.353",
+            "endTime": "0:16.905",
+            "durationMs": 552,
+            "eventType": "uncertain",
+            "chord": "unknown",
+            "confidence": 0.525,
+            "onsetStrength": 0.92,
+            "meanChromaDelta": 0.037,
+            "maxChromaDelta": 0.056,
+            "topCandidates": [
+              {
+                "chord": "C#m",
+                "score": 0.226
+              },
+              {
+                "chord": "E",
+                "score": 0.129
+              },
+              {
+                "chord": "A",
+                "score": 0.074
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "C#m",
+                "score": 0.226
+              },
+              {
+                "chord": "E",
+                "score": 0.129
+              },
+              {
+                "chord": "A",
+                "score": 0.074
+              },
+              {
+                "chord": "B",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "0:16.904",
+            "endTime": "0:17.087",
+            "durationMs": 183,
+            "eventType": "silence",
+            "chord": "unknown",
+            "confidence": 0.45,
+            "onsetStrength": 0.78,
+            "meanChromaDelta": 0.078,
+            "maxChromaDelta": 0.078,
+            "topCandidates": [
+              {
+                "chord": "C#m",
+                "score": 0.102
+              },
+              {
+                "chord": "E",
+                "score": 0.096
+              },
+              {
+                "chord": "A",
+                "score": 0.029
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "C#m",
+                "score": 0.102
+              },
+              {
+                "chord": "E",
+                "score": 0.096
+              },
+              {
+                "chord": "A",
+                "score": 0.029
+              },
+              {
+                "chord": "B",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "0:17.089",
+            "endTime": "0:17.641",
+            "durationMs": 552,
+            "eventType": "uncertain",
+            "chord": "unknown",
+            "confidence": 0.549,
+            "onsetStrength": 0.92,
+            "meanChromaDelta": 0.034,
+            "maxChromaDelta": 0.066,
+            "topCandidates": [
+              {
+                "chord": "C#m",
+                "score": 0.237
+              },
+              {
+                "chord": "E",
+                "score": 0.189
+              },
+              {
+                "chord": "A",
+                "score": 0.006
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "C#m",
+                "score": 0.237
+              },
+              {
+                "chord": "E",
+                "score": 0.189
+              },
+              {
+                "chord": "A",
+                "score": 0.006
+              },
+              {
+                "chord": "B",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "0:17.641",
+            "endTime": "0:17.825",
+            "durationMs": 184,
+            "eventType": "silence",
+            "chord": "unknown",
+            "confidence": 0.525,
+            "onsetStrength": 0.78,
+            "meanChromaDelta": 0.034,
+            "maxChromaDelta": 0.034,
+            "topCandidates": [
+              {
+                "chord": "C#m",
+                "score": 0.257
+              },
+              {
+                "chord": "E",
+                "score": 0.232
+              },
+              {
+                "chord": "A",
+                "score": 0
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "C#m",
+                "score": 0.257
+              },
+              {
+                "chord": "E",
+                "score": 0.232
+              },
+              {
+                "chord": "A",
+                "score": 0
+              },
+              {
+                "chord": "B",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "0:17.825",
+            "endTime": "0:18.424",
+            "durationMs": 599,
+            "eventType": "uncertain",
+            "chord": "unknown",
+            "confidence": 0.523,
+            "onsetStrength": 0.92,
+            "meanChromaDelta": 0.055,
+            "maxChromaDelta": 0.068,
+            "topCandidates": [
+              {
+                "chord": "C#m",
+                "score": 0.132
+              },
+              {
+                "chord": "E",
+                "score": 0.081
+              },
+              {
+                "chord": "A",
+                "score": 0.039
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "C#m",
+                "score": 0.132
+              },
+              {
+                "chord": "E",
+                "score": 0.081
+              },
+              {
+                "chord": "A",
+                "score": 0.039
+              },
+              {
+                "chord": "B",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "0:18.400",
+            "endTime": "0:18.766",
+            "durationMs": 366,
+            "eventType": "silence",
+            "chord": "unknown",
+            "confidence": 0.461,
+            "onsetStrength": 0.92,
+            "meanChromaDelta": 0.053,
+            "maxChromaDelta": 0.078,
+            "topCandidates": [
+              {
+                "chord": "C#m",
+                "score": 0.184
+              },
+              {
+                "chord": "E",
+                "score": 0.174
+              },
+              {
+                "chord": "A",
+                "score": 0.041
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "C#m",
+                "score": 0.184
+              },
+              {
+                "chord": "E",
+                "score": 0.174
+              },
+              {
+                "chord": "A",
+                "score": 0.041
+              },
+              {
+                "chord": "B",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "0:18.768",
+            "endTime": "0:19.870",
+            "durationMs": 1102,
+            "eventType": "uncertain",
+            "chord": "unknown",
+            "confidence": 0.489,
+            "onsetStrength": 0.92,
+            "meanChromaDelta": 0.037,
+            "maxChromaDelta": 0.07,
+            "topCandidates": [
+              {
+                "chord": "A",
+                "score": 0.135
+              },
+              {
+                "chord": "C#m",
+                "score": 0.07
+              },
+              {
+                "chord": "E",
+                "score": 0.07
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "A",
+                "score": 0.135
+              },
+              {
+                "chord": "C#m",
+                "score": 0.07
+              },
+              {
+                "chord": "E",
+                "score": 0.07
+              },
+              {
+                "chord": "B",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "0:19.872",
+            "endTime": "0:20.057",
+            "durationMs": 185,
+            "eventType": "silence",
+            "chord": "unknown",
+            "confidence": 0.411,
+            "onsetStrength": 0.78,
+            "meanChromaDelta": 0.068,
+            "maxChromaDelta": 0.068,
+            "topCandidates": [
+              {
+                "chord": "E",
+                "score": 0.13
+              },
+              {
+                "chord": "C#m",
+                "score": 0.129
+              },
+              {
+                "chord": "A",
+                "score": 0.057
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "E",
+                "score": 0.13
+              },
+              {
+                "chord": "C#m",
+                "score": 0.129
+              },
+              {
+                "chord": "A",
+                "score": 0.057
+              },
+              {
+                "chord": "B",
+                "score": 0
+              }
+            ]
+          }
+        ],
+        "reviewTimeline": [
+          "0:05.0-0:05.4  unknown uncertain conf=0.53 onset=0.78 dur=368ms C#m:0.53 E:0.46 A:0.02",
+          "0:05.4-0:05.6  unknown silence   conf=0.52 onset=0.92 dur=184ms C#m:0.52 E:0.48 A:0.00",
+          "0:05.6-0:06.2  unknown uncertain conf=0.52 onset=0.92 dur=598ms C#m:0.52 E:0.47 A:0.01",
+          "0:06.1-0:06.3  unknown silence   conf=0.51 onset=0.78 dur=184ms C#m:0.51 E:0.48 A:0.02",
+          "0:06.3-0:06.7  unknown uncertain conf=0.57 onset=0.92 dur=368ms C#m:0.57 E:0.35 A:0.08",
+          "0:06.7-0:07.2  unknown silence   conf=0.44 onset=0.92 dur=552ms C#m:0.44 E:0.41 A:0.15",
+          "0:07.2-0:07.6  unknown uncertain conf=0.41 onset=0.92 dur=366ms E:0.41 C#m:0.39 A:0.19",
+          "0:07.6-0:07.8  unknown silence   conf=0.36 onset=0.92 dur=185ms A:0.36 C#m:0.32 E:0.31",
+          "0:07.8-0:08.3  unknown uncertain conf=0.38 onset=0.92 dur=552ms A:0.38 C#m:0.34 E:0.28",
+          "0:08.4-0:08.6  unknown silence   conf=0.40 onset=0.78 dur=207ms A:0.40 C#m:0.35 E:0.25",
+          "0:08.6-0:08.9  unknown uncertain conf=0.43 onset=0.92 dur=368ms A:0.43 C#m:0.33 E:0.24",
+          "0:08.9-0:09.1  unknown silence   conf=0.38 onset=0.78 dur=184ms A:0.38 C#m:0.34 E:0.28",
+          "0:09.1-0:09.5  unknown uncertain conf=0.49 onset=0.92 dur=368ms A:0.49 C#m:0.25 E:0.25",
+          "0:09.5-0:09.7  unknown silence   conf=0.49 onset=0.78 dur=184ms A:0.49 E:0.27 C#m:0.24",
+          "0:09.7-0:10.2  unknown uncertain conf=0.53 onset=0.92 dur=552ms A:0.53 C#m:0.24 E:0.23",
+          "0:10.2-0:10.4  unknown silence   conf=0.45 onset=0.78 dur=183ms A:0.45 E:0.30 C#m:0.24",
+          "0:10.4-0:11.2  E       chord     conf=0.59 onset=0.92 dur=757ms E:0.59 C#m:0.31 B:0.10",
+          "0:11.2-0:12.3  unknown uncertain conf=0.57 onset=0.74 dur=1105ms E:0.57 C#m:0.28 B:0.14",
+          "0:12.3-0:12.6  unknown silence   conf=0.51 onset=0.92 dur=368ms E:0.51 C#m:0.49 A:0.00",
+          "0:12.6-0:16.0  unknown uncertain conf=0.53 onset=0.92 dur=3358ms E:0.53 C#m:0.28 B:0.13",
+          "0:16.0-0:16.4  unknown silence   conf=0.34 onset=0.92 dur=368ms E:0.34 C#m:0.34 A:0.32",
+          "0:16.4-0:16.9  unknown uncertain conf=0.53 onset=0.92 dur=552ms C#m:0.53 E:0.30 A:0.17",
+          "0:16.9-0:17.1  unknown silence   conf=0.45 onset=0.78 dur=183ms C#m:0.45 E:0.42 A:0.13",
+          "0:17.1-0:17.6  unknown uncertain conf=0.55 onset=0.92 dur=552ms C#m:0.55 E:0.44 A:0.01",
+          "0:17.6-0:17.8  unknown silence   conf=0.53 onset=0.78 dur=184ms C#m:0.53 E:0.47 A:0.00",
+          "0:17.8-0:18.4  unknown uncertain conf=0.52 onset=0.92 dur=599ms C#m:0.52 E:0.32 A:0.16",
+          "0:18.4-0:18.8  unknown silence   conf=0.46 onset=0.92 dur=366ms C#m:0.46 E:0.44 A:0.10",
+          "0:18.8-0:19.9  unknown uncertain conf=0.49 onset=0.92 dur=1102ms A:0.49 C#m:0.26 E:0.26",
+          "0:19.9-0:20.1  unknown silence   conf=0.41 onset=0.78 dur=185ms E:0.41 C#m:0.41 A:0.18"
+        ]
+      }
+    },
+    {
+      "id": "region-2",
+      "label": "extra-chord-and-recovery",
+      "startTime": "3:25.000",
+      "endTime": "3:52.000",
+      "instructions": [
+        "Listen/watch this exact region in the reference video.",
+        "Fill humanEvents with the chords actually played, including extra chords with timelineIndex: null.",
+        "Add omittedWrittenEvents for written timeline events visible in expectedReference that were skipped.",
+        "Assisted evidence below is only a cue, not truth."
+      ],
+      "humanEvents": [
+        {
+          "startTime": "",
+          "endTime": "",
+          "playedChord": "",
+          "timelineIndex": null,
+          "status": "played-written | extra | uncertain",
+          "notes": ""
+        }
+      ],
+      "omittedWrittenEvents": [],
+      "expectedReference": [
+        {
+          "timelineIndex": 2,
+          "chord": "E",
+          "originalChord": "E",
+          "lineIndex": 0,
+          "charStart": 16,
+          "charEnd": 17,
+          "acousticCue": {
+            "maxScore": 0.251,
+            "candidateFrames": 41,
+            "top3Frames": 143
+          }
+        },
+        {
+          "timelineIndex": 3,
+          "chord": "E",
+          "originalChord": "E",
+          "lineIndex": 0,
+          "charStart": 18,
+          "charEnd": 19,
+          "acousticCue": {
+            "maxScore": 0.251,
+            "candidateFrames": 41,
+            "top3Frames": 143
+          }
+        },
+        {
+          "timelineIndex": 6,
+          "chord": "E",
+          "originalChord": "E",
+          "lineIndex": 2,
+          "charStart": 25,
+          "charEnd": 26,
+          "acousticCue": {
+            "maxScore": 0.251,
+            "candidateFrames": 41,
+            "top3Frames": 143
+          }
+        },
+        {
+          "timelineIndex": 9,
+          "chord": "E",
+          "originalChord": "E",
+          "lineIndex": 4,
+          "charStart": 25,
+          "charEnd": 26,
+          "acousticCue": {
+            "maxScore": 0.251,
+            "candidateFrames": 41,
+            "top3Frames": 143
+          }
+        },
+        {
+          "timelineIndex": 18,
+          "chord": "E",
+          "originalChord": "E",
+          "lineIndex": 13,
+          "charStart": 54,
+          "charEnd": 55,
+          "acousticCue": {
+            "maxScore": 0.251,
+            "candidateFrames": 41,
+            "top3Frames": 143
+          }
+        },
+        {
+          "timelineIndex": 22,
+          "chord": "E",
+          "originalChord": "E",
+          "lineIndex": 17,
+          "charStart": 52,
+          "charEnd": 53,
+          "acousticCue": {
+            "maxScore": 0.251,
+            "candidateFrames": 41,
+            "top3Frames": 143
+          }
+        },
+        {
+          "timelineIndex": 26,
+          "chord": "E",
+          "originalChord": "E",
+          "lineIndex": 19,
+          "charStart": 44,
+          "charEnd": 45,
+          "acousticCue": {
+            "maxScore": 0.251,
+            "candidateFrames": 41,
+            "top3Frames": 143
+          }
+        },
+        {
+          "timelineIndex": 27,
+          "chord": "E",
+          "originalChord": "E",
+          "lineIndex": 21,
+          "charStart": 0,
+          "charEnd": 1,
+          "acousticCue": {
+            "maxScore": 0.251,
+            "candidateFrames": 41,
+            "top3Frames": 143
+          }
+        },
+        {
+          "timelineIndex": 30,
+          "chord": "E",
+          "originalChord": "E",
+          "lineIndex": 23,
+          "charStart": 24,
+          "charEnd": 25,
+          "acousticCue": {
+            "maxScore": 0.251,
+            "candidateFrames": 41,
+            "top3Frames": 143
+          }
+        },
+        {
+          "timelineIndex": 33,
+          "chord": "E",
+          "originalChord": "E",
+          "lineIndex": 25,
+          "charStart": 23,
+          "charEnd": 24,
+          "acousticCue": {
+            "maxScore": 0.251,
+            "candidateFrames": 41,
+            "top3Frames": 143
+          }
+        },
+        {
+          "timelineIndex": 42,
+          "chord": "E",
+          "originalChord": "E",
+          "lineIndex": 35,
+          "charStart": 53,
+          "charEnd": 54,
+          "acousticCue": {
+            "maxScore": 0.251,
+            "candidateFrames": 41,
+            "top3Frames": 143
+          }
+        },
+        {
+          "timelineIndex": 46,
+          "chord": "E",
+          "originalChord": "E",
+          "lineIndex": 39,
+          "charStart": 52,
+          "charEnd": 53,
+          "acousticCue": {
+            "maxScore": 0.251,
+            "candidateFrames": 41,
+            "top3Frames": 143
+          }
+        },
+        {
+          "timelineIndex": 50,
+          "chord": "E",
+          "originalChord": "E",
+          "lineIndex": 44,
+          "charStart": 0,
+          "charEnd": 1,
+          "acousticCue": {
+            "maxScore": 0.251,
+            "candidateFrames": 41,
+            "top3Frames": 143
+          }
+        },
+        {
+          "timelineIndex": 53,
+          "chord": "E",
+          "originalChord": "E",
+          "lineIndex": 49,
+          "charStart": 0,
+          "charEnd": 1,
+          "acousticCue": {
+            "maxScore": 0.251,
+            "candidateFrames": 41,
+            "top3Frames": 143
+          }
+        },
+        {
+          "timelineIndex": 56,
+          "chord": "E",
+          "originalChord": "E",
+          "lineIndex": 52,
+          "charStart": 51,
+          "charEnd": 52,
+          "acousticCue": {
+            "maxScore": 0.251,
+            "candidateFrames": 41,
+            "top3Frames": 143
+          }
+        },
+        {
+          "timelineIndex": 63,
+          "chord": "E",
+          "originalChord": "E",
+          "lineIndex": 62,
+          "charStart": 10,
+          "charEnd": 11,
+          "acousticCue": {
+            "maxScore": 0.251,
+            "candidateFrames": 41,
+            "top3Frames": 143
+          }
+        }
+      ],
+      "assistedEvidence": {
+        "candidateSegments": [
+          {
+            "startTime": "3:25.088",
+            "endTime": "3:26.560",
+            "candidate": "E",
+            "frameCount": 8,
+            "meanConfidence": 0.623,
+            "maxConfidence": 0.693,
+            "meanRms": 0.1631,
+            "maxOnsetStrength": 0.74,
+            "maxChromaDelta": 0.082,
+            "top3": [
+              {
+                "chord": "E",
+                "score": 0.19
+              },
+              {
+                "chord": "C#m",
+                "score": 0.107
+              },
+              {
+                "chord": "B",
+                "score": 0.031
+              }
+            ]
+          },
+          {
+            "startTime": "3:26.560",
+            "endTime": "3:26.744",
+            "candidate": "A",
+            "frameCount": 1,
+            "meanConfidence": 0.787,
+            "maxConfidence": 0.787,
+            "meanRms": 0.1095,
+            "maxOnsetStrength": 0.78,
+            "maxChromaDelta": 0.082,
+            "top3": [
+              {
+                "chord": "A",
+                "score": 0.141
+              },
+              {
+                "chord": "E",
+                "score": 0.038
+              },
+              {
+                "chord": "C#m",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "3:26.744",
+            "endTime": "3:27.112",
+            "candidate": "unknown",
+            "frameCount": 2,
+            "meanConfidence": 0.552,
+            "maxConfidence": 0.569,
+            "meanRms": 0.1965,
+            "maxOnsetStrength": 0.92,
+            "maxChromaDelta": 0.051,
+            "top3": [
+              {
+                "chord": "A",
+                "score": 0.076
+              },
+              {
+                "chord": "E",
+                "score": 0.061
+              },
+              {
+                "chord": "C#m",
+                "score": 0.029
+              }
+            ]
+          },
+          {
+            "startTime": "3:27.112",
+            "endTime": "3:28.975",
+            "candidate": "B",
+            "frameCount": 10,
+            "meanConfidence": 0.666,
+            "maxConfidence": 1,
+            "meanRms": 0.1239,
+            "maxOnsetStrength": 0.92,
+            "maxChromaDelta": 0.092,
+            "top3": [
+              {
+                "chord": "B",
+                "score": 0.204
+              },
+              {
+                "chord": "E",
+                "score": 0.11
+              },
+              {
+                "chord": "C#m",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "3:28.975",
+            "endTime": "3:29.159",
+            "candidate": "E",
+            "frameCount": 1,
+            "meanConfidence": 0.603,
+            "maxConfidence": 0.603,
+            "meanRms": 0.1674,
+            "maxOnsetStrength": 0.78,
+            "maxChromaDelta": 0.064,
+            "top3": [
+              {
+                "chord": "E",
+                "score": 0.13
+              },
+              {
+                "chord": "B",
+                "score": 0.085
+              },
+              {
+                "chord": "A",
+                "score": 0.013
+              }
+            ]
+          },
+          {
+            "startTime": "3:29.159",
+            "endTime": "3:29.343",
+            "candidate": "B",
+            "frameCount": 1,
+            "meanConfidence": 0.67,
+            "maxConfidence": 0.67,
+            "meanRms": 0.1167,
+            "maxOnsetStrength": 0.78,
+            "maxChromaDelta": 0.059,
+            "top3": [
+              {
+                "chord": "B",
+                "score": 0.206
+              },
+              {
+                "chord": "E",
+                "score": 0.101
+              },
+              {
+                "chord": "C#m",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "3:29.343",
+            "endTime": "3:29.527",
+            "candidate": "unknown",
+            "frameCount": 1,
+            "meanConfidence": 0.568,
+            "maxConfidence": 0.568,
+            "meanRms": 0.1182,
+            "maxOnsetStrength": 0.78,
+            "maxChromaDelta": 0.103,
+            "top3": [
+              {
+                "chord": "E",
+                "score": 0.087
+              },
+              {
+                "chord": "C#m",
+                "score": 0.066
+              },
+              {
+                "chord": "A",
+                "score": 0.026
+              }
+            ]
+          },
+          {
+            "startTime": "3:29.527",
+            "endTime": "3:30.125",
+            "candidate": "A",
+            "frameCount": 3,
+            "meanConfidence": 0.758,
+            "maxConfidence": 0.944,
+            "meanRms": 0.1547,
+            "maxOnsetStrength": 0.92,
+            "maxChromaDelta": 0.055,
+            "top3": [
+              {
+                "chord": "A",
+                "score": 0.115
+              },
+              {
+                "chord": "E",
+                "score": 0.042
+              },
+              {
+                "chord": "C#m",
+                "score": 0.042
+              }
+            ]
+          },
+          {
+            "startTime": "3:30.102",
+            "endTime": "3:30.286",
+            "candidate": "unknown",
+            "frameCount": 1,
+            "meanConfidence": 0.524,
+            "maxConfidence": 0.524,
+            "meanRms": 0.0893,
+            "maxOnsetStrength": 0.78,
+            "maxChromaDelta": 0.075,
+            "top3": [
+              {
+                "chord": "C#m",
+                "score": 0.127
+              },
+              {
+                "chord": "E",
+                "score": 0.115
+              },
+              {
+                "chord": "A",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "3:30.288",
+            "endTime": "3:30.474",
+            "candidate": "C#m",
+            "frameCount": 1,
+            "meanConfidence": 0.58,
+            "maxConfidence": 0.58,
+            "meanRms": 0.0445,
+            "maxOnsetStrength": 0.92,
+            "maxChromaDelta": 0.02,
+            "top3": [
+              {
+                "chord": "C#m",
+                "score": 0.152
+              },
+              {
+                "chord": "E",
+                "score": 0.11
+              },
+              {
+                "chord": "A",
+                "score": 0.011
+              }
+            ]
+          },
+          {
+            "startTime": "3:30.470",
+            "endTime": "3:30.652",
+            "candidate": "unknown",
+            "frameCount": 1,
+            "meanConfidence": 0.523,
+            "maxConfidence": 0.523,
+            "meanRms": 0.2682,
+            "maxOnsetStrength": 0.78,
+            "maxChromaDelta": 0.055,
+            "top3": [
+              {
+                "chord": "C#m",
+                "score": 0.26
+              },
+              {
+                "chord": "E",
+                "score": 0.237
+              },
+              {
+                "chord": "A",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "3:30.654",
+            "endTime": "3:31.022",
+            "candidate": "C#m",
+            "frameCount": 2,
+            "meanConfidence": 0.564,
+            "maxConfidence": 0.595,
+            "meanRms": 0.1229,
+            "maxOnsetStrength": 0.92,
+            "maxChromaDelta": 0.033,
+            "top3": [
+              {
+                "chord": "C#m",
+                "score": 0.264
+              },
+              {
+                "chord": "E",
+                "score": 0.208
+              },
+              {
+                "chord": "A",
+                "score": 0.016
+              }
+            ]
+          },
+          {
+            "startTime": "3:31.022",
+            "endTime": "3:31.574",
+            "candidate": "unknown",
+            "frameCount": 3,
+            "meanConfidence": 0.51,
+            "maxConfidence": 0.521,
+            "meanRms": 0.1459,
+            "maxOnsetStrength": 0.92,
+            "maxChromaDelta": 0.059,
+            "top3": [
+              {
+                "chord": "C#m",
+                "score": 0.153
+              },
+              {
+                "chord": "E",
+                "score": 0.147
+              },
+              {
+                "chord": "A",
+                "score": 0.018
+              }
+            ]
+          },
+          {
+            "startTime": "3:31.574",
+            "endTime": "3:32.126",
+            "candidate": "C#m",
+            "frameCount": 3,
+            "meanConfidence": 0.601,
+            "maxConfidence": 0.689,
+            "meanRms": 0.1309,
+            "maxOnsetStrength": 0.92,
+            "maxChromaDelta": 0.073,
+            "top3": [
+              {
+                "chord": "C#m",
+                "score": 0.166
+              },
+              {
+                "chord": "E",
+                "score": 0.108
+              },
+              {
+                "chord": "A",
+                "score": 0.082
+              }
+            ]
+          },
+          {
+            "startTime": "3:32.126",
+            "endTime": "3:34.357",
+            "candidate": "A",
+            "frameCount": 12,
+            "meanConfidence": 0.749,
+            "maxConfidence": 0.938,
+            "meanRms": 0.157,
+            "maxOnsetStrength": 0.78,
+            "maxChromaDelta": 0.065,
+            "top3": [
+              {
+                "chord": "A",
+                "score": 0.151
+              },
+              {
+                "chord": "C#m",
+                "score": 0.052
+              },
+              {
+                "chord": "E",
+                "score": 0.049
+              }
+            ]
+          },
+          {
+            "startTime": "3:34.357",
+            "endTime": "3:34.541",
+            "candidate": "unknown",
+            "frameCount": 1,
+            "meanConfidence": 0.562,
+            "maxConfidence": 0.562,
+            "meanRms": 0.1074,
+            "maxOnsetStrength": 0.78,
+            "maxChromaDelta": 0.048,
+            "top3": [
+              {
+                "chord": "A",
+                "score": 0.098
+              },
+              {
+                "chord": "E",
+                "score": 0.076
+              },
+              {
+                "chord": "C#m",
+                "score": 0.07
+              }
+            ]
+          },
+          {
+            "startTime": "3:34.541",
+            "endTime": "3:34.725",
+            "candidate": "A",
+            "frameCount": 1,
+            "meanConfidence": 0.721,
+            "maxConfidence": 0.721,
+            "meanRms": 0.2459,
+            "maxOnsetStrength": 0.92,
+            "maxChromaDelta": 0.051,
+            "top3": [
+              {
+                "chord": "A",
+                "score": 0.184
+              },
+              {
+                "chord": "C#m",
+                "score": 0.071
+              },
+              {
+                "chord": "E",
+                "score": 0.061
+              }
+            ]
+          },
+          {
+            "startTime": "3:34.748",
+            "endTime": "3:34.955",
+            "candidate": "unknown",
+            "frameCount": 1,
+            "meanConfidence": 0.512,
+            "maxConfidence": 0.512,
+            "meanRms": 0.0808,
+            "maxOnsetStrength": 0.78,
+            "maxChromaDelta": 0.059,
+            "top3": [
+              {
+                "chord": "E",
+                "score": 0.097
+              },
+              {
+                "chord": "C#m",
+                "score": 0.092
+              },
+              {
+                "chord": "A",
+                "score": 0.082
+              }
+            ]
+          },
+          {
+            "startTime": "3:34.932",
+            "endTime": "3:35.300",
+            "candidate": "A",
+            "frameCount": 2,
+            "meanConfidence": 0.763,
+            "maxConfidence": 0.836,
+            "meanRms": 0.1817,
+            "maxOnsetStrength": 0.92,
+            "maxChromaDelta": 0.05,
+            "top3": [
+              {
+                "chord": "A",
+                "score": 0.134
+              },
+              {
+                "chord": "E",
+                "score": 0.045
+              },
+              {
+                "chord": "C#m",
+                "score": 0.037
+              }
+            ]
+          },
+          {
+            "startTime": "3:35.300",
+            "endTime": "3:36.036",
+            "candidate": "B",
+            "frameCount": 4,
+            "meanConfidence": 0.628,
+            "maxConfidence": 0.765,
+            "meanRms": 0.1704,
+            "maxOnsetStrength": 0.78,
+            "maxChromaDelta": 0.14,
+            "top3": [
+              {
+                "chord": "B",
+                "score": 0.219
+              },
+              {
+                "chord": "E",
+                "score": 0.142
+              },
+              {
+                "chord": "C#m",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "3:36.036",
+            "endTime": "3:36.404",
+            "candidate": "unknown",
+            "frameCount": 2,
+            "meanConfidence": 0.56,
+            "maxConfidence": 0.58,
+            "meanRms": 0.1871,
+            "maxOnsetStrength": 0.92,
+            "maxChromaDelta": 0.124,
+            "top3": [
+              {
+                "chord": "E",
+                "score": 0.099
+              },
+              {
+                "chord": "C#m",
+                "score": 0.085
+              },
+              {
+                "chord": "A",
+                "score": 0.054
+              }
+            ]
+          },
+          {
+            "startTime": "3:36.404",
+            "endTime": "3:38.819",
+            "candidate": "E",
+            "frameCount": 13,
+            "meanConfidence": 0.641,
+            "maxConfidence": 0.734,
+            "meanRms": 0.1749,
+            "maxOnsetStrength": 0.92,
+            "maxChromaDelta": 0.081,
+            "top3": [
+              {
+                "chord": "E",
+                "score": 0.213
+              },
+              {
+                "chord": "B",
+                "score": 0.082
+              },
+              {
+                "chord": "C#m",
+                "score": 0.068
+              }
+            ]
+          },
+          {
+            "startTime": "3:38.819",
+            "endTime": "3:39.187",
+            "candidate": "unknown",
+            "frameCount": 2,
+            "meanConfidence": 0.766,
+            "maxConfidence": 0.921,
+            "meanRms": 0.1616,
+            "maxOnsetStrength": 0.92,
+            "maxChromaDelta": 0.099,
+            "top3": [
+              {
+                "chord": "A",
+                "score": 0.05
+              },
+              {
+                "chord": "B",
+                "score": 0.038
+              },
+              {
+                "chord": "E",
+                "score": 0.034
+              }
+            ]
+          },
+          {
+            "startTime": "3:39.186",
+            "endTime": "3:40.682",
+            "candidate": "B",
+            "frameCount": 8,
+            "meanConfidence": 0.662,
+            "maxConfidence": 0.78,
+            "meanRms": 0.1363,
+            "maxOnsetStrength": 0.92,
+            "maxChromaDelta": 0.063,
+            "top3": [
+              {
+                "chord": "B",
+                "score": 0.196
+              },
+              {
+                "chord": "E",
+                "score": 0.104
+              },
+              {
+                "chord": "C#m",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "3:40.682",
+            "endTime": "3:40.866",
+            "candidate": "unknown",
+            "frameCount": 1,
+            "meanConfidence": 0.588,
+            "maxConfidence": 0.588,
+            "meanRms": 0.0584,
+            "maxOnsetStrength": 0.78,
+            "maxChromaDelta": 0.038,
+            "top3": [
+              {
+                "chord": "B",
+                "score": 0.094
+              },
+              {
+                "chord": "E",
+                "score": 0.066
+              },
+              {
+                "chord": "C#m",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "3:40.866",
+            "endTime": "3:41.418",
+            "candidate": "B",
+            "frameCount": 3,
+            "meanConfidence": 0.612,
+            "maxConfidence": 0.636,
+            "meanRms": 0.1589,
+            "maxOnsetStrength": 0.92,
+            "maxChromaDelta": 0.063,
+            "top3": [
+              {
+                "chord": "B",
+                "score": 0.201
+              },
+              {
+                "chord": "E",
+                "score": 0.128
+              },
+              {
+                "chord": "C#m",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "3:41.417",
+            "endTime": "3:41.970",
+            "candidate": "unknown",
+            "frameCount": 3,
+            "meanConfidence": 0.572,
+            "maxConfidence": 0.664,
+            "meanRms": 0.1968,
+            "maxOnsetStrength": 0.92,
+            "maxChromaDelta": 0.139,
+            "top3": [
+              {
+                "chord": "C#m",
+                "score": 0.091
+              },
+              {
+                "chord": "A",
+                "score": 0.088
+              },
+              {
+                "chord": "E",
+                "score": 0.088
+              }
+            ]
+          },
+          {
+            "startTime": "3:41.970",
+            "endTime": "3:42.545",
+            "candidate": "C#m",
+            "frameCount": 3,
+            "meanConfidence": 0.592,
+            "maxConfidence": 0.6,
+            "meanRms": 0.1324,
+            "maxOnsetStrength": 0.92,
+            "maxChromaDelta": 0.046,
+            "top3": [
+              {
+                "chord": "C#m",
+                "score": 0.2
+              },
+              {
+                "chord": "E",
+                "score": 0.138
+              },
+              {
+                "chord": "A",
+                "score": 0.03
+              }
+            ]
+          },
+          {
+            "startTime": "3:42.544",
+            "endTime": "3:42.727",
+            "candidate": "unknown",
+            "frameCount": 1,
+            "meanConfidence": 0.517,
+            "maxConfidence": 0.517,
+            "meanRms": 0.3193,
+            "maxOnsetStrength": 0.78,
+            "maxChromaDelta": 0.043,
+            "top3": [
+              {
+                "chord": "C#m",
+                "score": 0.218
+              },
+              {
+                "chord": "E",
+                "score": 0.204
+              },
+              {
+                "chord": "A",
+                "score": 0.019
+              }
+            ]
+          },
+          {
+            "startTime": "3:42.729",
+            "endTime": "3:43.095",
+            "candidate": "C#m",
+            "frameCount": 2,
+            "meanConfidence": 0.546,
+            "maxConfidence": 0.558,
+            "meanRms": 0.1713,
+            "maxOnsetStrength": 0.92,
+            "maxChromaDelta": 0.02,
+            "top3": [
+              {
+                "chord": "C#m",
+                "score": 0.247
+              },
+              {
+                "chord": "E",
+                "score": 0.206
+              },
+              {
+                "chord": "A",
+                "score": 0.011
+              }
+            ]
+          },
+          {
+            "startTime": "3:43.097",
+            "endTime": "3:43.282",
+            "candidate": "unknown",
+            "frameCount": 1,
+            "meanConfidence": 0.514,
+            "maxConfidence": 0.514,
+            "meanRms": 0.1625,
+            "maxOnsetStrength": 0.78,
+            "maxChromaDelta": 0.027,
+            "top3": [
+              {
+                "chord": "C#m",
+                "score": 0.234
+              },
+              {
+                "chord": "E",
+                "score": 0.221
+              },
+              {
+                "chord": "A",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "3:43.281",
+            "endTime": "3:43.465",
+            "candidate": "C#m",
+            "frameCount": 1,
+            "meanConfidence": 0.551,
+            "maxConfidence": 0.551,
+            "meanRms": 0.0803,
+            "maxOnsetStrength": 0.92,
+            "maxChromaDelta": 0.024,
+            "top3": [
+              {
+                "chord": "C#m",
+                "score": 0.242
+              },
+              {
+                "chord": "E",
+                "score": 0.197
+              },
+              {
+                "chord": "A",
+                "score": 0.016
+              }
+            ]
+          },
+          {
+            "startTime": "3:43.465",
+            "endTime": "3:44.017",
+            "candidate": "unknown",
+            "frameCount": 3,
+            "meanConfidence": 0.559,
+            "maxConfidence": 0.646,
+            "meanRms": 0.1656,
+            "maxOnsetStrength": 0.92,
+            "maxChromaDelta": 0.063,
+            "top3": [
+              {
+                "chord": "C#m",
+                "score": 0.12
+              },
+              {
+                "chord": "E",
+                "score": 0.099
+              },
+              {
+                "chord": "A",
+                "score": 0.044
+              }
+            ]
+          },
+          {
+            "startTime": "3:44.017",
+            "endTime": "3:44.201",
+            "candidate": "C#m",
+            "frameCount": 1,
+            "meanConfidence": 0.593,
+            "maxConfidence": 0.593,
+            "meanRms": 0.138,
+            "maxOnsetStrength": 0.92,
+            "maxChromaDelta": 0.058,
+            "top3": [
+              {
+                "chord": "C#m",
+                "score": 0.153
+              },
+              {
+                "chord": "E",
+                "score": 0.105
+              },
+              {
+                "chord": "A",
+                "score": 0.032
+              }
+            ]
+          },
+          {
+            "startTime": "3:44.201",
+            "endTime": "3:44.385",
+            "candidate": "unknown",
+            "frameCount": 1,
+            "meanConfidence": 0.522,
+            "maxConfidence": 0.522,
+            "meanRms": 0.1401,
+            "maxOnsetStrength": 0.78,
+            "maxChromaDelta": 0.061,
+            "top3": [
+              {
+                "chord": "E",
+                "score": 0.09
+              },
+              {
+                "chord": "C#m",
+                "score": 0.082
+              },
+              {
+                "chord": "A",
+                "score": 0.077
+              }
+            ]
+          },
+          {
+            "startTime": "3:44.385",
+            "endTime": "3:47.214",
+            "candidate": "A",
+            "frameCount": 15,
+            "meanConfidence": 0.703,
+            "maxConfidence": 1,
+            "meanRms": 0.1604,
+            "maxOnsetStrength": 0.92,
+            "maxChromaDelta": 0.074,
+            "top3": [
+              {
+                "chord": "A",
+                "score": 0.15
+              },
+              {
+                "chord": "C#m",
+                "score": 0.064
+              },
+              {
+                "chord": "E",
+                "score": 0.062
+              }
+            ]
+          },
+          {
+            "startTime": "3:47.191",
+            "endTime": "3:47.375",
+            "candidate": "unknown",
+            "frameCount": 1,
+            "meanConfidence": 0.702,
+            "maxConfidence": 0.702,
+            "meanRms": 0.1147,
+            "maxOnsetStrength": 0.78,
+            "maxChromaDelta": 0.019,
+            "top3": [
+              {
+                "chord": "A",
+                "score": 0.082
+              },
+              {
+                "chord": "E",
+                "score": 0.035
+              },
+              {
+                "chord": "C#m",
+                "score": 0.034
+              }
+            ]
+          },
+          {
+            "startTime": "3:47.375",
+            "endTime": "3:49.031",
+            "candidate": "E",
+            "frameCount": 9,
+            "meanConfidence": 0.634,
+            "maxConfidence": 0.736,
+            "meanRms": 0.1724,
+            "maxOnsetStrength": 0.92,
+            "maxChromaDelta": 0.088,
+            "top3": [
+              {
+                "chord": "E",
+                "score": 0.188
+              },
+              {
+                "chord": "B",
+                "score": 0.081
+              },
+              {
+                "chord": "C#m",
+                "score": 0.053
+              }
+            ]
+          },
+          {
+            "startTime": "3:49.031",
+            "endTime": "3:49.399",
+            "candidate": "unknown",
+            "frameCount": 2,
+            "meanConfidence": 0.516,
+            "maxConfidence": 0.522,
+            "meanRms": 0.2222,
+            "maxOnsetStrength": 0.92,
+            "maxChromaDelta": 0.126,
+            "top3": [
+              {
+                "chord": "E",
+                "score": 0.164
+              },
+              {
+                "chord": "C#m",
+                "score": 0.154
+              },
+              {
+                "chord": "A",
+                "score": 0.011
+              }
+            ]
+          },
+          {
+            "startTime": "3:49.422",
+            "endTime": "3:49.790",
+            "candidate": "E",
+            "frameCount": 2,
+            "meanConfidence": 0.635,
+            "maxConfidence": 0.646,
+            "meanRms": 0.1743,
+            "maxOnsetStrength": 0.92,
+            "maxChromaDelta": 0.054,
+            "top3": [
+              {
+                "chord": "E",
+                "score": 0.191
+              },
+              {
+                "chord": "C#m",
+                "score": 0.076
+              },
+              {
+                "chord": "B",
+                "score": 0.062
+              }
+            ]
+          },
+          {
+            "startTime": "3:49.790",
+            "endTime": "3:49.974",
+            "candidate": "unknown",
+            "frameCount": 1,
+            "meanConfidence": 0.522,
+            "maxConfidence": 0.522,
+            "meanRms": 0.1952,
+            "maxOnsetStrength": 0.78,
+            "maxChromaDelta": 0.087,
+            "top3": [
+              {
+                "chord": "E",
+                "score": 0.18
+              },
+              {
+                "chord": "C#m",
+                "score": 0.164
+              },
+              {
+                "chord": "A",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "3:49.974",
+            "endTime": "3:50.158",
+            "candidate": "E",
+            "frameCount": 1,
+            "meanConfidence": 0.583,
+            "maxConfidence": 0.583,
+            "meanRms": 0.099,
+            "maxOnsetStrength": 0.92,
+            "maxChromaDelta": 0.037,
+            "top3": [
+              {
+                "chord": "E",
+                "score": 0.147
+              },
+              {
+                "chord": "C#m",
+                "score": 0.105
+              },
+              {
+                "chord": "A",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "3:50.158",
+            "endTime": "3:50.342",
+            "candidate": "unknown",
+            "frameCount": 1,
+            "meanConfidence": 0.537,
+            "maxConfidence": 0.537,
+            "meanRms": 0.286,
+            "maxOnsetStrength": 0.78,
+            "maxChromaDelta": 0.037,
+            "top3": [
+              {
+                "chord": "E",
+                "score": 0.168
+              },
+              {
+                "chord": "C#m",
+                "score": 0.145
+              },
+              {
+                "chord": "A",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "3:50.341",
+            "endTime": "3:50.711",
+            "candidate": "E",
+            "frameCount": 2,
+            "meanConfidence": 0.616,
+            "maxConfidence": 0.639,
+            "meanRms": 0.1593,
+            "maxOnsetStrength": 0.92,
+            "maxChromaDelta": 0.066,
+            "top3": [
+              {
+                "chord": "E",
+                "score": 0.188
+              },
+              {
+                "chord": "C#m",
+                "score": 0.069
+              },
+              {
+                "chord": "B",
+                "score": 0.057
+              }
+            ]
+          },
+          {
+            "startTime": "3:50.710",
+            "endTime": "3:50.894",
+            "candidate": "unknown",
+            "frameCount": 1,
+            "meanConfidence": 0.819,
+            "maxConfidence": 0.819,
+            "meanRms": 0.238,
+            "maxOnsetStrength": 0.78,
+            "maxChromaDelta": 0.063,
+            "top3": [
+              {
+                "chord": "E",
+                "score": 0.055
+              },
+              {
+                "chord": "C#m",
+                "score": 0.012
+              },
+              {
+                "chord": "A",
+                "score": 0.011
+              }
+            ]
+          },
+          {
+            "startTime": "3:50.894",
+            "endTime": "3:51.815",
+            "candidate": "E",
+            "frameCount": 5,
+            "meanConfidence": 0.673,
+            "maxConfidence": 0.743,
+            "meanRms": 0.1271,
+            "maxOnsetStrength": 0.92,
+            "maxChromaDelta": 0.065,
+            "top3": [
+              {
+                "chord": "E",
+                "score": 0.191
+              },
+              {
+                "chord": "C#m",
+                "score": 0.07
+              },
+              {
+                "chord": "B",
+                "score": 0.059
+              }
+            ]
+          },
+          {
+            "startTime": "3:51.837",
+            "endTime": "3:52.044",
+            "candidate": "unknown",
+            "frameCount": 1,
+            "meanConfidence": 0.527,
+            "maxConfidence": 0.527,
+            "meanRms": 0.1713,
+            "maxOnsetStrength": 0.78,
+            "maxChromaDelta": 0.069,
+            "top3": [
+              {
+                "chord": "E",
+                "score": 0.175
+              },
+              {
+                "chord": "C#m",
+                "score": 0.158
+              },
+              {
+                "chord": "A",
+                "score": 0
+              }
+            ]
+          }
+        ],
+        "observedEventSegments": [
+          {
+            "startTime": "3:25.088",
+            "endTime": "3:26.008",
+            "durationMs": 920,
+            "eventType": "chord",
+            "chord": "E",
+            "confidence": 0.583,
+            "onsetStrength": 0.74,
+            "meanChromaDelta": 0.049,
+            "maxChromaDelta": 0.082,
+            "topCandidates": [
+              {
+                "chord": "E",
+                "score": 0.201
+              },
+              {
+                "chord": "C#m",
+                "score": 0.096
+              },
+              {
+                "chord": "B",
+                "score": 0.047
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "E",
+                "score": 0.201
+              },
+              {
+                "chord": "C#m",
+                "score": 0.096
+              },
+              {
+                "chord": "B",
+                "score": 0.047
+              },
+              {
+                "chord": "A",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "3:26.008",
+            "endTime": "3:26.744",
+            "durationMs": 736,
+            "eventType": "uncertain",
+            "chord": "unknown",
+            "confidence": 0.514,
+            "onsetStrength": 0.78,
+            "meanChromaDelta": 0.044,
+            "maxChromaDelta": 0.082,
+            "topCandidates": [
+              {
+                "chord": "E",
+                "score": 0.138
+              },
+              {
+                "chord": "C#m",
+                "score": 0.093
+              },
+              {
+                "chord": "A",
+                "score": 0.035
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "E",
+                "score": 0.138
+              },
+              {
+                "chord": "C#m",
+                "score": 0.093
+              },
+              {
+                "chord": "A",
+                "score": 0.035
+              },
+              {
+                "chord": "B",
+                "score": 0.003
+              }
+            ]
+          },
+          {
+            "startTime": "3:26.744",
+            "endTime": "3:27.112",
+            "durationMs": 368,
+            "eventType": "silence",
+            "chord": "unknown",
+            "confidence": 0.449,
+            "onsetStrength": 0.92,
+            "meanChromaDelta": 0.05,
+            "maxChromaDelta": 0.051,
+            "topCandidates": [
+              {
+                "chord": "A",
+                "score": 0.076
+              },
+              {
+                "chord": "E",
+                "score": 0.061
+              },
+              {
+                "chord": "C#m",
+                "score": 0.029
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "A",
+                "score": 0.076
+              },
+              {
+                "chord": "E",
+                "score": 0.061
+              },
+              {
+                "chord": "C#m",
+                "score": 0.029
+              },
+              {
+                "chord": "B",
+                "score": 0.004
+              }
+            ]
+          },
+          {
+            "startTime": "3:27.112",
+            "endTime": "3:27.710",
+            "durationMs": 598,
+            "eventType": "chord",
+            "chord": "B",
+            "confidence": 0.594,
+            "onsetStrength": 0.92,
+            "meanChromaDelta": 0.046,
+            "maxChromaDelta": 0.092,
+            "topCandidates": [
+              {
+                "chord": "B",
+                "score": 0.204
+              },
+              {
+                "chord": "E",
+                "score": 0.14
+              },
+              {
+                "chord": "C#m",
+                "score": 0
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "B",
+                "score": 0.204
+              },
+              {
+                "chord": "E",
+                "score": 0.14
+              },
+              {
+                "chord": "C#m",
+                "score": 0
+              },
+              {
+                "chord": "A",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "3:27.687",
+            "endTime": "3:28.607",
+            "durationMs": 920,
+            "eventType": "chord",
+            "chord": "B",
+            "confidence": 0.656,
+            "onsetStrength": 0.72,
+            "meanChromaDelta": 0.038,
+            "maxChromaDelta": 0.052,
+            "topCandidates": [
+              {
+                "chord": "B",
+                "score": 0.207
+              },
+              {
+                "chord": "E",
+                "score": 0.108
+              },
+              {
+                "chord": "C#m",
+                "score": 0
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "B",
+                "score": 0.207
+              },
+              {
+                "chord": "E",
+                "score": 0.108
+              },
+              {
+                "chord": "C#m",
+                "score": 0
+              },
+              {
+                "chord": "A",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "3:28.607",
+            "endTime": "3:28.975",
+            "durationMs": 368,
+            "eventType": "chord",
+            "chord": "B",
+            "confidence": 0.738,
+            "onsetStrength": 0.74,
+            "meanChromaDelta": 0.07,
+            "maxChromaDelta": 0.075,
+            "topCandidates": [
+              {
+                "chord": "B",
+                "score": 0.196
+              },
+              {
+                "chord": "E",
+                "score": 0.07
+              },
+              {
+                "chord": "C#m",
+                "score": 0
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "B",
+                "score": 0.196
+              },
+              {
+                "chord": "E",
+                "score": 0.07
+              },
+              {
+                "chord": "C#m",
+                "score": 0
+              },
+              {
+                "chord": "A",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "3:28.975",
+            "endTime": "3:29.343",
+            "durationMs": 368,
+            "eventType": "uncertain",
+            "chord": "unknown",
+            "confidence": 0.544,
+            "onsetStrength": 0.78,
+            "meanChromaDelta": 0.061,
+            "maxChromaDelta": 0.064,
+            "topCandidates": [
+              {
+                "chord": "B",
+                "score": 0.146
+              },
+              {
+                "chord": "E",
+                "score": 0.116
+              },
+              {
+                "chord": "A",
+                "score": 0.007
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "B",
+                "score": 0.146
+              },
+              {
+                "chord": "E",
+                "score": 0.116
+              },
+              {
+                "chord": "A",
+                "score": 0.007
+              },
+              {
+                "chord": "C#m",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "3:29.343",
+            "endTime": "3:29.527",
+            "durationMs": 184,
+            "eventType": "silence",
+            "chord": "unknown",
+            "confidence": 0.485,
+            "onsetStrength": 0.78,
+            "meanChromaDelta": 0.103,
+            "maxChromaDelta": 0.103,
+            "topCandidates": [
+              {
+                "chord": "E",
+                "score": 0.087
+              },
+              {
+                "chord": "C#m",
+                "score": 0.066
+              },
+              {
+                "chord": "A",
+                "score": 0.026
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "E",
+                "score": 0.087
+              },
+              {
+                "chord": "C#m",
+                "score": 0.066
+              },
+              {
+                "chord": "A",
+                "score": 0.026
+              },
+              {
+                "chord": "B",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "3:29.527",
+            "endTime": "3:30.125",
+            "durationMs": 598,
+            "eventType": "uncertain",
+            "chord": "unknown",
+            "confidence": 0.579,
+            "onsetStrength": 0.92,
+            "meanChromaDelta": 0.046,
+            "maxChromaDelta": 0.055,
+            "topCandidates": [
+              {
+                "chord": "A",
+                "score": 0.115
+              },
+              {
+                "chord": "E",
+                "score": 0.042
+              },
+              {
+                "chord": "C#m",
+                "score": 0.042
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "A",
+                "score": 0.115
+              },
+              {
+                "chord": "E",
+                "score": 0.042
+              },
+              {
+                "chord": "C#m",
+                "score": 0.042
+              },
+              {
+                "chord": "B",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "3:30.102",
+            "endTime": "3:30.286",
+            "durationMs": 184,
+            "eventType": "silence",
+            "chord": "unknown",
+            "confidence": 0.524,
+            "onsetStrength": 0.78,
+            "meanChromaDelta": 0.075,
+            "maxChromaDelta": 0.075,
+            "topCandidates": [
+              {
+                "chord": "C#m",
+                "score": 0.127
+              },
+              {
+                "chord": "E",
+                "score": 0.115
+              },
+              {
+                "chord": "A",
+                "score": 0
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "C#m",
+                "score": 0.127
+              },
+              {
+                "chord": "E",
+                "score": 0.115
+              },
+              {
+                "chord": "A",
+                "score": 0
+              },
+              {
+                "chord": "B",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "3:30.288",
+            "endTime": "3:31.022",
+            "durationMs": 734,
+            "eventType": "uncertain",
+            "chord": "unknown",
+            "confidence": 0.538,
+            "onsetStrength": 0.92,
+            "meanChromaDelta": 0.03,
+            "maxChromaDelta": 0.055,
+            "topCandidates": [
+              {
+                "chord": "C#m",
+                "score": 0.235
+              },
+              {
+                "chord": "E",
+                "score": 0.191
+              },
+              {
+                "chord": "A",
+                "score": 0.011
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "C#m",
+                "score": 0.235
+              },
+              {
+                "chord": "E",
+                "score": 0.191
+              },
+              {
+                "chord": "A",
+                "score": 0.011
+              },
+              {
+                "chord": "B",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "3:31.022",
+            "endTime": "3:31.574",
+            "durationMs": 552,
+            "eventType": "silence",
+            "chord": "unknown",
+            "confidence": 0.481,
+            "onsetStrength": 0.92,
+            "meanChromaDelta": 0.045,
+            "maxChromaDelta": 0.059,
+            "topCandidates": [
+              {
+                "chord": "C#m",
+                "score": 0.153
+              },
+              {
+                "chord": "E",
+                "score": 0.147
+              },
+              {
+                "chord": "A",
+                "score": 0.018
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "C#m",
+                "score": 0.153
+              },
+              {
+                "chord": "E",
+                "score": 0.147
+              },
+              {
+                "chord": "A",
+                "score": 0.018
+              },
+              {
+                "chord": "B",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "3:31.574",
+            "endTime": "3:34.357",
+            "durationMs": 2783,
+            "eventType": "uncertain",
+            "chord": "unknown",
+            "confidence": 0.503,
+            "onsetStrength": 0.92,
+            "meanChromaDelta": 0.037,
+            "maxChromaDelta": 0.073,
+            "topCandidates": [
+              {
+                "chord": "A",
+                "score": 0.137
+              },
+              {
+                "chord": "C#m",
+                "score": 0.075
+              },
+              {
+                "chord": "E",
+                "score": 0.061
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "A",
+                "score": 0.137
+              },
+              {
+                "chord": "C#m",
+                "score": 0.075
+              },
+              {
+                "chord": "E",
+                "score": 0.061
+              },
+              {
+                "chord": "B",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "3:34.357",
+            "endTime": "3:34.541",
+            "durationMs": 184,
+            "eventType": "silence",
+            "chord": "unknown",
+            "confidence": 0.401,
+            "onsetStrength": 0.78,
+            "meanChromaDelta": 0.048,
+            "maxChromaDelta": 0.048,
+            "topCandidates": [
+              {
+                "chord": "A",
+                "score": 0.098
+              },
+              {
+                "chord": "E",
+                "score": 0.076
+              },
+              {
+                "chord": "C#m",
+                "score": 0.07
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "A",
+                "score": 0.098
+              },
+              {
+                "chord": "E",
+                "score": 0.076
+              },
+              {
+                "chord": "C#m",
+                "score": 0.07
+              },
+              {
+                "chord": "B",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "3:34.541",
+            "endTime": "3:36.036",
+            "durationMs": 1495,
+            "eventType": "uncertain",
+            "chord": "unknown",
+            "confidence": 0.356,
+            "onsetStrength": 0.92,
+            "meanChromaDelta": 0.055,
+            "maxChromaDelta": 0.14,
+            "topCandidates": [
+              {
+                "chord": "B",
+                "score": 0.109
+              },
+              {
+                "chord": "E",
+                "score": 0.102
+              },
+              {
+                "chord": "A",
+                "score": 0.067
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "B",
+                "score": 0.109
+              },
+              {
+                "chord": "E",
+                "score": 0.102
+              },
+              {
+                "chord": "A",
+                "score": 0.067
+              },
+              {
+                "chord": "C#m",
+                "score": 0.03
+              }
+            ]
+          },
+          {
+            "startTime": "3:36.036",
+            "endTime": "3:36.404",
+            "durationMs": 368,
+            "eventType": "silence",
+            "chord": "unknown",
+            "confidence": 0.417,
+            "onsetStrength": 0.92,
+            "meanChromaDelta": 0.085,
+            "maxChromaDelta": 0.124,
+            "topCandidates": [
+              {
+                "chord": "E",
+                "score": 0.099
+              },
+              {
+                "chord": "C#m",
+                "score": 0.085
+              },
+              {
+                "chord": "A",
+                "score": 0.054
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "E",
+                "score": 0.099
+              },
+              {
+                "chord": "C#m",
+                "score": 0.085
+              },
+              {
+                "chord": "A",
+                "score": 0.054
+              },
+              {
+                "chord": "B",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "3:36.404",
+            "endTime": "3:36.956",
+            "durationMs": 552,
+            "eventType": "chord",
+            "chord": "E",
+            "confidence": 0.597,
+            "onsetStrength": 0.92,
+            "meanChromaDelta": 0.036,
+            "maxChromaDelta": 0.053,
+            "topCandidates": [
+              {
+                "chord": "E",
+                "score": 0.197
+              },
+              {
+                "chord": "B",
+                "score": 0.072
+              },
+              {
+                "chord": "C#m",
+                "score": 0.061
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "E",
+                "score": 0.197
+              },
+              {
+                "chord": "B",
+                "score": 0.072
+              },
+              {
+                "chord": "C#m",
+                "score": 0.061
+              },
+              {
+                "chord": "A",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "3:36.956",
+            "endTime": "3:38.819",
+            "durationMs": 1863,
+            "eventType": "chord",
+            "chord": "E",
+            "confidence": 0.582,
+            "onsetStrength": 0.74,
+            "meanChromaDelta": 0.047,
+            "maxChromaDelta": 0.081,
+            "topCandidates": [
+              {
+                "chord": "E",
+                "score": 0.218
+              },
+              {
+                "chord": "B",
+                "score": 0.085
+              },
+              {
+                "chord": "C#m",
+                "score": 0.07
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "E",
+                "score": 0.218
+              },
+              {
+                "chord": "B",
+                "score": 0.085
+              },
+              {
+                "chord": "C#m",
+                "score": 0.07
+              },
+              {
+                "chord": "A",
+                "score": 0.001
+              }
+            ]
+          },
+          {
+            "startTime": "3:38.819",
+            "endTime": "3:39.187",
+            "durationMs": 368,
+            "eventType": "silence",
+            "chord": "unknown",
+            "confidence": 0.334,
+            "onsetStrength": 0.92,
+            "meanChromaDelta": 0.096,
+            "maxChromaDelta": 0.099,
+            "topCandidates": [
+              {
+                "chord": "A",
+                "score": 0.05
+              },
+              {
+                "chord": "B",
+                "score": 0.038
+              },
+              {
+                "chord": "E",
+                "score": 0.034
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "A",
+                "score": 0.05
+              },
+              {
+                "chord": "B",
+                "score": 0.038
+              },
+              {
+                "chord": "E",
+                "score": 0.034
+              },
+              {
+                "chord": "C#m",
+                "score": 0.028
+              }
+            ]
+          },
+          {
+            "startTime": "3:39.186",
+            "endTime": "3:40.314",
+            "durationMs": 1128,
+            "eventType": "chord",
+            "chord": "B",
+            "confidence": 0.641,
+            "onsetStrength": 0.92,
+            "meanChromaDelta": 0.029,
+            "maxChromaDelta": 0.057,
+            "topCandidates": [
+              {
+                "chord": "B",
+                "score": 0.218
+              },
+              {
+                "chord": "E",
+                "score": 0.122
+              },
+              {
+                "chord": "C#m",
+                "score": 0
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "B",
+                "score": 0.218
+              },
+              {
+                "chord": "E",
+                "score": 0.122
+              },
+              {
+                "chord": "C#m",
+                "score": 0
+              },
+              {
+                "chord": "A",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "3:40.314",
+            "endTime": "3:40.682",
+            "durationMs": 368,
+            "eventType": "chord",
+            "chord": "B",
+            "confidence": 0.716,
+            "onsetStrength": 0.624,
+            "meanChromaDelta": 0.051,
+            "maxChromaDelta": 0.063,
+            "topCandidates": [
+              {
+                "chord": "B",
+                "score": 0.131
+              },
+              {
+                "chord": "E",
+                "score": 0.052
+              },
+              {
+                "chord": "C#m",
+                "score": 0
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "B",
+                "score": 0.131
+              },
+              {
+                "chord": "E",
+                "score": 0.052
+              },
+              {
+                "chord": "C#m",
+                "score": 0
+              },
+              {
+                "chord": "A",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "3:40.682",
+            "endTime": "3:40.866",
+            "durationMs": 184,
+            "eventType": "silence",
+            "chord": "unknown",
+            "confidence": 0.588,
+            "onsetStrength": 0.78,
+            "meanChromaDelta": 0.038,
+            "maxChromaDelta": 0.038,
+            "topCandidates": [
+              {
+                "chord": "B",
+                "score": 0.094
+              },
+              {
+                "chord": "E",
+                "score": 0.066
+              },
+              {
+                "chord": "C#m",
+                "score": 0
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "B",
+                "score": 0.094
+              },
+              {
+                "chord": "E",
+                "score": 0.066
+              },
+              {
+                "chord": "C#m",
+                "score": 0
+              },
+              {
+                "chord": "A",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "3:40.866",
+            "endTime": "3:41.234",
+            "durationMs": 368,
+            "eventType": "chord",
+            "chord": "B",
+            "confidence": 0.622,
+            "onsetStrength": 0.92,
+            "meanChromaDelta": 0.036,
+            "maxChromaDelta": 0.063,
+            "topCandidates": [
+              {
+                "chord": "B",
+                "score": 0.192
+              },
+              {
+                "chord": "E",
+                "score": 0.117
+              },
+              {
+                "chord": "C#m",
+                "score": 0
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "B",
+                "score": 0.192
+              },
+              {
+                "chord": "E",
+                "score": 0.117
+              },
+              {
+                "chord": "C#m",
+                "score": 0
+              },
+              {
+                "chord": "A",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "3:41.234",
+            "endTime": "3:41.600",
+            "durationMs": 366,
+            "eventType": "uncertain",
+            "chord": "unknown",
+            "confidence": 0.369,
+            "onsetStrength": 0.78,
+            "meanChromaDelta": 0.091,
+            "maxChromaDelta": 0.139,
+            "topCandidates": [
+              {
+                "chord": "E",
+                "score": 0.123
+              },
+              {
+                "chord": "B",
+                "score": 0.109
+              },
+              {
+                "chord": "A",
+                "score": 0.054
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "E",
+                "score": 0.123
+              },
+              {
+                "chord": "B",
+                "score": 0.109
+              },
+              {
+                "chord": "A",
+                "score": 0.054
+              },
+              {
+                "chord": "C#m",
+                "score": 0.048
+              }
+            ]
+          },
+          {
+            "startTime": "3:41.602",
+            "endTime": "3:41.970",
+            "durationMs": 368,
+            "eventType": "silence",
+            "chord": "unknown",
+            "confidence": 0.355,
+            "onsetStrength": 0.92,
+            "meanChromaDelta": 0.034,
+            "maxChromaDelta": 0.043,
+            "topCandidates": [
+              {
+                "chord": "C#m",
+                "score": 0.089
+              },
+              {
+                "chord": "E",
+                "score": 0.084
+              },
+              {
+                "chord": "A",
+                "score": 0.078
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "C#m",
+                "score": 0.089
+              },
+              {
+                "chord": "E",
+                "score": 0.084
+              },
+              {
+                "chord": "A",
+                "score": 0.078
+              },
+              {
+                "chord": "B",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "3:41.970",
+            "endTime": "3:42.545",
+            "durationMs": 575,
+            "eventType": "uncertain",
+            "chord": "unknown",
+            "confidence": 0.544,
+            "onsetStrength": 0.92,
+            "meanChromaDelta": 0.022,
+            "maxChromaDelta": 0.046,
+            "topCandidates": [
+              {
+                "chord": "C#m",
+                "score": 0.2
+              },
+              {
+                "chord": "E",
+                "score": 0.138
+              },
+              {
+                "chord": "A",
+                "score": 0.03
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "C#m",
+                "score": 0.2
+              },
+              {
+                "chord": "E",
+                "score": 0.138
+              },
+              {
+                "chord": "A",
+                "score": 0.03
+              },
+              {
+                "chord": "B",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "3:42.544",
+            "endTime": "3:42.727",
+            "durationMs": 183,
+            "eventType": "silence",
+            "chord": "unknown",
+            "confidence": 0.495,
+            "onsetStrength": 0.78,
+            "meanChromaDelta": 0.043,
+            "maxChromaDelta": 0.043,
+            "topCandidates": [
+              {
+                "chord": "C#m",
+                "score": 0.218
+              },
+              {
+                "chord": "E",
+                "score": 0.204
+              },
+              {
+                "chord": "A",
+                "score": 0.019
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "C#m",
+                "score": 0.218
+              },
+              {
+                "chord": "E",
+                "score": 0.204
+              },
+              {
+                "chord": "A",
+                "score": 0.019
+              },
+              {
+                "chord": "B",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "3:42.729",
+            "endTime": "3:43.095",
+            "durationMs": 366,
+            "eventType": "uncertain",
+            "chord": "unknown",
+            "confidence": 0.533,
+            "onsetStrength": 0.92,
+            "meanChromaDelta": 0.02,
+            "maxChromaDelta": 0.02,
+            "topCandidates": [
+              {
+                "chord": "C#m",
+                "score": 0.247
+              },
+              {
+                "chord": "E",
+                "score": 0.206
+              },
+              {
+                "chord": "A",
+                "score": 0.011
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "C#m",
+                "score": 0.247
+              },
+              {
+                "chord": "E",
+                "score": 0.206
+              },
+              {
+                "chord": "A",
+                "score": 0.011
+              },
+              {
+                "chord": "B",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "3:43.097",
+            "endTime": "3:43.282",
+            "durationMs": 185,
+            "eventType": "silence",
+            "chord": "unknown",
+            "confidence": 0.514,
+            "onsetStrength": 0.78,
+            "meanChromaDelta": 0.027,
+            "maxChromaDelta": 0.027,
+            "topCandidates": [
+              {
+                "chord": "C#m",
+                "score": 0.234
+              },
+              {
+                "chord": "E",
+                "score": 0.221
+              },
+              {
+                "chord": "A",
+                "score": 0
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "C#m",
+                "score": 0.234
+              },
+              {
+                "chord": "E",
+                "score": 0.221
+              },
+              {
+                "chord": "A",
+                "score": 0
+              },
+              {
+                "chord": "B",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "3:43.281",
+            "endTime": "3:43.649",
+            "durationMs": 368,
+            "eventType": "uncertain",
+            "chord": "unknown",
+            "confidence": 0.521,
+            "onsetStrength": 0.92,
+            "meanChromaDelta": 0.04,
+            "maxChromaDelta": 0.056,
+            "topCandidates": [
+              {
+                "chord": "C#m",
+                "score": 0.19
+              },
+              {
+                "chord": "E",
+                "score": 0.165
+              },
+              {
+                "chord": "A",
+                "score": 0.01
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "C#m",
+                "score": 0.19
+              },
+              {
+                "chord": "E",
+                "score": 0.165
+              },
+              {
+                "chord": "A",
+                "score": 0.01
+              },
+              {
+                "chord": "B",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "3:43.649",
+            "endTime": "3:44.017",
+            "durationMs": 368,
+            "eventType": "silence",
+            "chord": "unknown",
+            "confidence": 0.434,
+            "onsetStrength": 0.92,
+            "meanChromaDelta": 0.061,
+            "maxChromaDelta": 0.063,
+            "topCandidates": [
+              {
+                "chord": "C#m",
+                "score": 0.111
+              },
+              {
+                "chord": "E",
+                "score": 0.082
+              },
+              {
+                "chord": "A",
+                "score": 0.063
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "C#m",
+                "score": 0.111
+              },
+              {
+                "chord": "E",
+                "score": 0.082
+              },
+              {
+                "chord": "A",
+                "score": 0.063
+              },
+              {
+                "chord": "B",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "3:44.017",
+            "endTime": "3:47.214",
+            "durationMs": 3197,
+            "eventType": "uncertain",
+            "chord": "unknown",
+            "confidence": 0.505,
+            "onsetStrength": 0.92,
+            "meanChromaDelta": 0.04,
+            "maxChromaDelta": 0.074,
+            "topCandidates": [
+              {
+                "chord": "A",
+                "score": 0.139
+              },
+              {
+                "chord": "C#m",
+                "score": 0.07
+              },
+              {
+                "chord": "E",
+                "score": 0.066
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "A",
+                "score": 0.139
+              },
+              {
+                "chord": "C#m",
+                "score": 0.07
+              },
+              {
+                "chord": "E",
+                "score": 0.066
+              },
+              {
+                "chord": "B",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "3:47.191",
+            "endTime": "3:47.375",
+            "durationMs": 184,
+            "eventType": "silence",
+            "chord": "unknown",
+            "confidence": 0.545,
+            "onsetStrength": 0.78,
+            "meanChromaDelta": 0.019,
+            "maxChromaDelta": 0.019,
+            "topCandidates": [
+              {
+                "chord": "A",
+                "score": 0.082
+              },
+              {
+                "chord": "E",
+                "score": 0.035
+              },
+              {
+                "chord": "C#m",
+                "score": 0.034
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "A",
+                "score": 0.082
+              },
+              {
+                "chord": "E",
+                "score": 0.035
+              },
+              {
+                "chord": "C#m",
+                "score": 0.034
+              },
+              {
+                "chord": "B",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "3:47.375",
+            "endTime": "3:48.109",
+            "durationMs": 734,
+            "eventType": "chord",
+            "chord": "E",
+            "confidence": 0.597,
+            "onsetStrength": 0.92,
+            "meanChromaDelta": 0.044,
+            "maxChromaDelta": 0.088,
+            "topCandidates": [
+              {
+                "chord": "E",
+                "score": 0.173
+              },
+              {
+                "chord": "C#m",
+                "score": 0.077
+              },
+              {
+                "chord": "B",
+                "score": 0.04
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "E",
+                "score": 0.173
+              },
+              {
+                "chord": "C#m",
+                "score": 0.077
+              },
+              {
+                "chord": "B",
+                "score": 0.04
+              },
+              {
+                "chord": "A",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "3:48.111",
+            "endTime": "3:49.031",
+            "durationMs": 920,
+            "eventType": "uncertain",
+            "chord": "unknown",
+            "confidence": 0.574,
+            "onsetStrength": 0.72,
+            "meanChromaDelta": 0.039,
+            "maxChromaDelta": 0.051,
+            "topCandidates": [
+              {
+                "chord": "E",
+                "score": 0.199
+              },
+              {
+                "chord": "B",
+                "score": 0.114
+              },
+              {
+                "chord": "C#m",
+                "score": 0.034
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "E",
+                "score": 0.199
+              },
+              {
+                "chord": "B",
+                "score": 0.114
+              },
+              {
+                "chord": "C#m",
+                "score": 0.034
+              },
+              {
+                "chord": "A",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "3:49.031",
+            "endTime": "3:49.399",
+            "durationMs": 368,
+            "eventType": "silence",
+            "chord": "unknown",
+            "confidence": 0.498,
+            "onsetStrength": 0.92,
+            "meanChromaDelta": 0.085,
+            "maxChromaDelta": 0.126,
+            "topCandidates": [
+              {
+                "chord": "E",
+                "score": 0.164
+              },
+              {
+                "chord": "C#m",
+                "score": 0.154
+              },
+              {
+                "chord": "A",
+                "score": 0.011
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "E",
+                "score": 0.164
+              },
+              {
+                "chord": "C#m",
+                "score": 0.154
+              },
+              {
+                "chord": "A",
+                "score": 0.011
+              },
+              {
+                "chord": "B",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "3:49.422",
+            "endTime": "3:49.790",
+            "durationMs": 368,
+            "eventType": "uncertain",
+            "chord": "unknown",
+            "confidence": 0.58,
+            "onsetStrength": 0.92,
+            "meanChromaDelta": 0.049,
+            "maxChromaDelta": 0.054,
+            "topCandidates": [
+              {
+                "chord": "E",
+                "score": 0.191
+              },
+              {
+                "chord": "C#m",
+                "score": 0.076
+              },
+              {
+                "chord": "B",
+                "score": 0.062
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "E",
+                "score": 0.191
+              },
+              {
+                "chord": "C#m",
+                "score": 0.076
+              },
+              {
+                "chord": "B",
+                "score": 0.062
+              },
+              {
+                "chord": "A",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "3:49.790",
+            "endTime": "3:49.974",
+            "durationMs": 184,
+            "eventType": "silence",
+            "chord": "unknown",
+            "confidence": 0.522,
+            "onsetStrength": 0.78,
+            "meanChromaDelta": 0.087,
+            "maxChromaDelta": 0.087,
+            "topCandidates": [
+              {
+                "chord": "E",
+                "score": 0.18
+              },
+              {
+                "chord": "C#m",
+                "score": 0.164
+              },
+              {
+                "chord": "A",
+                "score": 0
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "E",
+                "score": 0.18
+              },
+              {
+                "chord": "C#m",
+                "score": 0.164
+              },
+              {
+                "chord": "A",
+                "score": 0
+              },
+              {
+                "chord": "B",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "3:49.974",
+            "endTime": "3:50.711",
+            "durationMs": 737,
+            "eventType": "uncertain",
+            "chord": "unknown",
+            "confidence": 0.579,
+            "onsetStrength": 0.92,
+            "meanChromaDelta": 0.043,
+            "maxChromaDelta": 0.066,
+            "topCandidates": [
+              {
+                "chord": "E",
+                "score": 0.173
+              },
+              {
+                "chord": "C#m",
+                "score": 0.097
+              },
+              {
+                "chord": "B",
+                "score": 0.028
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "E",
+                "score": 0.173
+              },
+              {
+                "chord": "C#m",
+                "score": 0.097
+              },
+              {
+                "chord": "B",
+                "score": 0.028
+              },
+              {
+                "chord": "A",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "3:50.710",
+            "endTime": "3:50.894",
+            "durationMs": 184,
+            "eventType": "silence",
+            "chord": "unknown",
+            "confidence": 0.703,
+            "onsetStrength": 0.78,
+            "meanChromaDelta": 0.063,
+            "maxChromaDelta": 0.063,
+            "topCandidates": [
+              {
+                "chord": "E",
+                "score": 0.055
+              },
+              {
+                "chord": "C#m",
+                "score": 0.012
+              },
+              {
+                "chord": "A",
+                "score": 0.011
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "E",
+                "score": 0.055
+              },
+              {
+                "chord": "C#m",
+                "score": 0.012
+              },
+              {
+                "chord": "A",
+                "score": 0.011
+              },
+              {
+                "chord": "B",
+                "score": 0
+              }
+            ]
+          },
+          {
+            "startTime": "3:50.894",
+            "endTime": "3:51.815",
+            "durationMs": 921,
+            "eventType": "chord",
+            "chord": "E",
+            "confidence": 0.59,
+            "onsetStrength": 0.92,
+            "meanChromaDelta": 0.05,
+            "maxChromaDelta": 0.065,
+            "topCandidates": [
+              {
+                "chord": "E",
+                "score": 0.191
+              },
+              {
+                "chord": "C#m",
+                "score": 0.07
+              },
+              {
+                "chord": "B",
+                "score": 0.059
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "E",
+                "score": 0.191
+              },
+              {
+                "chord": "C#m",
+                "score": 0.07
+              },
+              {
+                "chord": "B",
+                "score": 0.059
+              },
+              {
+                "chord": "A",
+                "score": 0.004
+              }
+            ]
+          },
+          {
+            "startTime": "3:51.837",
+            "endTime": "3:52.044",
+            "durationMs": 207,
+            "eventType": "silence",
+            "chord": "unknown",
+            "confidence": 0.527,
+            "onsetStrength": 0.78,
+            "meanChromaDelta": 0.069,
+            "maxChromaDelta": 0.069,
+            "topCandidates": [
+              {
+                "chord": "E",
+                "score": 0.175
+              },
+              {
+                "chord": "C#m",
+                "score": 0.158
+              },
+              {
+                "chord": "A",
+                "score": 0
+              }
+            ],
+            "chordDistribution": [
+              {
+                "chord": "E",
+                "score": 0.175
+              },
+              {
+                "chord": "C#m",
+                "score": 0.158
+              },
+              {
+                "chord": "A",
+                "score": 0
+              },
+              {
+                "chord": "B",
+                "score": 0
+              }
+            ]
+          }
+        ],
+        "reviewTimeline": [
+          "3:25.1-3:26.0  E       chord     conf=0.58 onset=0.74 dur=920ms E:0.58 C#m:0.28 B:0.14",
+          "3:26.0-3:26.7  unknown uncertain conf=0.51 onset=0.78 dur=736ms E:0.51 C#m:0.34 A:0.13",
+          "3:26.7-3:27.1  unknown silence   conf=0.45 onset=0.92 dur=368ms A:0.45 E:0.36 C#m:0.17",
+          "3:27.1-3:27.7  B       chord     conf=0.59 onset=0.92 dur=598ms B:0.59 E:0.41 C#m:0.00",
+          "3:27.7-3:28.6  B       chord     conf=0.66 onset=0.72 dur=920ms B:0.66 E:0.34 C#m:0.00",
+          "3:28.6-3:29.0  B       chord     conf=0.74 onset=0.74 dur=368ms B:0.74 E:0.26 C#m:0.00",
+          "3:29.0-3:29.3  unknown uncertain conf=0.54 onset=0.78 dur=368ms B:0.54 E:0.43 A:0.02",
+          "3:29.3-3:29.5  unknown silence   conf=0.49 onset=0.78 dur=184ms E:0.49 C#m:0.37 A:0.15",
+          "3:29.5-3:30.1  unknown uncertain conf=0.58 onset=0.92 dur=598ms A:0.58 E:0.21 C#m:0.21",
+          "3:30.1-3:30.3  unknown silence   conf=0.52 onset=0.78 dur=184ms C#m:0.52 E:0.48 A:0.00",
+          "3:30.3-3:31.0  unknown uncertain conf=0.54 onset=0.92 dur=734ms C#m:0.54 E:0.44 A:0.02",
+          "3:31.0-3:31.6  unknown silence   conf=0.48 onset=0.92 dur=552ms C#m:0.48 E:0.46 A:0.06",
+          "3:31.6-3:34.4  unknown uncertain conf=0.50 onset=0.92 dur=2783ms A:0.50 C#m:0.27 E:0.22",
+          "3:34.4-3:34.5  unknown silence   conf=0.40 onset=0.78 dur=184ms A:0.40 E:0.31 C#m:0.29",
+          "3:34.5-3:36.0  unknown uncertain conf=0.36 onset=0.92 dur=1495ms B:0.36 E:0.33 A:0.22",
+          "3:36.0-3:36.4  unknown silence   conf=0.42 onset=0.92 dur=368ms E:0.42 C#m:0.36 A:0.23",
+          "3:36.4-3:37.0  E       chord     conf=0.60 onset=0.92 dur=552ms E:0.60 B:0.22 C#m:0.18",
+          "3:37.0-3:38.8  E       chord     conf=0.58 onset=0.74 dur=1863ms E:0.58 B:0.23 C#m:0.19",
+          "3:38.8-3:39.2  unknown silence   conf=0.33 onset=0.92 dur=368ms A:0.33 B:0.26 E:0.23",
+          "3:39.2-3:40.3  B       chord     conf=0.64 onset=0.92 dur=1128ms B:0.64 E:0.36 C#m:0.00",
+          "3:40.3-3:40.7  B       chord     conf=0.72 onset=0.62 dur=368ms B:0.72 E:0.28 C#m:0.00",
+          "3:40.7-3:40.9  unknown silence   conf=0.59 onset=0.78 dur=184ms B:0.59 E:0.41 C#m:0.00",
+          "3:40.9-3:41.2  B       chord     conf=0.62 onset=0.92 dur=368ms B:0.62 E:0.38 C#m:0.00",
+          "3:41.2-3:41.6  unknown uncertain conf=0.37 onset=0.78 dur=366ms E:0.37 B:0.33 A:0.16",
+          "3:41.6-3:42.0  unknown silence   conf=0.35 onset=0.92 dur=368ms C#m:0.35 E:0.33 A:0.31",
+          "3:42.0-3:42.5  unknown uncertain conf=0.54 onset=0.92 dur=575ms C#m:0.54 E:0.37 A:0.08",
+          "3:42.5-3:42.7  unknown silence   conf=0.49 onset=0.78 dur=183ms C#m:0.49 E:0.46 A:0.04",
+          "3:42.7-3:43.1  unknown uncertain conf=0.53 onset=0.92 dur=366ms C#m:0.53 E:0.44 A:0.02",
+          "3:43.1-3:43.3  unknown silence   conf=0.51 onset=0.78 dur=185ms C#m:0.51 E:0.49 A:0.00",
+          "3:43.3-3:43.6  unknown uncertain conf=0.52 onset=0.92 dur=368ms C#m:0.52 E:0.45 A:0.03",
+          "3:43.6-3:44.0  unknown silence   conf=0.43 onset=0.92 dur=368ms C#m:0.43 E:0.32 A:0.24",
+          "3:44.0-3:47.2  unknown uncertain conf=0.51 onset=0.92 dur=3197ms A:0.51 C#m:0.25 E:0.24",
+          "3:47.2-3:47.4  unknown silence   conf=0.54 onset=0.78 dur=184ms A:0.54 E:0.23 C#m:0.22",
+          "3:47.4-3:48.1  E       chord     conf=0.60 onset=0.92 dur=734ms E:0.60 C#m:0.26 B:0.14",
+          "3:48.1-3:49.0  unknown uncertain conf=0.57 onset=0.72 dur=920ms E:0.57 B:0.33 C#m:0.10",
+          "3:49.0-3:49.4  unknown silence   conf=0.50 onset=0.92 dur=368ms E:0.50 C#m:0.47 A:0.03",
+          "3:49.4-3:49.8  unknown uncertain conf=0.58 onset=0.92 dur=368ms E:0.58 C#m:0.23 B:0.19",
+          "3:49.8-3:50.0  unknown silence   conf=0.52 onset=0.78 dur=184ms E:0.52 C#m:0.48 A:0.00",
+          "3:50.0-3:50.7  unknown uncertain conf=0.58 onset=0.92 dur=737ms E:0.58 C#m:0.33 B:0.10",
+          "3:50.7-3:50.9  unknown silence   conf=0.70 onset=0.78 dur=184ms E:0.70 C#m:0.16 A:0.14",
+          "3:50.9-3:51.8  E       chord     conf=0.59 onset=0.92 dur=921ms E:0.59 C#m:0.22 B:0.18",
+          "3:51.8-3:52.0  unknown silence   conf=0.53 onset=0.78 dur=207ms E:0.53 C#m:0.47 A:0.00"
+        ]
+      }
+    }
+  ]
+}

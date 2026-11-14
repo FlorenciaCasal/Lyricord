@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "recordingFile": "lyricord-evidence-cae-el-sol-2026-08-17T15-53-34-267Z.json",
+  "name": "Cae el sol - 2026-08-17 problem region",
+  "notes": "Ground truth diagnóstico de la región del fallo. Los segmentos con timelineIndex corresponden a eventos escritos en ExpectedMusicSequence. observedEvents incluye el E extra tocado por el usuario, que no existe en el score y por eso conserva timelineIndex null.",
+  "segments": [
+    {
+      "startMs": 1786981974574,
+      "endMs": 1786981983674,
+      "timelineIndex": 57
+    },
+    {
+      "startMs": 1786981986474,
+      "endMs": 1786981989174,
+      "timelineIndex": 60
+    },
+    {
+      "startMs": 1786981989174,
+      "endMs": 1786981991774,
+      "timelineIndex": 61
+    },
+    {
+      "startMs": 1786981991774,
+      "endMs": 1786981994774,
+      "timelineIndex": 62
+    },
+    {
+      "startMs": 1786981994774,
+      "endMs": 1786982004274,
+      "timelineIndex": 63
+    }
+  ],
+  "observedEvents": [
+    {
+      "time": "03:27.100",
+      "timeMs": 207100,
+      "timelineIndex": 57,
+      "chord": "B",
+      "kind": "score"
+    },
+    {
+      "time": "03:36.200",
+      "timeMs": 216200,
+      "timelineIndex": null,
+      "chord": "E",
+      "kind": "extra-not-in-score",
+      "note": "E extra informado por el usuario; no inventar timelineIndex."
+    },
+    {
+      "time": "03:39.000",
+      "timeMs": 219000,
+      "timelineIndex": 60,
+      "chord": "B",
+      "kind": "score-probable"
+    },
+    {
+      "time": "03:41.700",
+      "timeMs": 221700,
+      "timelineIndex": 61,
+      "chord": "C#m",
+      "kind": "score-probable"
+    },
+    {
+      "time": "03:41.700",
+      "timeMs": 221700,
+      "timelineIndex": 73,
+      "chord": "C#m",
+      "kind": "score-ambiguous",
+      "note": "La evidencia también coincide con esta aparición futura; se conserva como ambigüedad diagnóstica, no como commit."
+    },
+    {
+      "time": "03:44.300",
+      "timeMs": 224300,
+      "timelineIndex": 62,
+      "chord": "A",
+      "kind": "score-probable"
+    },
+    {
+      "time": "03:47.300",
+      "timeMs": 227300,
+      "timelineIndex": 63,
+      "chord": "E",
+      "kind": "score-probable"
+    }
+  ]
+}

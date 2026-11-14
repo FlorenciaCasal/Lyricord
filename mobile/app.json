@@ -1,0 +1,75 @@
+{
+  "expo": {
+    "name": "Musum",
+    "slug": "lyricord-mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/musum_app_icon_1024.png",
+    "userInterfaceStyle": "dark",
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSPhotoLibraryUsageDescription": "Musum usa tus fotos solo cuando elegis importar una imagen para extraer letra y acordes.",
+        "NSMicrophoneUsageDescription": "Musum usa el microfono solo cuando activas el seguimiento automatico de acordes en una cancion.",
+        "NSLocalNetworkUsageDescription": "Musum se conecta a tu computadora en la red local solo durante el desarrollo para probar la app.",
+        "NSAppTransportSecurity": {
+          "NSAllowsLocalNetworking": true
+        },
+        "ITSAppUsesNonExemptEncryption": false
+      },
+      "bundleIdentifier": "com.flordev.lyricordmobile"
+    },
+    "android": {
+      "package": "com.flordev.musum",
+      "adaptiveIcon": {
+        "backgroundColor": "#020617",
+        "foregroundImage": "./assets/musum_adaptive_foreground.png"
+      },
+      "predictiveBackGestureEnabled": false,
+      "permissions": [
+        "android.permission.RECORD_AUDIO",
+        "android.permission.FOREGROUND_SERVICE",
+        "android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/musum_favicon_256.png"
+    },
+    "plugins": [
+      "expo-secure-store",
+      [
+        "./plugins/withAudioApi",
+        {
+          "iosMicrophonePermission": "Musum usa el microfono solo cuando activas el seguimiento automatico de acordes en una cancion.",
+          "androidPermissions": [
+            "android.permission.RECORD_AUDIO",
+            "android.permission.FOREGROUND_SERVICE",
+            "android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK"
+          ],
+          "androidForegroundService": true,
+          "androidFSTypes": [
+            "microphone",
+            "mediaPlayback"
+          ]
+        }
+      ],
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/musum_splash.png",
+          "resizeMode": "contain",
+          "backgroundColor": "#020617",
+          "enableFullScreenImage_legacy": true
+        }
+      ],
+      "expo-sharing",
+      "expo-video",
+      "expo-sqlite"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "9646006a-2998-4a4e-8079-25ffd3a9022f"
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "cli": {
+    "version": ">= 16.0.0",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "ios": {
+        "simulator": false
+      },
+      "android": {
+        "buildType": "apk"
+      }
+    },
+    "qa": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "environment": "preview",
+      "env": {
+        "EXPO_NO_DOTENV": "1",
+        "APP_VARIANT": "qa",
+        "EXPO_PUBLIC_API_URL": "https://lyricord.com.ar",
+        "EXPO_PUBLIC_REGISTRATION_URL": "https://lyricord.com.ar/register",
+        "EXPO_PUBLIC_REVENUECAT_DISABLED": "true"
+      },
+      "ios": {
+        "simulator": false
+      }
+    },
+    "preview": {
+      "distribution": "internal"
+    },
+    "production": {
+      "autoIncrement": true
+    }
+  }
+}
