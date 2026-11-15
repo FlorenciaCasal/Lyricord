@@ -8,7 +8,9 @@ import {
 } from "@/lib/google-vision";
 import { getAuthSession } from "@/lib/auth";
 import { validateOcrImageFile } from "@/lib/ocr-upload";
+import { executeOcrWithReservedQuota } from "@/lib/premium/ocr-execution";
 import {
+  releaseOcrUsage,
   reserveOcrUsage,
 } from "@/lib/usage";
 import {
@@ -96,7 +98,11 @@ export async function extractSongTextAction(
     };
   }
 
-  const usage = await reserveOcrUsage(userId, String(formData.get("ocrOperationId") ?? ""));
+  const { usage, result } = await executeOcrWithReservedQuota({
+    reserve: () => reserveOcrUsage(userId, String(formData.get("ocrOperationId") ?? "")),
+    release: (operationKey) => releaseOcrUsage(userId, operationKey),
+    extract: () => extractTextFromImage(image),
+  });
   if (!usage.allowed) {
     return {
       success: false,
@@ -104,7 +110,10 @@ export async function extractSongTextAction(
     };
   }
 
-  return extractTextFromImage(image);
+  return result ?? {
+    success: false,
+    error: "No pudimos extraer texto de la imagen.",
+  };
 }
 
 export async function createSongVersionAction(formData: FormData) {

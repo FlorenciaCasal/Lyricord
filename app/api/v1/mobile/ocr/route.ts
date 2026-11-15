@@ -2,7 +2,8 @@ import { extractTextFromImage } from "@/lib/google-vision";
 import { mobileApiError } from "@/lib/mobile-api/errors";
 import { getMobileUserId } from "@/lib/mobile-api/request-auth";
 import { validateOcrImageFile } from "@/lib/ocr-upload";
-import { reserveOcrUsage } from "@/lib/usage";
+import { executeOcrWithReservedQuota } from "@/lib/premium/ocr-execution";
+import { releaseOcrUsage, reserveOcrUsage } from "@/lib/usage";
 
 export const runtime = "nodejs";
 
@@ -23,7 +24,11 @@ export async function POST(request: Request) {
       return mobileApiError(400, "INVALID_REQUEST", validationError);
     }
 
-    const usage = await reserveOcrUsage(userId, request.headers.get("x-musum-operation-id"));
+    const { usage, result } = await executeOcrWithReservedQuota({
+      reserve: () => reserveOcrUsage(userId, request.headers.get("x-musum-operation-id")),
+      release: (operationKey) => releaseOcrUsage(userId, operationKey),
+      extract: () => extractTextFromImage(image),
+    });
     if (!usage.allowed) {
       return mobileApiError(
         429,
@@ -32,7 +37,9 @@ export async function POST(request: Request) {
       );
     }
 
-    const result = await extractTextFromImage(image);
+    if (!result) {
+      return mobileApiError(500, "INTERNAL_ERROR", "No pudimos extraer texto de la imagen.");
+    }
     if (!result.success) {
       return mobileApiError(422, "VALIDATION_ERROR", result.error);
     }

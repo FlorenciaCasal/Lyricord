@@ -38,7 +38,7 @@ export async function getOcrUsageStatus(userId: string) {
 export async function reserveOcrUsage(userId: string, operationId?: string | null) {
   const totalLimit = await getOcrTotalLimitForUser(userId);
   const usageType = `${OCR_FREE_USAGE_PREFIX}${normalizeOperationId(operationId)}`;
-  return reserveOcrQuota({
+  const reservation = await reserveOcrQuota({
     totalLimit,
     operationKey: usageType,
     transaction: (task) => prisma.$transaction(async (transaction) => {
@@ -56,5 +56,17 @@ export async function reserveOcrUsage(userId: string, operationId?: string | nul
         },
       });
     }),
+  });
+  return { ...reservation, operationKey: usageType };
+}
+
+export async function releaseOcrUsage(userId: string, operationKey: string) {
+  if (!operationKey.startsWith(OCR_FREE_USAGE_PREFIX)) return;
+
+  await prisma.$transaction(async (transaction) => {
+    await lockAccountQuota(transaction, "ocr", userId);
+    await transaction.usageEvent.deleteMany({
+      where: { userId, type: operationKey },
+    });
   });
 }

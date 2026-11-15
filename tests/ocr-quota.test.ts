@@ -14,7 +14,11 @@ function quotaStore(initialEvents: string[] = []) {
     tail = run.then(() => undefined, () => undefined);
     return run;
   };
-  return { events, transaction };
+  const release = (operationKey: string) => transaction(async () => {
+    const index = events.indexOf(operationKey);
+    if (index >= 0) events.splice(index, 1);
+  });
+  return { events, transaction, release };
 }
 
 test("OCR Free permite cinco usos totales y rechaza el sexto", async () => {
@@ -64,4 +68,29 @@ test("OCR serializa solicitudes concurrentes y Premium permanece ilimitado", asy
   });
   assert.equal(premium.allowed, true);
   assert.equal(premium.totalLimit, null);
+});
+
+test("una reserva fallida se libera sin permitir superar cinco usos concurrentes", async () => {
+  const store = quotaStore(Array.from({ length: 4 }, (_, index) => `ocr_free_total_v1:old_${index}`));
+  const reserved = await reserveOcrQuota({
+    totalLimit: 5,
+    operationKey: "ocr_free_total_v1:failed",
+    transaction: store.transaction,
+  });
+  const blocked = await reserveOcrQuota({
+    totalLimit: 5,
+    operationKey: "ocr_free_total_v1:blocked",
+    transaction: store.transaction,
+  });
+  assert.equal(reserved.allowed, true);
+  assert.equal(blocked.allowed, false);
+
+  await store.release("ocr_free_total_v1:failed");
+  const retry = await reserveOcrQuota({
+    totalLimit: 5,
+    operationKey: "ocr_free_total_v1:blocked",
+    transaction: store.transaction,
+  });
+  assert.equal(retry.allowed, true);
+  assert.equal(store.events.filter((event) => event.startsWith("ocr_free_total_v1:")).length, 5);
 });
