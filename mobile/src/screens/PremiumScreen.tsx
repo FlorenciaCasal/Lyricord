@@ -13,17 +13,10 @@ import type { RevenueCatPackageLike } from "../billing/revenueCatPackages";
 import { colors } from "../theme";
 import type { RootStackParamList } from "../types";
 import { canStartPremiumPurchase, PREMIUM_AUTH_REQUIRED_MESSAGE } from "../utils/authGates";
+import { formatImageImportLimit, formatLibraryLimit } from "../utils/premiumCopy";
 
 type Props = NativeStackScreenProps<RootStackParamList, "Premium">;
 type PurchaseKind = "monthly" | "annual";
-
-function formatLimit(value: number | null, unit: string) {
-  return value === null ? "Sin límite práctico" : `${value} ${unit}`;
-}
-
-function formatMaybeLimit(value: number | null | undefined, unit: string) {
-  return value === undefined ? "Cargando..." : formatLimit(value, unit);
-}
 
 function getAvailabilityMessage(reason: Exclude<ReturnType<typeof getRevenueCatAvailability>, { available: true }>["reason"]) {
   switch (reason) {
@@ -162,6 +155,9 @@ export function PremiumScreen({ navigation }: Props) {
   }
 
   const isBusy = loadingOfferings || purchaseLoading !== null;
+  const imageImportLimit = premium?.limits.ocrTotalLimit === undefined
+    ? premium?.limits.ocrDailyLimit
+    : premium.limits.ocrTotalLimit;
 
   if (!canStartPremiumPurchase(user)) {
     return (
@@ -201,7 +197,7 @@ export function PremiumScreen({ navigation }: Props) {
         <Text style={styles.eyebrow}>MUSUM PREMIUM</Text>
         <Text style={styles.title}>Más espacio para tu repertorio.</Text>
         <Text style={styles.subtitle}>
-          Premium amplía tu biblioteca y el OCR diario. Las funciones musicales actuales siguen incluidas en Free.
+          Guardá todas las canciones y versiones que quieras e importá letras y acordes desde imágenes sin límites. Las herramientas para tocar siguen siendo gratis.
         </Text>
       </View>
 
@@ -209,18 +205,18 @@ export function PremiumScreen({ navigation }: Props) {
         <Text style={styles.statusLabel}>Tu plan actual</Text>
         <Text style={styles.statusTitle}>{isPremium ? "Premium" : "Free"}</Text>
         <Text style={styles.statusText}>
-          Biblioteca: {formatMaybeLimit(premium?.limits.maxSongs, "canciones")}
+          Biblioteca: {formatLibraryLimit(premium?.limits.maxSongs)}
         </Text>
         <Text style={styles.statusText}>
-          OCR: {formatMaybeLimit(premium?.limits.ocrTotalLimit ?? premium?.limits.ocrDailyLimit, "extracciones totales")}
+          Importar imágenes: {formatImageImportLimit(imageImportLimit)}
         </Text>
       </View>
 
       <View style={styles.benefits}>
         <Text style={styles.sectionTitle}>Qué incluye Premium</Text>
-        <Text style={styles.benefit}>• Canciones y versiones sin límite práctico.</Text>
-        <Text style={styles.benefit}>• OCR sin límite práctico.</Text>
-        <Text style={styles.benefit}>• Seguimiento, PlayRow, transposición y acordes siguen disponibles en Free.</Text>
+        <Text style={styles.benefit}>• Canciones y versiones ilimitadas.</Text>
+        <Text style={styles.benefit}>• Importaciones de letras y acordes desde imágenes ilimitadas.</Text>
+        <Text style={styles.benefit}>• El seguimiento de acordes y el cambio de tono siguen incluidos en Free.</Text>
       </View>
 
       <View style={styles.planRow}>

@@ -11,7 +11,7 @@ test("SongForm muestra una explicación específica cuando se alcanza el límite
 
   assert.equal(
     message,
-    "Alcanzaste el límite de 10 canciones y versiones. Esta canción todavía no se guardó. Podés pasar a Premium para conservarla sin eliminar ninguna de tus canciones, o liberar espacio en tu biblioteca",
+    "Alcanzaste el límite de 10 canciones y versiones. Esta canción todavía no se guardó. Podés pasar a Premium para conservarla, o volver a tu biblioteca y liberar espacio",
   );
   assert.equal(message, SONG_LIMIT_REACHED_MESSAGE);
   assert.match(message ?? "", /todavía no se guardó/i);
