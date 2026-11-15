@@ -10,21 +10,36 @@ export default function TermsPage() {
         <h1 className="mt-3 text-4xl font-semibold text-white">
           Términos de uso
         </h1>
+        <p className="mt-3 text-sm text-slate-400">
+          Vigentes desde el 15 de noviembre de 2026.
+        </p>
         <div className="mt-6 space-y-5 text-sm leading-7 text-slate-300">
           <p>
-            Musum es una herramienta en beta para organizar un cancionero
+            Musum es una herramienta para organizar un cancionero
             personal. El servicio permite guardar, editar e importar contenido
             provisto por cada usuario.
           </p>
           <p>
-            Al usar Musum, declaras que tenes los derechos, permisos,
+            Al usar Musum, declarás que tenés los derechos, permisos,
             licencias o una base legal suficiente para cargar, pegar o procesar
             el contenido que guardas en tu cuenta.
           </p>
           <p>
-            No esta permitido usar Musum para almacenar, procesar o
+            Conservás los derechos sobre el contenido que cargás. Para prestar
+            el servicio, le otorgás a Musum una licencia limitada y no exclusiva
+            para almacenarlo, procesarlo mediante OCR, reproducirlo técnicamente,
+            transmitirlo, sincronizarlo y mostrarlo únicamente dentro de las
+            funcionalidades que solicitás. Musum no puede comercializarlo ni
+            publicarlo fuera de esas funcionalidades.
+          </p>
+          <p>
+            No está permitido usar Musum para almacenar, procesar o
             distribuir contenido que infrinja derechos de autor, marcas,
             privacidad u otros derechos de terceros.
+          </p>
+          <p>
+            No debés importar contenido de terceros si hacerlo infringe derechos
+            de autor o las condiciones de uso de otros sitios o servicios.
           </p>
           <p>
             El contenido cargado por usuarios es responsabilidad de cada
@@ -37,7 +52,7 @@ export default function TermsPage() {
             contrario a estos términos.
           </p>
           <p>
-            Como beta publica, Musum puede cambiar, tener interrupciones o
+            Musum puede cambiar, tener interrupciones o
             limitar funciones para mantener el servicio estable y seguro.
           </p>
         </div>
