@@ -4,7 +4,8 @@ export const OCR_ALLOWED_IMAGE_TYPES = [
   "image/png",
 ] as const;
 
-export const OCR_MAX_IMAGE_SIZE_BYTES = 5 * 1024 * 1024;
+// Leaves room for multipart headers below Vercel's 4.5 MB request limit.
+export const OCR_MAX_IMAGE_SIZE_BYTES = 4 * 1024 * 1024;
 
 const OCR_ALLOWED_IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png"] as const;
 

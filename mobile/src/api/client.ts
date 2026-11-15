@@ -10,6 +10,7 @@ import type {
   SongSyncPushResponse,
 } from "../data/songs/sync/types";
 import { ApiRequestError } from "./errors";
+import { validateOcrUploadSize } from "../utils/ocrImagePolicy";
 export { ApiRequestError, isTransientApiError } from "./errors";
 
 const REFRESH_TOKEN_KEY = "lyricord.mobile.refresh-token";
@@ -269,8 +270,12 @@ export async function getPremiumStatus() {
 }
 
 export async function extractTextFromImage(image: { uri: string; fileName?: string | null; mimeType?: string | null }) {
+  const file = new File(image.uri);
+  const sizeError = validateOcrUploadSize(file.size);
+  if (sizeError) throw new Error(sizeError);
+
   const formData = new FormData();
-  formData.append("sourceImage", new File(image.uri));
+  formData.append("sourceImage", file);
 
   const response = await authenticatedFetch("/api/v1/mobile/ocr", {
     method: "POST",

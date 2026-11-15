@@ -18,6 +18,7 @@ import { useHeaderHeight } from "@react-navigation/elements";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { extractTextFromImage } from "../api/client";
+import { prepareOcrImage } from "../utils/prepareOcrImage";
 import { useAuth } from "../auth/AuthContext";
 import { useSongRepository } from "../data/songs";
 import { colors } from "../theme";
@@ -248,10 +249,11 @@ export function SongFormScreen({ navigation, route }: Props) {
     setOcrLoading(true);
     setError(null);
     try {
+      const preparedImage = await prepareOcrImage(asset);
       const text = await extractTextFromImage({
-        uri: asset.uri,
-        fileName: asset.fileName,
-        mimeType: asset.mimeType,
+        uri: preparedImage.uri,
+        fileName: preparedImage.fileName,
+        mimeType: preparedImage.mimeType,
       });
       setValues((current) => ({
         ...current,
