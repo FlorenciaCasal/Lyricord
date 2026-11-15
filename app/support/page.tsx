@@ -41,8 +41,7 @@ export default function SupportPage() {
         <div className="mt-8 rounded-2xl border border-slate-700 bg-slate-950 p-5">
           <h2 className="text-lg font-semibold text-white">¿Necesitás ayuda?</h2>
           <p className="mt-2 text-sm leading-7 text-slate-300">
-            Mientras terminamos de habilitar el nuevo correo de Musum, podés
-            escribirnos a{" "}
+            Podés escribirnos a{" "}
             <a
               href={`mailto:${CURRENT_SUPPORT_EMAIL}`}
               className="font-semibold text-green-400 hover:text-green-300"

@@ -1,4 +1,4 @@
-export const CURRENT_SUPPORT_EMAIL = "contacto.lyricord@gmail.com";
+export const CURRENT_SUPPORT_EMAIL = "soporte@musum.com.ar";
 
 export const SUPPORT_FAQS = [
   {

@@ -14,7 +14,7 @@ test("soporte publica preguntas básicas y conserva las rutas legales existentes
   ]);
 });
 
-test("soporte no anuncia el nuevo correo antes de verificarlo", () => {
-  assert.equal(CURRENT_SUPPORT_EMAIL, "contacto.lyricord@gmail.com");
-  assert.notEqual(CURRENT_SUPPORT_EMAIL, "soporte@musum.com.ar");
+test("soporte publica el correo verificado de Musum", () => {
+  assert.equal(CURRENT_SUPPORT_EMAIL, "soporte@musum.com.ar");
+  assert.notEqual(CURRENT_SUPPORT_EMAIL, "contacto.lyricord@gmail.com");
 });
