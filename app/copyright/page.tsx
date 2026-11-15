@@ -1,6 +1,6 @@
 import { BackButton } from "@/components/back-button";
 
-const contactEmail = "contacto.lyricord@gmail.com";
+const contactEmail = "soporte@musum.com.ar";
 
 export default function CopyrightPage() {
   return (
