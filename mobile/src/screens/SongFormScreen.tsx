@@ -26,6 +26,10 @@ import type { RootStackParamList, SongDetail, SongFormValues } from "../types";
 import { canUseCloudOcr, CLOUD_OCR_AUTH_REQUIRED_MESSAGE } from "../utils/authGates";
 import { appendExtractedSongContent } from "../utils/ocrContent";
 import {
+  getSongLimitReachedMessage,
+  SONG_LIMIT_REACHED_MESSAGE,
+} from "../utils/songFormSaveError";
+import {
   createVersionFormValues,
   toVersionCreateValues,
   transposeVersionFormValues,
@@ -130,9 +134,11 @@ export function SongFormScreen({ navigation, route }: Props) {
   const [saving, setSaving] = useState(false);
   const [ocrLoading, setOcrLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [songLimitReached, setSongLimitReached] = useState(false);
   const [keyboardVisible, setKeyboardVisible] = useState(false);
   const [versionSemitones, setVersionSemitones] = useState(0);
   const ocrInFlightRef = useRef(false);
+  const initializedSourceRef = useRef<string | null>(null);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -156,10 +162,13 @@ export function SongFormScreen({ navigation, route }: Props) {
     if (!needsSourceSong) return;
     const params = route.params;
     const sourceSongId = params.mode === "edit" ? params.songId : params.sourceSongId;
+    const sourceKey = `${params.mode}:${sourceSongId}`;
+    if (initializedSourceRef.current === sourceKey) return;
     let mounted = true;
     songRepository.getSong(sourceSongId)
       .then((song) => {
         if (!mounted) return;
+        initializedSourceRef.current = sourceKey;
         if (params.mode === "createVersion") {
           const versionValues = createVersionFormValues(song, params.initialSemitones);
           setValues({
@@ -206,10 +215,12 @@ export function SongFormScreen({ navigation, route }: Props) {
     Keyboard.dismiss();
     setError(null);
     if (isCreateVersion && !values.versionName.trim()) {
+      setSongLimitReached(false);
       setError("El nombre de la versión es obligatorio.");
       return;
     }
     if (!isCreateVersion && !values.title.trim()) {
+      setSongLimitReached(false);
       setError("El título es obligatorio.");
       return;
     }
@@ -233,6 +244,13 @@ export function SongFormScreen({ navigation, route }: Props) {
       }
       navigation.replace("SongDetail", { songId: song.id, title: song.title });
     } catch (reason) {
+      const limitMessage = getSongLimitReachedMessage(reason);
+      if (limitMessage) {
+        setError(null);
+        setSongLimitReached(true);
+        return;
+      }
+      setSongLimitReached(false);
       setError(
         reason instanceof Error
           ? reason.message
@@ -247,6 +265,7 @@ export function SongFormScreen({ navigation, route }: Props) {
 
   async function runOcrFromAsset(asset: ImagePicker.ImagePickerAsset) {
     setOcrLoading(true);
+    setSongLimitReached(false);
     setError(null);
     try {
       const preparedImage = await prepareOcrImage(asset);
@@ -491,6 +510,30 @@ export function SongFormScreen({ navigation, route }: Props) {
           { paddingBottom: keyboardVisible ? 10 : Math.max(insets.bottom, 12) },
         ]}
       >
+        {songLimitReached ? (
+          <View style={styles.limitNotice} accessibilityRole="alert">
+            <Text style={styles.limitNoticeText}>{SONG_LIMIT_REACHED_MESSAGE}</Text>
+            <View style={styles.limitNoticeActions}>
+              <Pressable
+                style={({ pressed }) => [styles.limitPremiumButton, pressed && styles.limitButtonPressed]}
+                onPress={() => {
+                  setSongLimitReached(false);
+                  navigation.navigate("Premium");
+                }}
+                accessibilityRole="button"
+              >
+                <Text style={styles.limitPremiumButtonText}>Ver Premium</Text>
+              </Pressable>
+              <Pressable
+                style={({ pressed }) => [styles.limitEditButton, pressed && styles.limitButtonPressed]}
+                onPress={() => setSongLimitReached(false)}
+                accessibilityRole="button"
+              >
+                <Text style={styles.limitEditButtonText}>Seguir editando</Text>
+              </Pressable>
+            </View>
+          </View>
+        ) : null}
         <Pressable
           style={({ pressed }) => [
             styles.saveButton,
@@ -591,8 +634,7 @@ const styles = StyleSheet.create({
   notesInput: { minHeight: 96 },
   error: { color: colors.danger, marginTop: 6 },
   footer: {
-    flexDirection: "row",
-    alignItems: "center",
+    alignItems: "stretch",
     gap: 10,
     borderTopWidth: 1,
     borderTopColor: colors.border,
@@ -600,6 +642,38 @@ const styles = StyleSheet.create({
     paddingHorizontal: 18,
     paddingTop: 10,
   },
+  limitNotice: {
+    gap: 10,
+    borderWidth: 1,
+    borderColor: colors.danger,
+    borderRadius: 14,
+    backgroundColor: colors.surface,
+    padding: 12,
+  },
+  limitNoticeText: { color: colors.text, fontSize: 14, lineHeight: 20 },
+  limitNoticeActions: { flexDirection: "row", gap: 10 },
+  limitPremiumButton: {
+    flex: 1,
+    minHeight: 44,
+    borderRadius: 12,
+    backgroundColor: colors.green,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingHorizontal: 10,
+  },
+  limitPremiumButtonText: { color: colors.background, fontWeight: "900" },
+  limitEditButton: {
+    flex: 1,
+    minHeight: 44,
+    borderWidth: 1,
+    borderColor: colors.border,
+    borderRadius: 12,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingHorizontal: 10,
+  },
+  limitEditButtonText: { color: colors.text, fontWeight: "800" },
+  limitButtonPressed: { opacity: 0.75 },
   saveButton: {
     flex: 1,
     minHeight: 52,
