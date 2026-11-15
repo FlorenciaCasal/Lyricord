@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, Linking, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useAuth } from "../auth/AuthContext";
 import {
   getRevenueCatAvailability,
@@ -13,6 +13,11 @@ import type { RevenueCatPackageLike } from "../billing/revenueCatPackages";
 import { colors } from "../theme";
 import type { RootStackParamList } from "../types";
 import { canStartPremiumPurchase, PREMIUM_AUTH_REQUIRED_MESSAGE } from "../utils/authGates";
+import {
+  openPremiumLegalLink,
+  PREMIUM_PRIVACY_URL,
+  PREMIUM_TERMS_URL,
+} from "../utils/premiumLegalLinks";
 import { formatImageImportLimit, formatLibraryLimit } from "../utils/premiumCopy";
 
 type Props = NativeStackScreenProps<RootStackParamList, "Premium">;
@@ -154,6 +159,15 @@ export function PremiumScreen({ navigation }: Props) {
     }
   }
 
+  async function openLegalLink(url: typeof PREMIUM_TERMS_URL | typeof PREMIUM_PRIVACY_URL) {
+    setError(null);
+    try {
+      await openPremiumLegalLink(url, (target) => Linking.openURL(target));
+    } catch {
+      setError("No pudimos abrir el enlace. Probá de nuevo más tarde.");
+    }
+  }
+
   const isBusy = loadingOfferings || purchaseLoading !== null;
   const imageImportLimit = premium?.limits.ocrTotalLimit === undefined
     ? premium?.limits.ocrDailyLimit
@@ -255,6 +269,25 @@ export function PremiumScreen({ navigation }: Props) {
       >
         <Text style={styles.restoreButtonText}>Restaurar compras</Text>
       </Pressable>
+
+      <View style={styles.legalLinks}>
+        <Pressable
+          accessibilityRole="link"
+          accessibilityLabel="Abrir Términos de uso"
+          style={({ pressed }) => [styles.legalLinkButton, pressed && styles.legalLinkPressed]}
+          onPress={() => void openLegalLink(PREMIUM_TERMS_URL)}
+        >
+          <Text style={styles.legalLinkText}>Términos de uso</Text>
+        </Pressable>
+        <Pressable
+          accessibilityRole="link"
+          accessibilityLabel="Abrir Política de privacidad"
+          style={({ pressed }) => [styles.legalLinkButton, pressed && styles.legalLinkPressed]}
+          onPress={() => void openLegalLink(PREMIUM_PRIVACY_URL)}
+        >
+          <Text style={styles.legalLinkText}>Política de privacidad</Text>
+        </Pressable>
+      </View>
     </ScrollView>
   );
 }
@@ -287,6 +320,10 @@ const styles = StyleSheet.create({
   restoreButton: { minHeight: 50, borderRadius: 999, backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border, alignItems: "center", justifyContent: "center", paddingHorizontal: 14 },
   restoreButtonPressed: { borderColor: colors.green },
   restoreButtonText: { color: colors.green, fontWeight: "900", textAlign: "center" },
+  legalLinks: { flexDirection: "row", flexWrap: "wrap", justifyContent: "center", gap: 6 },
+  legalLinkButton: { minHeight: 44, justifyContent: "center", paddingHorizontal: 10 },
+  legalLinkPressed: { opacity: 0.7 },
+  legalLinkText: { color: colors.muted, fontSize: 13, fontWeight: "700", textDecorationLine: "underline" },
   authButton: { minHeight: 52, borderRadius: 999, backgroundColor: colors.green, alignItems: "center", justifyContent: "center", paddingHorizontal: 14 },
   authButtonPressed: { backgroundColor: colors.greenPressed },
   authButtonText: { color: colors.background, fontWeight: "900", textAlign: "center" },
