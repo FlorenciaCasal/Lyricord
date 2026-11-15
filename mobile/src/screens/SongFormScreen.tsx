@@ -288,7 +288,7 @@ export function SongFormScreen({ navigation, route }: Props) {
   async function importImage() {
     if (ocrInFlightRef.current) return;
     if (!canUseCloudOcr(user)) {
-      Alert.alert("Cuenta necesaria para OCR", CLOUD_OCR_AUTH_REQUIRED_MESSAGE, [
+      Alert.alert("Cuenta necesaria para importar desde imagen", CLOUD_OCR_AUTH_REQUIRED_MESSAGE, [
         {
           text: "Crear cuenta",
           onPress: () => navigation.navigate("Login"),
@@ -526,10 +526,23 @@ export function SongFormScreen({ navigation, route }: Props) {
               </Pressable>
               <Pressable
                 style={({ pressed }) => [styles.limitEditButton, pressed && styles.limitButtonPressed]}
-                onPress={() => setSongLimitReached(false)}
+                onPress={() => {
+                  Alert.alert(
+                    "¿Salir sin guardar?",
+                    "Esta canción todavía no se guardó. Si volvés a la Biblioteca, vas a perder los cambios de este formulario",
+                    [
+                      { text: "Cancelar", style: "cancel" },
+                      {
+                        text: "Salir a Biblioteca",
+                        style: "destructive",
+                        onPress: () => navigation.popTo("Library"),
+                      },
+                    ],
+                  );
+                }}
                 accessibilityRole="button"
               >
-                <Text style={styles.limitEditButtonText}>Seguir editando</Text>
+                <Text style={styles.limitEditButtonText}>Liberar espacio</Text>
               </Pressable>
             </View>
           </View>
