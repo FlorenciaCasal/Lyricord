@@ -1,6 +1,6 @@
 import type * as ImagePicker from "expo-image-picker";
 import { File } from "expo-file-system";
-import { ImageManipulator, SaveFormat } from "expo-image-manipulator";
+import { loadImageManipulatorModule } from "./imageManipulatorLoader";
 import {
   getOcrResizeDimensions,
   OCR_IMAGE_COMPRESSION_LEVELS,
@@ -15,6 +15,7 @@ export type PreparedOcrImage = {
 };
 
 export async function prepareOcrImage(asset: ImagePicker.ImagePickerAsset): Promise<PreparedOcrImage> {
+  const { ImageManipulator, SaveFormat } = await loadImageManipulatorModule();
   const context = ImageManipulator.manipulate(asset.uri);
   const resize = getOcrResizeDimensions(asset.width, asset.height);
   if (resize) context.resize(resize);

@@ -61,6 +61,14 @@ export function decidePlayRowScroll(state: PlayRowScrollState, input: PlayRowScr
   if (state.animationInProgress) {
     return { shouldScroll: false, targetY: null, targetVisibleY, reason: "animation-in-progress" };
   }
+
+  const targetBottomVisibleY = targetVisibleY + Math.max(0, input.targetHeight ?? 0);
+  const comfortableTop = state.viewportHeight * PLAY_ROW_COMFORTABLE_TOP_RATIO;
+  const comfortableBottom = state.viewportHeight * PLAY_ROW_COMFORTABLE_BOTTOM_RATIO;
+  if (targetVisibleY >= comfortableTop && targetBottomVisibleY <= comfortableBottom) {
+    return { shouldScroll: false, targetY: null, targetVisibleY, reason: "comfortable-zone" };
+  }
+
   const anchorRatio = state.anchorRatio ?? TARGET_RATIO;
   const maxStepRatio = state.maxStepRatio ?? MAX_STEP_RATIO;
 

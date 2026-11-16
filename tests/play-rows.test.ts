@@ -340,12 +340,48 @@ test("scroll por PlayRow mantiene la fila activa cerca de un anchor estable", ()
       layoutReady: true,
       layoutValid: true,
     },
-    { targetLineIndex: 8, targetLineY: 360 },
+    { targetLineIndex: 8, targetLineY: 500, targetHeight: 32 },
   );
 
   assert.equal(decision.shouldScroll, true);
   assert.equal(decision.reason, "scroll");
   assert.ok(decision.targetY > 0);
+});
+
+test("scroll por PlayRow no mueve una fila que ya esta en la zona comoda", () => {
+  const decision = decidePlayRowScroll(
+    {
+      currentScrollY: 0,
+      viewportHeight: 700,
+      lastAutomaticScrollY: -1,
+      lastScrolledLineIndex: 4,
+      animationInProgress: false,
+      layoutReady: true,
+      layoutValid: true,
+    },
+    { targetLineIndex: 8, targetLineY: 360, targetHeight: 32 },
+  );
+
+  assert.equal(decision.shouldScroll, false);
+  assert.equal(decision.reason, "comfortable-zone");
+});
+
+test("scroll por PlayRow considera la altura completa de la fila activa", () => {
+  const decision = decidePlayRowScroll(
+    {
+      currentScrollY: 0,
+      viewportHeight: 700,
+      lastAutomaticScrollY: -1,
+      lastScrolledLineIndex: 4,
+      animationInProgress: false,
+      layoutReady: true,
+      layoutValid: true,
+    },
+    { targetLineIndex: 8, targetLineY: 420, targetHeight: 40 },
+  );
+
+  assert.equal(decision.shouldScroll, true);
+  assert.equal(decision.reason, "scroll");
 });
 
 test("scroll por PlayRow mueve si la fila activa queda abajo del viewport", () => {
