@@ -43,6 +43,7 @@ const AUTO_FOLLOW_KEY = "lyricord.mobile.auto-follow-enabled";
 const KEEP_AWAKE_TAG = "lyricord-song-auto-follow";
 const SONG_BOX_CONTENT_PADDING = 16;
 const MANUAL_REPOSITION_PAUSE_MS = 1200;
+const MANUAL_SCROLL_PAUSE_MS = 2500;
 const FOLLOW_GRANULARITY = "row" as "event" | "row";
 const CONSERVATIVE_FOLLOWER_CONFIG = {
   normalLookaheadEvents: 4,
@@ -84,6 +85,7 @@ export function SongDetailScreen({ navigation, route }: Props) {
   const programmaticScrollUntilRef = useRef(0);
   const pendingPlayRowScrollCallRef = useRef<{ fromY: number; targetY: number; toRow: number } | null>(null);
   const autoScrollSuspendedUntilRef = useRef(0);
+  const lastRenderedPlayRowIndexRef = useRef(0);
   const manualRepositionRef = useRef<ManualRepositionSession | null>(null);
   const activeAutoFollowKeyRef = useRef<string | null>(null);
   const layoutHeightsRef = useRef(new Map<string, number>());
@@ -238,6 +240,7 @@ export function SongDetailScreen({ navigation, route }: Props) {
     lastAutomaticScrollYRef.current = -1;
     manualRepositionRef.current = null;
     autoScrollSuspendedUntilRef.current = 0;
+    lastRenderedPlayRowIndexRef.current = 0;
     setManualRepositionStatus("idle");
     setFollowIndex(0);
     setCurrentPlayRowIndex(0);
@@ -696,7 +699,7 @@ export function SongDetailScreen({ navigation, route }: Props) {
         layoutReady: layoutStatus.ready,
         layoutValid: layoutStatus.valid,
         anchorRatio: 0.4,
-        maxStepRatio: 0.18,
+        maxStepRatio: 0.42,
       },
       {
         targetLineIndex: row.chordLineIndex,
@@ -769,6 +772,33 @@ export function SongDetailScreen({ navigation, route }: Props) {
       scrollAnimationInProgressRef.current = false;
       scrollAnimationTimerRef.current = null;
     }, 550);
+  }
+
+  useEffect(() => {
+    const previousRowIndex = lastRenderedPlayRowIndexRef.current;
+    lastRenderedPlayRowIndexRef.current = currentPlayRowIndex;
+
+    if (FOLLOW_GRANULARITY !== "row" || !autoFollowEnabled || !canAutoFollow) return;
+    if (currentPlayRowIndex <= previousRowIndex) return;
+
+    const frame = requestAnimationFrame(() => {
+      scrollToPlayRow(currentPlayRowIndex, previousRowIndex);
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [autoFollowEnabled, canAutoFollow, currentPlayRowIndex]);
+
+  function suspendAutoScrollForManualInteraction() {
+    autoScrollSuspendedUntilRef.current = Date.now() + MANUAL_SCROLL_PAUSE_MS;
+  }
+
+  function handleManualScrollBegin() {
+    programmaticScrollUntilRef.current = 0;
+    scrollAnimationInProgressRef.current = false;
+    if (scrollAnimationTimerRef.current) {
+      clearTimeout(scrollAnimationTimerRef.current);
+      scrollAnimationTimerRef.current = null;
+    }
+    suspendAutoScrollForManualInteraction();
   }
 
   function setPlayRowExplicitly(rowIndex: number, reason: "tap-row" | "restart") {
@@ -1008,7 +1038,6 @@ export function SongDetailScreen({ navigation, route }: Props) {
             timestamp: new Date().toISOString(),
           });
         }
-        scrollToPlayRow(output.currentRowIndex, previousRowIndex);
       } else {
         setFollowStatus(output.status);
         if (__DEV__) {
@@ -1574,6 +1603,13 @@ export function SongDetailScreen({ navigation, route }: Props) {
             movedBy: Number((y - pending.fromY).toFixed(1)),
             timestamp: new Date().toISOString(),
           });
+        }
+      }}
+      onScrollBeginDrag={handleManualScrollBegin}
+      onScrollEndDrag={suspendAutoScrollForManualInteraction}
+      onMomentumScrollEnd={() => {
+        if (Date.now() >= programmaticScrollUntilRef.current) {
+          suspendAutoScrollForManualInteraction();
         }
       }}
       onLayout={(event) => {
