@@ -5,7 +5,8 @@ export default function manifest(): MetadataRoute.Manifest {
     id: "/",
     name: "Musum",
     short_name: "Musum",
-    description: "Guarda letras y acordes con OCR e instalación tipo app.",
+    description:
+      "Tu cancionero personal para guardar, importar, editar y tocar letras y acordes.",
     start_url: "/",
     scope: "/",
     display: "standalone",

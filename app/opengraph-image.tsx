@@ -17,16 +17,18 @@ export default function OpenGraphImage() {
           height: "100%",
           alignItems: "center",
           justifyContent: "center",
+          gap: 72,
+          padding: "70px 86px",
           background:
-            "radial-gradient(circle at 50% 24%, rgba(34, 197, 94, 0.24), transparent 34%), #020617",
+            "radial-gradient(circle at 24% 20%, rgba(132, 204, 22, 0.22), transparent 38%), #020617",
         }}
       >
         <div
           style={{
             display: "flex",
-            width: 390,
-            height: 390,
-            borderRadius: 86,
+            width: 330,
+            height: 330,
+            borderRadius: 76,
             border: "5px solid rgba(148, 163, 184, 0.26)",
             background: "#0f172a",
             boxShadow: "0 32px 120px rgba(0, 0, 0, 0.42)",
@@ -38,9 +40,9 @@ export default function OpenGraphImage() {
             <div
               style={{
                 position: "absolute",
-                top: 88,
-                left: 72,
-                right: 72,
+                top: 74,
+                left: 60,
+                right: 60,
                 height: 5,
                 borderRadius: 999,
                 background: "rgba(148, 163, 184, 0.22)",
@@ -49,9 +51,9 @@ export default function OpenGraphImage() {
             <div
               style={{
                 position: "absolute",
-                top: 150,
-                left: 72,
-                right: 72,
+                top: 126,
+                left: 60,
+                right: 60,
                 height: 5,
                 borderRadius: 999,
                 background: "rgba(148, 163, 184, 0.22)",
@@ -60,9 +62,9 @@ export default function OpenGraphImage() {
             <div
               style={{
                 position: "absolute",
-                top: 212,
-                left: 72,
-                right: 72,
+                top: 178,
+                left: 60,
+                right: 60,
                 height: 5,
                 borderRadius: 999,
                 background: "rgba(148, 163, 184, 0.22)",
@@ -72,7 +74,7 @@ export default function OpenGraphImage() {
               style={{
                 display: "flex",
                 color: "#22c55e",
-                fontSize: 136,
+                fontSize: 116,
                 fontWeight: 800,
                 letterSpacing: "-0.08em",
                 transform: "translateY(-2px)",
@@ -81,6 +83,37 @@ export default function OpenGraphImage() {
               M
             </div>
           </div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            maxWidth: 610,
+          }}
+        >
+          <div
+            style={{
+              color: "#84cc16",
+              fontSize: 30,
+              fontWeight: 700,
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+            }}
+          >
+            Musum
+          </div>
+          <div
+            style={{
+              marginTop: 18,
+              color: "#f8fafc",
+              fontSize: 72,
+              fontWeight: 800,
+              lineHeight: 1.02,
+              letterSpacing: "-0.05em",
+            }}
+          >
+            Tus canciones, siempre con vos.
+          </div>
+        </div>
       </div>
     ),
     {

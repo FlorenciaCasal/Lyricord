@@ -12,17 +12,19 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://lyricord.com.ar"),
-  title: "Musum",
-  description: "Guarda letras y acordes con OCR.",
+  metadataBase: new URL("https://musum.com.ar"),
+  title: {
+    default: "Musum | Tus canciones, siempre con vos",
+    template: "%s | Musum",
+  },
+  description:
+    "Musum es tu cancionero personal para guardar, importar, editar y tocar letras y acordes.",
   manifest: "/manifest.webmanifest",
   applicationName: "Musum",
-  alternates: {
-    canonical: "/",
-  },
   openGraph: {
-    title: "Musum",
-    description: "Guarda letras y acordes con OCR.",
+    title: "Musum | Tus canciones, siempre con vos",
+    description:
+      "Tu cancionero personal de letras y acordes, listo para cuando quieras tocar.",
     url: "/",
     siteName: "Musum",
     images: [
@@ -38,8 +40,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Musum",
-    description: "Guarda letras y acordes con OCR.",
+    title: "Musum | Tus canciones, siempre con vos",
+    description:
+      "Tu cancionero personal de letras y acordes, listo para cuando quieras tocar.",
     images: ["/og-image.png?v=2"],
   },
   icons: {

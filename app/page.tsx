@@ -1,8 +1,19 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { getAuthSession } from "@/lib/auth";
 import { EmptyState } from "@/components/empty-state";
+import { PublicLanding } from "@/components/public-landing";
 import { SongList } from "@/components/song-list";
+import { getHomeExperience } from "@/lib/public-landing";
 import { searchSongs } from "@/lib/songs";
+
+export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/",
+  },
+};
 
 type HomePageProps = {
   searchParams: Promise<{
@@ -12,9 +23,14 @@ type HomePageProps = {
 
 export default async function Home({ searchParams }: HomePageProps) {
   const session = await getAuthSession();
-  const userId = session?.user?.id;
+  const experience = getHomeExperience(session?.user?.id);
+
+  if (experience.view === "landing") {
+    return <PublicLanding />;
+  }
+
   const { q = "" } = await searchParams;
-  const songs = userId ? await searchSongs(userId, q) : [];
+  const songs = await searchSongs(experience.userId, q);
 
   return (
     <main className="mx-auto flex min-h-screen w-full max-w-5xl flex-col px-4 py-6 sm:px-6 sm:py-8">
