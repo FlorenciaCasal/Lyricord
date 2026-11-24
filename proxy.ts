@@ -1,15 +1,12 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { getToken } from "next-auth/jwt";
-
-function isProtectedPath(pathname: string) {
-  return pathname === "/" || pathname.startsWith("/songs");
-}
+import { isProtectedWebPath } from "@/lib/web-route-access";
 
 export default async function middleware(request: NextRequest) {
   const { pathname, search } = request.nextUrl;
 
-  if (!isProtectedPath(pathname)) {
+  if (!isProtectedWebPath(pathname)) {
     return NextResponse.next();
   }
 
@@ -28,5 +25,5 @@ export default async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/", "/songs/:path*"],
+  matcher: ["/songs/:path*"],
 };
