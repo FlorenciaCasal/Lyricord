@@ -7,6 +7,7 @@ import * as SecureStore from "expo-secure-store";
 import { ActivityIndicator, Alert, AppState, type AppStateStatus, Platform, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { ChordDiagramSheet } from "../components/ChordDiagramSheet";
 import { useSongRepository } from "../data/songs";
 import type { AudioEvidenceFrame } from "../music/audioEvidence";
 import { serializeAudioEvidenceRecording } from "../music/audioEvidence";
@@ -85,6 +86,7 @@ export function SongDetailScreen({ navigation, route }: Props) {
   const programmaticScrollUntilRef = useRef(0);
   const pendingPlayRowScrollCallRef = useRef<{ fromY: number; targetY: number; toRow: number } | null>(null);
   const autoScrollSuspendedUntilRef = useRef(0);
+  const chordDiagramOpenRef = useRef(false);
   const lastRenderedPlayRowIndexRef = useRef(0);
   const manualRepositionRef = useRef<ManualRepositionSession | null>(null);
   const activeAutoFollowKeyRef = useRef<string | null>(null);
@@ -125,6 +127,7 @@ export function SongDetailScreen({ navigation, route }: Props) {
   const [devCaptureActive, setDevCaptureActive] = useState(false);
   const [devCaptureFrameCount, setDevCaptureFrameCount] = useState(0);
   const [manualRepositionStatus, setManualRepositionStatus] = useState<"idle" | "searching">("idle");
+  const [selectedChord, setSelectedChord] = useState<string | null>(null);
 
   const load = useCallback(async () => {
     setError(null);
@@ -567,6 +570,7 @@ export function SongDetailScreen({ navigation, route }: Props) {
   }
 
   function scrollToLine(lineIndex: number, timelineIndex: number) {
+    if (chordDiagramOpenRef.current) return;
     if (Date.now() < autoScrollSuspendedUntilRef.current) {
       if (__DEV__) {
         console.log("[autoFollow:scroll-skip]", {
@@ -669,6 +673,7 @@ export function SongDetailScreen({ navigation, route }: Props) {
   function scrollToPlayRow(rowIndex: number, previousRowIndex = currentPlayRowIndex) {
     const row = playRows[rowIndex];
     if (!row) return;
+    if (chordDiagramOpenRef.current) return;
     if (Date.now() < autoScrollSuspendedUntilRef.current) {
       if (__DEV__) {
         console.log("[playRow:scroll-evaluate]", {
@@ -799,6 +804,17 @@ export function SongDetailScreen({ navigation, route }: Props) {
       scrollAnimationTimerRef.current = null;
     }
     suspendAutoScrollForManualInteraction();
+  }
+
+  function openChordDiagram(chord: string) {
+    chordDiagramOpenRef.current = true;
+    setSelectedChord(chord);
+  }
+
+  function closeChordDiagram() {
+    chordDiagramOpenRef.current = false;
+    autoScrollSuspendedUntilRef.current = Date.now() + MANUAL_REPOSITION_PAUSE_MS;
+    setSelectedChord(null);
   }
 
   function setPlayRowExplicitly(rowIndex: number, reason: "tap-row" | "restart") {
@@ -1583,6 +1599,7 @@ export function SongDetailScreen({ navigation, route }: Props) {
   if (loading || !song) return <View style={styles.center}><ActivityIndicator color={colors.green} size="large" /></View>;
 
   return (
+    <>
     <ScrollView
       ref={scrollRef}
       style={styles.root}
@@ -1720,6 +1737,12 @@ export function SongDetailScreen({ navigation, route }: Props) {
                   return (
                     <Text
                       key={`${segment.timelineIndex}:${segment.text}:${segmentIndex}`}
+                      accessibilityLabel={`Ver diagrama de ${segment.text}`}
+                      accessibilityRole="button"
+                      onPress={(event) => {
+                        event.stopPropagation();
+                        openChordDiagram(segment.text);
+                      }}
                       style={[
                         styles.songChord,
                         segment.next && autoFollowEnabled && styles.songChordNext,
@@ -1776,7 +1799,7 @@ export function SongDetailScreen({ navigation, route }: Props) {
               );
             }
             return (
-              <View key={`${lineIndex}:${line}`} pointerEvents="none" style={styles.songLineWrapper}>
+              <View key={`${lineIndex}:${line}`} style={styles.songLineWrapper}>
                 {lineText}
               </View>
             );
@@ -1784,8 +1807,9 @@ export function SongDetailScreen({ navigation, route }: Props) {
         </View>
       </View>
       {song.notes ? <><Text style={styles.section}>NOTAS</Text><View style={styles.notes}><Text style={styles.notesText}>{song.notes}</Text></View></> : null}
-
     </ScrollView>
+    <ChordDiagramSheet chord={selectedChord} onClose={closeChordDiagram} />
+    </>
   );
 }
 
